@@ -28,13 +28,11 @@
     <string name="userInfo_EditUserButton">Edit User</string>
     <string name="userInfo_EditParentButton">Edit Parent</string>
     <string name="logs_SortByText">Sort By:</string>
-    
 
     <string-array name="spinnerarray">
         <item>Date</item>
         <item>Event</item>
         <item>Location</item>
-        
     </string-array>
 
     <string name="title_activity_user_info">UserInfoActivity</string>
@@ -45,5 +43,9 @@
     <string name="aboutUs_label">About Us</string>
     <string name="submit_label">Submit</string>
     <string name="setParent_label">Do you want to set a parent?</string>
+    <string name="title_activity_edit__user_info">Edit_UserInfo</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_edit_parent_info">EditParentInfo</string>
+    <string name="title_activity_edit__parent_info">Edit_ParentInfo</string>
 
 </resources>

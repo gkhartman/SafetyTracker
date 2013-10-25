@@ -47,6 +47,7 @@ public class UserInfoActivity extends Activity implements OnClickListener{
 	   {
 	       case R.id.userInfo_EditUserButton:
 		        startActivity(new Intent(""));
+		        break;
 	   }
 	}
 

@@ -7,7 +7,8 @@
     <uses-sdk
         android:minSdkVersion="10"
         android:targetSdkVersion="18" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -55,19 +56,29 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-            
-   <!-- USERINFO ACTIVITY -->     
+
+        <!-- USERINFO ACTIVITY -->
         <activity
             android:name="com.example.android_safetytracker.UserInfoActivity"
             android:label="@string/title_activity_user_info" >
-             <intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.UserInfoActivity" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        
-        
+        <activity
+            android:name="com.example.android_safetytracker.Edit_UserInfo"
+            android:label="@string/title_activity_edit__user_info" >
+        </activity>
+        <activity
+            android:name="com.example.android_safetytracker.EditParentInfo"
+            android:label="@string/title_activity_edit_parent_info" >
+        </activity>
+        <activity
+            android:name="com.example.android_safetytracker.Edit_ParentInfo"
+            android:label="@string/title_activity_edit__parent_info" >
+        </activity>
     </application>
 
 </manifest>
