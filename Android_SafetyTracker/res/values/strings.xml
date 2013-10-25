@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Android_SafetyTracker</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_start__app">Start_App</string>
+    <string name="menuStartActivity">Start App</string>
+    <string name="menuLogs">Logs</string>
+    <string name="menuUserInfo">User Info</string>
+    <string name="startApp_dockMessage">        Please dock your phone.
+        Press Begin when ready.</string>
+    <string name="startApp_BeginButtonText">Begin</string>
+    <string name="title_activity_begin">BeginActivity</string>
+    <string name="begin_DisclaimerText">Disclaimer</string>
+    <string name="begin_textForDisclaimer">        Fill with Disclaimer</string>
+    <string name="begin_Instruction">Instructions</string>
+    <string name="begin_InstructionText">Fill with Instructions</string>
+    <string name="begin_StopButtonText">Stop</string>
+    <string name="title_activity_logs">Logs</string>
+    <string name="userInfo_NameText">Name</string>
+    <string name="userInfo_NameForUser">Temporary Name</string>
+    <string name="userInfo_AgeText">Age</string>
+    <string name="userInfo_Age">Temporary Age</string>
+    <string name="userInfo_PhoneText">Phone:</string>
+    <string name="userInfo_PhoneNumber">(555) 555-5555</string>
+    <string name="userInfo_EmailText">Email:</string>
+    <string name="userInfo_Email">me@csupomona.edu</string>
+    <string name="userInfo_EditUserButton">Edit User</string>
+    <string name="userInfo_EditParentButton">Edit Parent</string>
+    <string name="logs_SortByText">Sort By:</string>
+    
+
+    <string-array name="spinnerarray">
+        <item>Date</item>
+        <item>Event</item>
+        <item>Location</item>
+        
+    </string-array>
+
+    <string name="title_activity_user_info">UserInfoActivity</string>
+
+</resources>
