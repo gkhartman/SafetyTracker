@@ -82,7 +82,8 @@
         android:layout_alignLeft="@+id/userInfo_Email"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="25dp"
-        android:text="@string/userInfo_EditUserButton" />
+        android:text="@string/userInfo_EditUserButton"
+        android:onClick="" />
 
     <TextView
         android:id="@+id/UserInfo_PhoneText"
