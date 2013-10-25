@@ -43,7 +43,11 @@ public class UserInfoActivity extends Activity implements OnClickListener{
 	@Override
 	public void onClick(View v)
 	{
-		
+	   switch(v.getId())
+	   {
+	       case R.id.userInfo_EditUserButton:
+		        startActivity(new Intent(""));
+	   }
 	}
 
 }
