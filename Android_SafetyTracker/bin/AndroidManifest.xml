@@ -67,17 +67,25 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <!-- Edit_UserInfo -->
         <activity
             android:name="com.example.android_safetytracker.Edit_UserInfo"
             android:label="@string/title_activity_edit__user_info" >
+            <intent-filter >
+                <action android:name="android.intent.action.Edit_UserInfo"/>
+                    
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
         </activity>
-        <activity
-            android:name="com.example.android_safetytracker.EditParentInfo"
-            android:label="@string/title_activity_edit_parent_info" >
-        </activity>
+        <!-- EditParentInfo -->
         <activity
             android:name="com.example.android_safetytracker.Edit_ParentInfo"
-            android:label="@string/title_activity_edit__parent_info" >
+            android:label="@string/title_activity_edit_parent_info" >
+            <intent-filter>
+                <action android:name="android.intent.action.Edit_ParentInfo"/>
+                
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
         </activity>
     </application>
 

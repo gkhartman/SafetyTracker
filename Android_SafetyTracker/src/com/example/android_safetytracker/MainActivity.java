@@ -18,6 +18,7 @@ public class MainActivity extends Activity implements OnClickListener{
 	private Button startAppButton, logsButton, userInfo, calibrateButton, 
 	       turnOnGPSButton, helpButton, legalButton, aboutUsButton ;
 
+	protected Consumer s;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

@@ -46,13 +46,13 @@ public final class R {
         public static final int menu_legalButton=0x7f09001a;
         public static final int menu_turnOnGPSButton=0x7f090018;
         public static final int parentEmail_input=0x7f090005;
-        public static final int parentInfo_submit=0x7f090008;
+        public static final int parentInfo_submit=0x7f090009;
         public static final int parentPhone_input=0x7f090007;
         public static final int setparent_box=0x7f09000a;
         public static final int startApp_Begin=0x7f09001d;
         public static final int textView1=0x7f090006;
         public static final int textView2=0x7f09000d;
-        public static final int textView3=0x7f090009;
+        public static final int textView3=0x7f090008;
         public static final int tv=0x7f090011;
         public static final int tvMiddle=0x7f090012;
         public static final int tvRight=0x7f090013;
