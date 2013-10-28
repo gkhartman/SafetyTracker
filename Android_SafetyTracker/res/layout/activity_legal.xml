@@ -1,0 +1,83 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".Legal" >
+
+    <TextView
+        android:id="@+id/contactUsLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:text="@string/legal_TermsConditions"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="135dp"
+        android:layout_alignLeft="@+id/contactUsLabel"
+        android:layout_centerVertical="true" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/ageLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="57dp"
+            android:text="@string/legal_AgreementLabel"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TextView
+            android:id="@+id/visitWebsiteLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="27dp"
+            android:text="@string/legal_AgreementText"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/websiteLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="27dp"
+            android:layout_marginLeft="60dp"
+            android:text="@string/legal_DisclaimerLabel"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+        <TextView 
+            android:id="@+id/checkUsOutLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="27dp"
+            android:text="@string/legal_DisclaimerText"
+            android:textAppearance="?android:attr/textAppearanceMedium"/>
+        
+        <TextView 
+            android:id="@+id/FacebookLabel"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="27dp"
+            android:layout_marginLeft="60dp"
+            android:text="@string/legal_PrivacyLabel"
+            android:textAppearance="?android:attr/textAppearanceLarge"/>
+        <TextView 
+            android:id="@+id/twitterLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="27dp"
+            android:text="@string/legal_PrivacyText"
+            android:textAppearance="?android:attr/textAppearanceMedium"/>
+    </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

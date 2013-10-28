@@ -58,11 +58,13 @@ public class UserInfoActivity extends Activity implements OnClickListener{
 	private void editParentClick()
 	{
 		startActivity(new Intent("android.intent.action.Edit_ParentInfo"));
+		finish();
 	}
 	
 	private void editUserClick()
 	{
 		startActivity(new Intent("android.intent.action.Edit_UserInfo"));
+		finish();
 	}
 	
 }

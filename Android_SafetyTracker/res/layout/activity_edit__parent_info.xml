@@ -12,9 +12,9 @@
         android:id="@+id/parentEmail_input"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textView1"
+        android:layout_alignBottom="@+id/contactUsLabel"
         android:layout_marginLeft="22dp"
-        android:layout_toRightOf="@+id/textView1"
+        android:layout_toRightOf="@+id/contactUsLabel"
         android:ems="10"
         android:inputType="textEmailAddress" />
 
@@ -32,7 +32,7 @@
     </EditText>
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/contactUsLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -42,11 +42,11 @@
         android:text="@string/userInfo_EmailText" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/visitWebsiteLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/parentInfo_submit"
-        android:layout_alignLeft="@+id/textView1"
+        android:layout_alignLeft="@+id/contactUsLabel"
         android:text="@string/userInfo_PhoneText" />
 
     <Button

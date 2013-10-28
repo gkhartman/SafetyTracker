@@ -28,6 +28,30 @@
     <string name="userInfo_EditUserButton">Edit User</string>
     <string name="userInfo_EditParentButton">Edit Parent</string>
     <string name="logs_SortByText">Sort By:</string>
+    <string name="legal_TermsConditions">TERMS AND CONDITIONS</string>
+    <string name="legal_AgreementLabel">Agreement</string>
+    <string name="legal_AgreementText">You agree by using this app to continue 
+        to abide by the rules of the road. Using this application by no means 
+        allows you to start driving recklessly and endanger lives of others or 
+        yourself. The purpose of this application is merely to assist you in 
+        becoming a better, safer driver.</string>
+    <string name="legal_DisclaimerLabel">Disclaimer</string>
+    <string name="legal_DisclaimerText">This app is not for use while operating 
+        a vehicle. You, the user, are solely responsible for any situation that 
+        may occur while operating a vehicle and using SafetyTracker. This app 
+        is designed for use before and/or after operating a vehicle. Use extreme 
+        caution while operating a vehicle. Always pay attention to the road and 
+        please do not text and drive. It can wait.</string>
+    <string name="legal_PrivacyLabel">Privacy</string>
+    <string name="legal_PrivacyText">We will not provide any of your information 
+        to third parties. Your information is solely used to provide you with a 
+        better experience using our application.</string>
+    <string name="aboutUs_ContactUs">Report bugs \n 
+        								  or give feedback</string>
+    <string name="aboutUs_VisitUs">Visit our website</string>
+    <string name="aboutUs_Social">Check us out at</string>
+    <string name="aboutUs_Facebook">Facebook</string>
+    <string name="aboutUs_Twitter">Twitter</string>
 
     <string-array name="spinnerarray">
         <item>Date</item>
@@ -47,5 +71,10 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_edit_parent_info">EditParentInfo</string>
     <string name="title_activity_edit__parent_info">Edit_ParentInfo</string>
-
+    <string name="title_activity_legal">Legal</string>
+    <string name="title_activity_about_us">AboutUs</string>
+    <string name="title_activity_email_screen">EmailScreen</string>
+    <string name="email_sendToLabel">Send To:</string>
+    <string name="email_subjectLabel">Subject:</string>
+    <string name="email_messageLabel">Message</string>
 </resources>

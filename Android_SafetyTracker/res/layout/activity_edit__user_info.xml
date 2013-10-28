@@ -17,49 +17,53 @@
         android:layout_marginBottom="149dp"
         android:text="@string/setParent_label" />
 
-    <EditText
-        android:id="@+id/user_age"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="78dp"
-        android:layout_toRightOf="@+id/textView1"
-        android:ems="10"
-        android:inputType="numberDecimal" />
-
-    <EditText
-        android:id="@+id/username_input"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/setparent_box"
-        android:layout_alignLeft="@+id/user_age"
-        android:layout_marginBottom="23dp"
-        android:ems="10"
-        android:inputType="text" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/username_input"
-        android:layout_alignParentLeft="true"
-        android:text="@string/userInfo_AgeText" />
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/user_age"
-        android:layout_alignLeft="@+id/textView2"
-        android:text="@string/userInfo_NameText" />
-
     <Button
-        android:id="@+id/uinfolayout_submit"
+        android:id="@+id/editUser_SubmitButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/setparent_box"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="74dp"
         android:text="@string/submit_label" />
+
+    <EditText
+        android:id="@+id/username_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/contactUsLabel"
+        android:layout_toRightOf="@+id/contactUsLabel"
+        android:ems="10"
+        android:inputType="text" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/userAge_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/username_input"
+        android:layout_below="@+id/username_input"
+        android:layout_marginTop="58dp"
+        android:ems="10"
+        android:inputType="numberDecimal" />
+
+    <TextView
+        android:id="@+id/ageLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/userAge_input"
+        android:layout_alignBottom="@+id/userAge_input"
+        android:layout_alignParentLeft="true"
+        android:text="@string/userInfo_AgeText" />
+
+    <TextView
+        android:id="@+id/contactUsLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/ageLabel"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="59dp"
+        android:text="@string/userInfo_NameText" />
 
 </RelativeLayout>
