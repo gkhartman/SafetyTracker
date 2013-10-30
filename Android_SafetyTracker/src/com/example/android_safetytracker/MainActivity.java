@@ -107,7 +107,7 @@ public class MainActivity extends Activity implements OnClickListener{
 				 
 			case R.id.menu_turnOnGPSButton:
 				 beginTurnOnGPSClick();
-				 break;				
+				 break;	
 				
 			}
 	}
@@ -163,7 +163,7 @@ public class MainActivity extends Activity implements OnClickListener{
 
 	private void beginHelpClick() 
 	{
-		//johnny's layout here	
+		startActivity(new Intent("android.intent.action.HelpscreenActivity"));
 	}
 
 	/**
@@ -172,7 +172,7 @@ public class MainActivity extends Activity implements OnClickListener{
 	 */
 	private void beginCalibrateClick() 
 	{
-	   
+	   startActivity(new Intent("android.intent.action.CalibratescreenActivity"));
 	}
 
 	private void beginAboutUsClick() 

@@ -31,7 +31,7 @@ public final class R {
         public static final int FacebookLabel=0x7f09001d;
         public static final int StartApp_DockPhoneMessage=0x7f09002c;
         public static final int UserInfo_PhoneText=0x7f090032;
-        public static final int action_settings=0x7f090037;
+        public static final int action_settings=0x7f09003a;
         public static final int ageLabel=0x7f090013;
         public static final int begin_DisclaimerHeadText=0x7f090005;
         public static final int begin_DisclaimerText=0x7f090006;
@@ -65,6 +65,9 @@ public final class R {
         public static final int startApp_Begin=0x7f09002d;
         public static final int subjectInput=0x7f090017;
         public static final int subjectLabel=0x7f090016;
+        public static final int textView1=0x7f090037;
+        public static final int textView2=0x7f090038;
+        public static final int textView3=0x7f090039;
         public static final int tv=0x7f090021;
         public static final int tvMiddle=0x7f090022;
         public static final int tvRight=0x7f090023;
@@ -95,21 +98,29 @@ public final class R {
         public static final int activity_main=0x7f030007;
         public static final int activity_start__app=0x7f030008;
         public static final int activity_user_info=0x7f030009;
+        public static final int calibratescreen=0x7f03000a;
+        public static final int helpscreen=0x7f03000b;
     }
     public static final class menu {
         public static final int about_us=0x7f080000;
         public static final int begin=0x7f080001;
-        public static final int edit__parent_info=0x7f080002;
-        public static final int edit__user_info=0x7f080003;
-        public static final int edit_parent_info=0x7f080004;
-        public static final int email_screen=0x7f080005;
-        public static final int legal=0x7f080006;
-        public static final int logs=0x7f080007;
-        public static final int main=0x7f080008;
-        public static final int start__app=0x7f080009;
-        public static final int user_info=0x7f08000a;
+        public static final int calibratescreen=0x7f080002;
+        public static final int edit__parent_info=0x7f080003;
+        public static final int edit__user_info=0x7f080004;
+        public static final int edit_parent_info=0x7f080005;
+        public static final int email_screen=0x7f080006;
+        public static final int helpscreen=0x7f080007;
+        public static final int legal=0x7f080008;
+        public static final int logs=0x7f080009;
+        public static final int main=0x7f08000a;
+        public static final int start__app=0x7f08000b;
+        public static final int user_info=0x7f08000c;
     }
     public static final class string {
+        public static final int CalibrateText=0x7f05003d;
+        public static final int Help=0x7f050039;
+        public static final int HelpStatement=0x7f05003a;
+        public static final int HelpText2=0x7f05003b;
         public static final int aboutUs_ContactUs=0x7f050021;
         public static final int aboutUs_Facebook=0x7f050024;
         public static final int aboutUs_Social=0x7f050023;
@@ -147,10 +158,12 @@ public final class R {
         public static final int submit_label=0x7f05002c;
         public static final int title_activity_about_us=0x7f050033;
         public static final int title_activity_begin=0x7f050008;
+        public static final int title_activity_calibratescreen=0x7f05003c;
         public static final int title_activity_edit__parent_info=0x7f050031;
         public static final int title_activity_edit__user_info=0x7f05002e;
         public static final int title_activity_edit_parent_info=0x7f050030;
         public static final int title_activity_email_screen=0x7f050034;
+        public static final int title_activity_helpscreen=0x7f050038;
         public static final int title_activity_legal=0x7f050032;
         public static final int title_activity_logs=0x7f05000e;
         public static final int title_activity_start__app=0x7f050002;

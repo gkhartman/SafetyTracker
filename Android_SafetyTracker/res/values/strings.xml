@@ -77,4 +77,11 @@
     <string name="email_sendToLabel">Send To:</string>
     <string name="email_subjectLabel">Subject:</string>
     <string name="email_messageLabel">Message</string>
+    <string name="title_activity_helpscreen">Help</string>
+    <string name="Help">Help</string>
+    <string name="HelpStatement">To start your app (while you are not driving), tap \'Start App.\'  To view logs, tap \'Logs.\'  To view your info, tap \'User Info.\' To turn on GPS, tap \'Turn on GPS.\'  </string>
+    <string name="HelpText2">If you are a parent, please provide at least one method to contact you, either via SMS or email. If you are the user, you must be ten years or older to use this app.  If you are having trouble, please contact us.</string>
+    <string name="title_activity_calibratescreen">CalibrateScreen</string>
+    <string name="CalibrateText">Please wait, currently calibrating...</string>
+
 </resources>
