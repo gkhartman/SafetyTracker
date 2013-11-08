@@ -8,14 +8,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".Legal" >
 
-    <TextView
-        android:id="@+id/contactUsLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="35dp"
-        android:text="@string/legal_TermsConditions"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
     <ScrollView
         android:id="@+id/scrollView1"
         android:layout_width="fill_parent"
@@ -26,7 +18,7 @@
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="782dp"
         android:orientation="vertical" >
 
         <TextView
@@ -79,5 +71,15 @@
             android:textAppearance="?android:attr/textAppearanceMedium"/>
     </LinearLayout>
     </ScrollView>
+
+    <TextView
+        android:id="@+id/contactUsLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="26dp"
+        android:text="@string/legal_TermsConditions"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </RelativeLayout>

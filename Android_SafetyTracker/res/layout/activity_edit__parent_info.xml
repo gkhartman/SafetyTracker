@@ -22,23 +22,29 @@
         android:id="@+id/parentPhone_input"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/visitWebsiteLabel"
         android:layout_alignLeft="@+id/parentEmail_input"
-        android:layout_below="@+id/parentEmail_input"
-        android:layout_marginTop="70dp"
         android:ems="10"
         android:inputType="phone" >
 
         <requestFocus />
     </EditText>
 
+    <Button
+        android:id="@+id/parentInfo_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="33dp"
+        android:text="@string/submit_label" />
+
     <TextView
         android:id="@+id/contactUsLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="26dp"
-        android:layout_marginTop="66dp"
+        android:layout_centerVertical="true"
         android:text="@string/userInfo_EmailText" />
 
     <TextView
@@ -47,15 +53,16 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/parentInfo_submit"
         android:layout_alignLeft="@+id/contactUsLabel"
+        android:layout_marginBottom="48dp"
         android:text="@string/userInfo_PhoneText" />
 
-    <Button
-        android:id="@+id/parentInfo_submit"
+    <ImageView
+        android:id="@+id/imageView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/parentPhone_input"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="96dp"
-        android:text="@string/submit_label" />
+        android:layout_marginTop="53dp"
+        android:src="@drawable/ic_launcher" />
 
 </RelativeLayout>

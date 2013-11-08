@@ -8,7 +8,7 @@
     <string name="menuLogs">Logs</string>
     <string name="menuUserInfo">User Info</string>
     <string name="startApp_dockMessage">        Please dock your phone.
-        Press Begin when ready.</string>
+        Tap Begin when ready.</string>
     <string name="startApp_BeginButtonText">Begin</string>
     <string name="title_activity_begin">BeginActivity</string>
     <string name="begin_DisclaimerText">Disclaimer</string>
@@ -47,7 +47,7 @@
         to third parties. Your information is solely used to provide you with a 
         better experience using our application.</string>
     <string name="aboutUs_ContactUs">Report bugs \n 
-        								  or give feedback</string>
+        								  or provide feedback</string>
     <string name="aboutUs_VisitUs">Visit our website</string>
     <string name="aboutUs_Social">Check us out at</string>
     <string name="aboutUs_Facebook">Facebook</string>
@@ -66,7 +66,7 @@
     <string name="legal_label">Legal</string>
     <string name="aboutUs_label">About Us</string>
     <string name="submit_label">Submit</string>
-    <string name="setParent_label">Do you want to set a parent?</string>
+    <string name="setParent_label">Do you want to set as a parent?</string>
     <string name="title_activity_edit__user_info">Edit_UserInfo</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_edit_parent_info">EditParentInfo</string>

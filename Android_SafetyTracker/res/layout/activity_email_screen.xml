@@ -29,34 +29,16 @@
         <requestFocus />
     </EditText>
 
-    <TextView
-        android:id="@+id/subjectLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/emailInput"
-        android:layout_marginTop="40dp"
-        android:text="@string/email_subjectLabel" />
-
     <EditText
         android:id="@+id/subjectInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/messageLabel"
         android:layout_alignLeft="@+id/subjectLabel"
         android:layout_alignRight="@+id/emailInput"
         android:layout_below="@+id/subjectLabel"
         android:ems="10"
         android:inputType="textMultiLine"
         android:scrollHorizontally="true" />
-
-    <TextView
-        android:id="@+id/messageLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/subjectInput"
-        android:layout_centerVertical="true"
-        android:text="@string/email_messageLabel" />
 
     <EditText
         android:id="@+id/messageInput"
@@ -75,5 +57,23 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:text="@string/submit_label" />
+
+    <TextView
+        android:id="@+id/messageLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/subjectInput"
+        android:layout_below="@+id/subjectInput"
+        android:layout_marginTop="34dp"
+        android:text="@string/email_messageLabel" />
+
+    <TextView
+        android:id="@+id/subjectLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/emailInput"
+        android:layout_below="@+id/emailInput"
+        android:layout_marginTop="18dp"
+        android:text="@string/email_subjectLabel" />
 
 </RelativeLayout>

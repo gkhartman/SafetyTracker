@@ -12,41 +12,42 @@
         android:id="@+id/setparent_box"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/username_input"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="149dp"
-        android:text="@string/setParent_label" />
-
-    <Button
-        android:id="@+id/editUser_SubmitButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/setparent_box"
+        android:layout_above="@+id/editUser_SubmitButton"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="74dp"
-        android:text="@string/submit_label" />
-
-    <EditText
-        android:id="@+id/username_input"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/contactUsLabel"
-        android:layout_toRightOf="@+id/contactUsLabel"
-        android:ems="10"
-        android:inputType="text" >
-
-        <requestFocus />
-    </EditText>
+        android:layout_marginBottom="26dp"
+        android:text="@string/setParent_label" />
 
     <EditText
         android:id="@+id/userAge_input"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/setparent_box"
         android:layout_alignLeft="@+id/username_input"
-        android:layout_below="@+id/username_input"
-        android:layout_marginTop="58dp"
+        android:layout_marginBottom="30dp"
         android:ems="10"
         android:inputType="numberDecimal" />
+
+    <TextView
+        android:id="@+id/contactUsLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/username_input"
+        android:layout_alignBottom="@+id/username_input"
+        android:layout_alignLeft="@+id/ageLabel"
+        android:text="@string/userInfo_NameText" />
+
+    <EditText
+        android:id="@+id/username_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/userAge_input"
+        android:layout_alignRight="@+id/setparent_box"
+        android:layout_marginBottom="40dp"
+        android:ems="10"
+        android:inputType="text" >
+
+        <requestFocus />
+    </EditText>
 
     <TextView
         android:id="@+id/ageLabel"
@@ -54,16 +55,25 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/userAge_input"
         android:layout_alignBottom="@+id/userAge_input"
-        android:layout_alignParentLeft="true"
+        android:layout_alignLeft="@+id/setparent_box"
         android:text="@string/userInfo_AgeText" />
 
-    <TextView
-        android:id="@+id/contactUsLabel"
+    <ImageView
+        android:id="@+id/imageView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/ageLabel"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="59dp"
-        android:text="@string/userInfo_NameText" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="34dp"
+        android:src="@drawable/ic_launcher" />
+
+    <Button
+        android:id="@+id/editUser_SubmitButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="24dp"
+        android:text="@string/submit_label" />
 
 </RelativeLayout>

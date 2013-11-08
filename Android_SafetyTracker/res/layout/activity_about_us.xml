@@ -22,10 +22,9 @@
         android:id="@+id/websiteTextLink"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/emailUs"
+        android:layout_alignLeft="@+id/emailUs"
         android:layout_below="@+id/emailUs"
-        android:layout_marginRight="21dp"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="76dp"
         android:autoLink="web"
         android:clickable="true"
         android:linksClickable="true"
@@ -38,21 +37,11 @@
         android:id="@+id/checkUsOutLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/websiteTextLink"
         android:layout_below="@+id/websiteTextLink"
-        android:layout_marginTop="74dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="77dp"
         android:text="@string/aboutUs_Social"
         android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <Button
-        android:id="@+id/facebookButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/checkUsOutLabel"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="47dp"
-        android:text="@string/aboutUs_Facebook" />
 
     <Button
         android:id="@+id/twitterButton"
@@ -61,7 +50,17 @@
         android:layout_alignBaseline="@+id/facebookButton"
         android:layout_alignBottom="@+id/facebookButton"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="43dp"
+        android:layout_marginRight="22dp"
         android:text="@string/aboutUs_Twitter" />
+
+    <Button
+        android:id="@+id/facebookButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/checkUsOutLabel"
+        android:layout_marginLeft="21dp"
+        android:layout_marginTop="39dp"
+        android:text="@string/aboutUs_Facebook" />
 
 </RelativeLayout>
