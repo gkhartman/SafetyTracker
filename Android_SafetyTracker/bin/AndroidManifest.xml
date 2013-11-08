@@ -9,8 +9,6 @@
         android:targetSdkVersion="18" />
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <application
         android:allowBackup="true"
@@ -28,7 +26,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <!-- START APPLICATION -->
         <activity
             android:name="com.example.android_safetytracker.Start_App"
@@ -70,70 +67,9 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <!-- Edit_UserInfo -->
         <activity
-            android:name="com.example.android_safetytracker.Edit_UserInfo"
-            android:label="@string/title_activity_edit__user_info" >
-            <intent-filter>
-                <action android:name="android.intent.action.Edit_UserInfo" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <!-- EditParentInfo -->
-        <activity
-            android:name="com.example.android_safetytracker.Edit_ParentInfo"
-            android:label="@string/title_activity_edit_parent_info" >
-            <intent-filter>
-                <action android:name="android.intent.action.Edit_ParentInfo" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.example.android_safetytracker.Legal"
-            android:label="@string/title_activity_legal" >
-            <intent-filter>
-                <action android:name="android.intent.action.Legal" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.example.android_safetytracker.AboutUs"
-            android:label="@string/title_activity_about_us" >
-            <intent-filter>
-                <action android:name="android.intent.action.AboutUs" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.example.android_safetytracker.EmailScreen"
-            android:label="@string/title_activity_email_screen" >
-            <intent-filter>
-                <action android:name="android.intent.action.EmailScreen" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.example.android_safetytracker.HelpscreenActivity"
-            android:label="@string/title_activity_helpscreen" >
-            <intent-filter>
-                <action android:name="android.intent.action.HelpscreenActivity" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.example.android_safetytracker.CalibratescreenActivity"
-            android:label="@string/title_activity_calibratescreen" >
-            <intent-filter>
-                <action android:name="android.intent.action.CalibratescreenActivity" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
+            android:name="com.example.android_safetytracker.Test"
+            android:label="@string/title_activity_test" >
         </activity>
     </application>
 
