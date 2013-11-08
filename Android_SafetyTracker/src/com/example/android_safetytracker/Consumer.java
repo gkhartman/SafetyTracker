@@ -5,7 +5,7 @@ package com.example.android_safetytracker;
 class Consumer extends User
 {
    private boolean isMonitored;
-   private int phone;
+   private String phone;
    
    public void setMonitored(boolean isMonitored)
    {
@@ -17,4 +17,13 @@ class Consumer extends User
 	   return isMonitored;
    }
    
+   public void setPhone(String phone)
+   {
+	   this.phone = phone;
+   }
+   
+   public String getPhone()
+   {
+	   return phone;
+   }
 }

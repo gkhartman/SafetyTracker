@@ -18,13 +18,22 @@ public class MainActivity extends Activity implements OnClickListener{
 	private Button startAppButton, logsButton, userInfo, calibrateButton, 
 	       turnOnGPSButton, helpButton, legalButton, aboutUsButton ;
 
+	protected Consumer s;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
+		//check if it's the first time the app launches
+		Boolean isFirstRun = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("isFirstRun", true);
+		if(isFirstRun)
+		{
+			getSharedPreferences("PREFERENCES", MODE_PRIVATE).edit().putBoolean("isFirstRun", false).commit();
+			startActivity(new Intent("android.intent.action.Edit_UserInfo"));
+		}
 		initializeButtons();
-		startActivity(new Intent("android.intent.action.Test"));
+		
 	}
 	
 
@@ -98,7 +107,7 @@ public class MainActivity extends Activity implements OnClickListener{
 				 
 			case R.id.menu_turnOnGPSButton:
 				 beginTurnOnGPSClick();
-				 break;				
+				 break;	
 				
 			}
 	}
@@ -149,12 +158,12 @@ public class MainActivity extends Activity implements OnClickListener{
 
 	private void beginLegalClick() 
 	{
-	    //johnny's layout here	
+		startActivity(new Intent("android.intent.action.Legal"));	
 	}
 
 	private void beginHelpClick() 
 	{
-	   //johnny's layout here	
+		startActivity(new Intent("android.intent.action.HelpscreenActivity"));
 	}
 
 	/**
@@ -163,12 +172,12 @@ public class MainActivity extends Activity implements OnClickListener{
 	 */
 	private void beginCalibrateClick() 
 	{
-	   
+	   startActivity(new Intent("android.intent.action.CalibratescreenActivity"));
 	}
 
 	private void beginAboutUsClick() 
 	{
-		//johnny's layout here
+		startActivity(new Intent("android.intent.action.AboutUs"));	
 	}
 
 	private void beginUserInfoClick() {
@@ -184,6 +193,5 @@ public class MainActivity extends Activity implements OnClickListener{
 		startActivity(new Intent("android.intent.action.Start_App"));
 		
 	}
+
 }
-	
-	

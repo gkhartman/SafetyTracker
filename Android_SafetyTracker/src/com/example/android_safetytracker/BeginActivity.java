@@ -2,7 +2,6 @@ package com.example.android_safetytracker;
 
 import android.os.Bundle;
 import android.app.Activity;
-import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -31,10 +30,6 @@ public class BeginActivity extends Activity implements View.OnClickListener{
 		return true;
 	}
 
-
-
-
-
 	@Override
 	public void onClick(View v) {
 		switch(v.getId()){
@@ -50,7 +45,8 @@ public class BeginActivity extends Activity implements View.OnClickListener{
 
 
 	private void beginClick() {
-		startActivity(new Intent("android.intent.action.Start_App"));
+		//code to save logs if needed
+		finish();
 	}
 
 }
