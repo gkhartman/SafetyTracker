@@ -12,7 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-public class Logs extends Activity {
+public class Logs extends Activity { //
 
 	Spinner logDropDown;
 	TextView text,textMiddle,textRight;

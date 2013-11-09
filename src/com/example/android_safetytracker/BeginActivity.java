@@ -215,7 +215,7 @@ public class BeginActivity extends Activity implements View.OnClickListener, Sen
 
 	private float calculateGforce(float xValue, float yValue, float zValue) {
 		
-		// The virtualNumbers should read (x,y,z) = (0,9.8,0) since these are the values in a perfect situation
+		// The  virtualNumbers should read (x,y,z) = (0,9.8,0) since these are the values in a perfect situation
 		// where the phone is upright perpendicular to the acceleration vectors
 		float virtualNumberX = xValue - initialXValue;
 		float virtualNumberY = yValue - initialYValue;
