@@ -1,5 +1,7 @@
 package com.example.android_safetytracker;
 
+import java.util.LinkedList;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
@@ -14,6 +16,7 @@ public class Logs extends Activity {
 
 	Spinner logDropDown;
 	TextView text,textMiddle,textRight;
+	static LinkedList<Event> linkedList = new LinkedList<Event>();
 	
 
 	@Override
@@ -31,13 +34,31 @@ public class Logs extends Activity {
 		textRight = (TextView)findViewById(R.id.tvRight);
 		
 		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.spinnerarray,
-				android.R.layout.simple_spinner_item);
+		android.R.layout.simple_spinner_item);
 		
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		
 		
 		logDropDown.setAdapter(adapter);
 		logDropDown.setOnItemSelectedListener(new function());
+		
+		///////////////////////////////////////////////////////////////////////////////////////
+		//debug code
+		
+		
+		int theCounter = 0;
+		while(linkedList.size()>theCounter){
+		
+		
+		System.out.println(linkedList.get(theCounter).getEventType());
+		System.out.println(linkedList.get(theCounter).getDateTime());
+		theCounter++;
+		}
+		
+		
+		///////////////////////////////////////////////////////////////////////////////////////
+
+		
 	}
 	
 	public class function implements OnItemSelectedListener {
@@ -91,6 +112,13 @@ public class Logs extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.logs, menu);
 		return true;
+	}
+	public static LinkedList<Event> getLinkedList(){
+		return linkedList;
+		
+	}
+	public static void setLinkedList(LinkedList<Event> theLogList){
+		linkedList = theLogList;
 	}
 
 }
