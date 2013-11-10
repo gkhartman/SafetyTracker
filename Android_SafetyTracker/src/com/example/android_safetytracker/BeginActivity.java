@@ -3,8 +3,6 @@ package com.example.android_safetytracker;
 import java.util.LinkedList;
 
 
-import com.example.android_safetytracker.R.raw;
-
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -21,7 +19,6 @@ public class BeginActivity extends Activity implements View.OnClickListener, Sen
 	Button begin_Stop;
 	Sensor accelerometer;
 	SensorManager sensorM;
-	MediaPlayer mp;
 	Event infraction;
 	static float xValue;
 	static float yValue;
@@ -48,7 +45,6 @@ public class BeginActivity extends Activity implements View.OnClickListener, Sen
 		accelerometer = sensorM.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 		
 		sensorM.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_NORMAL);
-		mp=MediaPlayer.create(BeginActivity.this,raw.ding);
 		
 		calibrator = new Calibrate();
 		notGoodForIntialValues = true;
@@ -70,6 +66,8 @@ public class BeginActivity extends Activity implements View.OnClickListener, Sen
 	
 	public void OnStart(){
 		super.onStart();
+		
+		
 	}
 	
 	
@@ -132,6 +130,7 @@ public class BeginActivity extends Activity implements View.OnClickListener, Sen
 	@Override
 	public void onSensorChanged(SensorEvent event) {
 		
+		
 		 xValue = event.values[0];
 		 yValue = event.values[1];
 		 zValue = event.values[2];
@@ -141,6 +140,7 @@ public class BeginActivity extends Activity implements View.OnClickListener, Sen
 				calibrator.startCalibrating(xValue,yValue,zValue);
 				return;
 			 }
+				
 		   }
 		 if(calibrator.timeIsUp() && !calibrator.isCalibrated()){ //NOTE:Debugin0 method to tell me ifts its calibrated...homie
 			 System.out.println("Its not even calibrated homie");
@@ -159,6 +159,8 @@ public class BeginActivity extends Activity implements View.OnClickListener, Sen
 			// System.out.println(initialXValue+"++++"+ initialYValue+"----"+initialZValue);
 			 //System.out.println("I AM CALIBRATED HEAR ME ROAR");
 		 }
+		 
+		 
 		 
 		
 		
@@ -194,12 +196,8 @@ public class BeginActivity extends Activity implements View.OnClickListener, Sen
 		}
 	}
 
-   @Override
-   public void onStop()
-   {
-	  sensorM.unregisterListener(this);
-	  super.onStop();   
-   }
+
+
 
 
 	private boolean evaluateGForce(float gForce) {

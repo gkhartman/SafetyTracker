@@ -26,20 +26,16 @@ public class MainActivity extends Activity implements OnClickListener{
 		setContentView(R.layout.activity_main);
 		
 		//check if it's the first time the app launches
-		/**Boolean isFirstRun = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("isFirstRun", true);
+		Boolean isFirstRun = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("isFirstRun", true);
 		if(isFirstRun)
 		{
 			getSharedPreferences("PREFERENCES", MODE_PRIVATE).edit().putBoolean("isFirstRun", false).commit();
 			startActivity(new Intent("android.intent.action.Edit_UserInfo"));
-		}*/
+		}
 		initializeButtons();
 		
 	}
 	
-	@Override 
-	public void onStop(){
-		super.onStop();
-	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -96,7 +92,7 @@ public class MainActivity extends Activity implements OnClickListener{
 			case R.id.menu_aboutUsButton:
 			     beginAboutUsClick();
 			     break;
-			  
+			     
 			case R.id.menu_CalibrateButton:
 				 beginCalibrateClick();
 				 break;
