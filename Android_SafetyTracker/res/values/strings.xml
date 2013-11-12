@@ -83,5 +83,7 @@
     <string name="HelpText2">If you are a parent, please provide at least one method to contact you, either via SMS or email. If you are the user, you must be ten years or older to use this app.  If you are having trouble, please contact us.</string>
     <string name="title_activity_calibratescreen">CalibrateScreen</string>
     <string name="CalibrateText">Please wait, currently calibrating...</string>
+    <string name="back">Back</string>
+    <string name="next">Next</string>
 
 </resources>

@@ -9,7 +9,7 @@
     tools:context=".HelpscreenActivity" >
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/row1Mid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -19,21 +19,21 @@
         android:textSize="24sp" />
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/row1Left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView2"
+        android:layout_below="@+id/row1Mid"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="24dp"
         android:text="@string/HelpStatement"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/row1Right"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_below="@+id/textView1"
+        android:layout_alignLeft="@+id/row1Left"
+        android:layout_below="@+id/row1Left"
         android:layout_marginTop="38dp"
         android:text="@string/HelpText2"
         android:textAppearance="?android:attr/textAppearanceMedium" />

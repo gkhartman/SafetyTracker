@@ -25,6 +25,8 @@ public class Logs extends Activity {
 	private Spinner logDropDown;
 	private TextView text,textMiddle,textRight;
 	private static LinkedList<Event> linkedList = new LinkedList<Event>();
+	private TextView [][] box;
+	private int listPointer, spinnerChoice;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -49,30 +51,103 @@ public class Logs extends Activity {
 		logDropDown.setAdapter(adapter);
 		logDropDown.setOnItemSelectedListener(new function());
 		
+		listPointer = 0;
+		spinnerChoice = 0;
 		
-		///////////////////////////////////////////////////////////////////////////////////////
-		//debug code
+		box = new TextView[7][3];
+		initializeBox();
+		addTextViews();
 		
-		
-		int theCounter = 0;
-		while(linkedList.size()>theCounter){
-		
-		
-		System.out.println(linkedList.get(theCounter).getEventType());
-		System.out.println(linkedList.get(theCounter).getDateTime());
-		theCounter++;
-		}
-		
-		///////////////////////////////////////////////////////////////////////////////////////
 
 		
 	}
 	
+	private void initializeBox()
+	{
+		box[0][0]= (TextView) findViewById(R.id.row1Left);
+		box[0][1]= (TextView) findViewById(R.id.row1Mid);
+		box[0][2]= (TextView) findViewById(R.id.row1Right);
+		box[1][0]= (TextView) findViewById(R.id.row2Left);
+		box[1][1]= (TextView) findViewById(R.id.row2Mid);
+		box[1][2]= (TextView) findViewById(R.id.row2Right);
+		box[2][0]= (TextView) findViewById(R.id.row3Left);
+		box[2][1]= (TextView) findViewById(R.id.row3Mid);
+		box[2][2]= (TextView) findViewById(R.id.row3Right);
+		box[3][0]= (TextView) findViewById(R.id.row4Left);
+		box[3][1]= (TextView) findViewById(R.id.row4Mid);
+		box[3][2]= (TextView) findViewById(R.id.row4Right);
+		box[4][0]= (TextView) findViewById(R.id.row5Left);
+		box[4][1]= (TextView) findViewById(R.id.row5Mid);
+		box[4][2]= (TextView) findViewById(R.id.row5Right);
+		box[5][0]= (TextView) findViewById(R.id.row6Left);
+		box[5][1]= (TextView) findViewById(R.id.row6Mid);
+		box[5][2]= (TextView) findViewById(R.id.row6Right);
+		box[6][0]= (TextView) findViewById(R.id.row7Left);
+		box[6][1]= (TextView) findViewById(R.id.row7Mid);
+		box[6][2]= (TextView) findViewById(R.id.row7Right);
+	}
+	
+	
+	public void addTextViews()
+	{
+		if((listPointer -1) % 7 == 0)
+		{
+			listPointer -= 8;
+		}
+		else
+		{
+			int topOfPage = listPointer/7;
+		    System.out.println(topOfPage+"   "+listPointer);
+		    listPointer = topOfPage*7;
+		}
+		for(int row = 0; row < 7; ++row)
+		{
+			if(listPointer >= linkedList.size())
+			{
+				fillRestWithBlanks(row);
+				System.out.println("no more events");
+				return;
+			}
+			addTextToBox(row, linkedList.get(listPointer++));
+		}
+	}
+	
+	private void fillRestWithBlanks(int row) 
+	{
+	   for(;row < 7; ++row)
+	   {
+		   for(int col = 0; col < 3; ++col)
+		   {
+			   box[row][col].setText("");
+		   }
+	   }
+	}
+
+	private void addTextToBox(int row, Event e )
+	{
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Calendar cal = e.getDateTime();
+		String date = dateFormat.format(cal.getTime());
+		switch(spinnerChoice)
+		{
+		case 0: box[row][0].setText(date);
+		        box[row][1].setText(e.getEventType());
+		        box[row][2].setText(e.getLocation());
+		        break;
+		case 1: box[row][0].setText(e.getEventType());
+		        box[row][1].setText(date);
+		        box[row][2].setText(e.getLocation());
+		        break;
+		case 2: box[row][0].setText(e.getLocation());
+		        box[row][1].setText(date);
+		        box[row][2].setText(e.getEventType());
+		        break;
+		}
+	}
 
 	
 	public class function implements OnItemSelectedListener {
 
-		
 		/**
 		 * 1 Date, Event, Location
 		 * 2 Event, Date, Location
@@ -81,7 +156,7 @@ public class Logs extends Activity {
 		@Override
 		public void onItemSelected(AdapterView<?> parent, View arg1, int pos,
 				long id) {
-			
+			spinnerChoice = pos;
 			if(pos ==0){
 				String str = parent.getItemAtPosition(pos).toString();
 				text.setText(" "+str);
@@ -91,6 +166,8 @@ public class Logs extends Activity {
 			
 				String str3 = parent.getItemAtPosition(pos+2).toString();
 				textRight.setText(" "+str3);
+				
+				addTextViews();
 				
 			}
 			else if(pos ==1){
@@ -103,6 +180,8 @@ public class Logs extends Activity {
 				String str3 = parent.getItemAtPosition(pos+1).toString();
 				textRight.setText(" "+str3);
 				
+				addTextViews();
+				
 			}
 			else{
 				String str = parent.getItemAtPosition(pos).toString();
@@ -113,6 +192,8 @@ public class Logs extends Activity {
 			
 				String str3 = parent.getItemAtPosition(pos-1).toString();
 				textRight.setText(" "+str3);
+				
+				addTextViews();
 				
 			}
 		}

@@ -3,6 +3,7 @@ package com.example.android_safetytracker;
 import java.util.LinkedList;
 
 
+
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -13,6 +14,7 @@ import android.app.Activity;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class BeginActivity extends Activity implements View.OnClickListener, SensorEventListener{
 	
@@ -162,11 +164,12 @@ public class BeginActivity extends Activity implements View.OnClickListener, Sen
 		 }
 		 if(!notGoodForIntialValues){				// NOTE:Debuggin Method to tell me values and if its calibrated
 			// System.out.println(initialXValue+"++++"+ initialYValue+"----"+initialZValue);
-			while(c<5){
+			while(c<1){
 				System.out.println("I AM CALIBRATED HEAR ME ROAR");
 				c++;
-
+				Toast.makeText(this,"Hear me ROAR", Toast.LENGTH_SHORT).show();
 			}
+			
 		 }
 		 
 		 
