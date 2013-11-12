@@ -27,11 +27,11 @@ public class MainActivity extends Activity implements OnClickListener{
 		
 		//check if it's the first time the app launches
 		Boolean isFirstRun = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("isFirstRun", true);
-		if(isFirstRun)
+		/**if(isFirstRun)
 		{
 			getSharedPreferences("PREFERENCES", MODE_PRIVATE).edit().putBoolean("isFirstRun", false).commit();
 			startActivity(new Intent("android.intent.action.Edit_UserInfo"));
-		}
+		}*/
 		initializeButtons();
 		
 	}

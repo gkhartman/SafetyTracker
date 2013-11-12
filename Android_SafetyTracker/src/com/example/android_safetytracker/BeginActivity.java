@@ -28,7 +28,10 @@ public class BeginActivity extends Activity implements View.OnClickListener, Sen
 	boolean notGoodForIntialValues;							
 	float startingTime,startTimer;										// Will be used to give a pause period when logged
 	LinkedList<Event> linkedList;
-	boolean isFirst = true;;
+	//boolean isFirst = true;
+	int c = 0;
+	
+	
 	
 	
 	
@@ -51,13 +54,13 @@ public class BeginActivity extends Activity implements View.OnClickListener, Sen
 		
 		
 		///////////////////////////////////////Will add an phony event when on creating to check if Linkedlist is workin
-		linkedList = Logs.getLinkedList();
-		linkedList.addFirst(new Event("accelerating"));
-		Logs.setLinkedList(linkedList); 
-		
-		linkedList = Logs.getLinkedList();
-		linkedList.addFirst(new Event("turning"));
-		Logs.setLinkedList(linkedList);
+//		linkedList = Logs.getLinkedList();
+//		linkedList.addFirst(new Event("accelerating"));
+//		Logs.setLinkedList(linkedList); 
+//		
+//		linkedList = Logs.getLinkedList();
+//		linkedList.addFirst(new Event("turning"));
+//		Logs.setLinkedList(linkedList);
 		////////////////////////////////////////////
 		
 		
@@ -97,6 +100,8 @@ public class BeginActivity extends Activity implements View.OnClickListener, Sen
 
 	private void beginClick() {
 		//code to save logs if needed
+		sensorM.unregisterListener(this,accelerometer);
+
 		finish();
 	}
 
@@ -147,17 +152,21 @@ public class BeginActivity extends Activity implements View.OnClickListener, Sen
 		 }
 		 
 		 // if the time is up and the the values are values then we record the values and set
-		 // notGoodForInitialValues to false because it automatically is set with the true value
+		 // notGoodForInitialValues to false because it automatic ally is set with the true value
 		 if(calibrator.timeIsUp() && calibrator.isValid()&& notGoodForIntialValues){
 			 initialXValue = (float) calibrator.getX();
 			 initialYValue = (float) calibrator.getY();
-			 initialZValue = (float) calibrator.getZ(); ///might result in loss of precision
+			 initialZValue = (float) calibrator.getZ(); ///might  result in loss of precision
 			 notGoodForIntialValues = false; 		
 			 return;
 		 }
 		 if(!notGoodForIntialValues){				// NOTE:Debuggin Method to tell me values and if its calibrated
 			// System.out.println(initialXValue+"++++"+ initialYValue+"----"+initialZValue);
-			 //System.out.println("I AM CALIBRATED HEAR ME ROAR");
+			while(c<5){
+				System.out.println("I AM CALIBRATED HEAR ME ROAR");
+				c++;
+
+			}
 		 }
 		 
 		 
@@ -166,31 +175,43 @@ public class BeginActivity extends Activity implements View.OnClickListener, Sen
 		
 		float gForce =calculateGforce(xValue,yValue,zValue);
 		
-		boolean violation =evaluateGForce(gForce);
-		
 		float virtualX = xValue - initialXValue;
 		float virtualY = yValue - initialYValue;
 		float virtualZ = zValue - initialZValue;
 		
+		boolean violation =evaluateGForce(gForce,virtualY);
 		
-		if(violation && isFirst){						//will use values to tell what violations && tells if the 3 second lag is up
-			startTimer(isFirst);
+		System.out.println("XValue*****"+ virtualX+ "***YValue**"+ virtualY+"****zValue"+virtualZ);
+		
+		
+		//System.out.println("*******"+gForce);
+		
+		if(violation){						//will use values to tell what violations && tells if the 3 second lag is up			//*****eliminated the firstTime usless
 			
-			if(virtualZ > 1.5 && virtualX <1){									/// random value that is not right
+			
+			if(virtualZ < 1.0 && Math.abs(virtualX) <1.5){									/// random value that is not right
+				System.out.println("--ACC----virtual values----"+ virtualX +"   " +virtualZ  );
 				linkedList = Logs.getLinkedList();
 				linkedList.addFirst(new Event("accelerating"));
 				Logs.setLinkedList(linkedList); 
 			}
-			else if(virtualZ< 1.5&& virtualX<1){
+			else if(virtualZ> 1.0 && Math.abs(virtualX)<1.5){
+				System.out.println("--DCC-----------virtual values----"+ virtualX +"   " +virtualZ  );
 				linkedList = Logs.getLinkedList();
 				linkedList.addFirst(new Event("decellerating"));
 				Logs.setLinkedList(linkedList); 
 				
 			}
 			else{
+				System.out.println("----TURNING------virtual values----"+ virtualX +"---" +virtualZ  );
 				linkedList = Logs.getLinkedList();
 				linkedList.addFirst(new Event("turning"));
 				Logs.setLinkedList(linkedList); 
+			}
+			
+			long startTimer = System.currentTimeMillis();					//###########Added the do  nothing ITS WRONG
+			while((System.currentTimeMillis() - startTimer) <500){
+				///do nothing
 			}
 			
 		}
@@ -200,10 +221,10 @@ public class BeginActivity extends Activity implements View.OnClickListener, Sen
 
 
 
-	private boolean evaluateGForce(float gForce) {
-		float upperLimit = (float) 1.20;						//This value was lazily researched
+	private boolean evaluateGForce(float gForce,float virtualY) {
+		float upperLimit = (float) 1.07;			//This value was lazily researched     //*********change upper limit to test
 		
-		if(gForce < upperLimit){
+		if(gForce < upperLimit || (virtualY > 1.0)){
 			return false;
 		}
 		return true;
@@ -218,8 +239,8 @@ public class BeginActivity extends Activity implements View.OnClickListener, Sen
 		float virtualNumberZ = zValue - initialZValue;
 		
 		
-		float inaccurateGravityReadingForTheY  = (float) 9.77; 					// this is the value that the phone gives while still
-		float inaccurateGravityReadingForTheZ = (float) 0.813;
+		float inaccurateGravityReadingForTheY  = (float) 9.806; 					// this is the value that the phone gives while still
+		float inaccurateGravityReadingForTheZ = (float) 0.0;//
 		virtualNumberY = virtualNumberY + inaccurateGravityReadingForTheY;		// its +inaccurate... because it always reads gravity
 		//System.out.println(virtualNumberX+"----"+ virtualNumberY+"++++"+virtualNumberZ); // this should give the value in ideal situation
 
@@ -228,7 +249,7 @@ public class BeginActivity extends Activity implements View.OnClickListener, Sen
 		float zGforce = convertToGforce(zValue);
 		
 		return (float) Math.sqrt(xGforce * xGforce + yGforce * yGforce + zGforce * zGforce);
-		
+		//return (float) Math.sqrt(xGforce * xGforce + zGforce * zGforce);
 	}
 
 	private float convertToGforce(float value) {
