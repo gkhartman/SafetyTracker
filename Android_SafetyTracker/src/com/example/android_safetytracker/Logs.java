@@ -12,21 +12,25 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class Logs extends Activity {
+public class Logs extends Activity implements OnClickListener{
 
 	private Spinner logDropDown;
 	private TextView text,textMiddle,textRight;
 	private static LinkedList<Event> linkedList = new LinkedList<Event>();
 	private TextView [][] box;
 	private int listPointer, spinnerChoice;
+	private Button backButton,nextButton;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -56,10 +60,32 @@ public class Logs extends Activity {
 		
 		box = new TextView[7][3];
 		initializeBox();
-		addTextViews();
 		
-
+        backButton = (Button) findViewById(R.id.logsBackButton);
+        backButton.setOnClickListener(this);
+        nextButton = (Button) findViewById(R.id.logsNextButton);
+        nextButton.setOnClickListener(this);
+        
+        disableButton(backButton);
+        if(linkedList.size() >6)
+        {
+        	enableButton(nextButton);
+        }
+        else
+        {
+        	disableButton(nextButton);
+        }
 		
+	}
+	
+	private void enableButton(Button button)
+	{
+		button.setEnabled(true);
+	}
+	
+	private void disableButton(Button button)
+	{
+		button.setEnabled(false);
 	}
 	
 	private void initializeBox()
@@ -87,25 +113,30 @@ public class Logs extends Activity {
 		box[6][2]= (TextView) findViewById(R.id.row7Right);
 	}
 	
+	private void redrawLogs()
+	{
+		if(listPointer != 0)
+		{	
+		   if(listPointer % 7 == 0 )
+		   {
+			  listPointer -= 7;
+		   }
+		   else
+		   {
+			  int topOfPage = listPointer/7;
+		      listPointer = topOfPage*7;
+		   }
+		}
+		addTextViews();
+	}
 	
 	public void addTextViews()
 	{
-		if((listPointer -1) % 7 == 0)
-		{
-			listPointer -= 8;
-		}
-		else
-		{
-			int topOfPage = listPointer/7;
-		    System.out.println(topOfPage+"   "+listPointer);
-		    listPointer = topOfPage*7;
-		}
 		for(int row = 0; row < 7; ++row)
 		{
 			if(listPointer >= linkedList.size())
 			{
 				fillRestWithBlanks(row);
-				System.out.println("no more events");
 				return;
 			}
 			addTextToBox(row, linkedList.get(listPointer++));
@@ -167,7 +198,7 @@ public class Logs extends Activity {
 				String str3 = parent.getItemAtPosition(pos+2).toString();
 				textRight.setText(" "+str3);
 				
-				addTextViews();
+				redrawLogs();
 				
 			}
 			else if(pos ==1){
@@ -180,7 +211,7 @@ public class Logs extends Activity {
 				String str3 = parent.getItemAtPosition(pos+1).toString();
 				textRight.setText(" "+str3);
 				
-				addTextViews();
+				redrawLogs();
 				
 			}
 			else{
@@ -193,9 +224,10 @@ public class Logs extends Activity {
 				String str3 = parent.getItemAtPosition(pos-1).toString();
 				textRight.setText(" "+str3);
 				
-				addTextViews();
+				redrawLogs();
 				
 			}
+			
 		}
 
 		@Override
@@ -225,6 +257,45 @@ public class Logs extends Activity {
 	{
 		public String textLabel;
 	}
-	
 
+	@Override
+	public void onClick(View v) {
+		switch(v.getId())
+		{
+		case R.id.logsNextButton:
+			nextButtonPressed();
+			break;
+		case R.id.logsBackButton:
+			backButtonPressed();
+			break;
+		}
+	}
+	
+	private void nextButtonPressed()
+	{
+		addTextViews();
+		enableButton(backButton);
+		if(listPointer >= linkedList.size())
+		{
+			disableButton(nextButton);
+		}
+	}
+	
+	private void backButtonPressed()
+	{
+		if(listPointer % 7 != 0)
+		{
+			int temp = listPointer / 7;
+			listPointer = temp*7;
+			listPointer -= 7;
+		}
+		else
+		{
+		   listPointer -= 14;
+		}
+		addTextViews();
+		enableButton(nextButton);
+		if(listPointer == 7)
+			disableButton(backButton);
+	}
 }

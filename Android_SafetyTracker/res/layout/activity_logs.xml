@@ -222,6 +222,25 @@
             android:layout_below="@+id/row6Left"
             android:text="Small Text"
             android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <Button
+            android:id="@+id/logsBackButton"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:text="@string/back" />
+
+        <Button
+            android:id="@+id/logsNextButton"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:text="@string/next" />
+
     </RelativeLayout>
 
     <Spinner

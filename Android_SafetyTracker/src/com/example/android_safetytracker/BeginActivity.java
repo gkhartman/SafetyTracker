@@ -75,6 +75,12 @@ public class BeginActivity extends Activity implements View.OnClickListener, Sen
 		
 	}
 	
+	public void onStop()
+	{
+		sensorM.unregisterListener(this,accelerometer);
+		accelerometer = null;
+		super.onStop();
+	}
 	
 	
 	
