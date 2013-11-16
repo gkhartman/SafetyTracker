@@ -9,16 +9,6 @@
     tools:context=".HelpscreenActivity" >
 
     <TextView
-        android:id="@+id/row1Mid"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"
-        android:text="@string/Help"
-        android:textSize="24sp" />
-
-    <TextView
         android:id="@+id/row1Left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -37,5 +27,15 @@
         android:layout_marginTop="38dp"
         android:text="@string/HelpText2"
         android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/row1Mid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="@string/Help"
+        android:textSize="24sp" />
 
 </RelativeLayout>

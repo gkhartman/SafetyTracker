@@ -16,7 +16,7 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/SafetyTrackerTheme" >
 
         <!-- MAIN ACTIVITY -->
         <activity
@@ -39,6 +39,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        
         <!-- BEGIN ACTIVITY -->
         <activity
             android:name="com.example.android_safetytracker.BeginActivity"
@@ -49,6 +50,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        
         <!-- LOGS ACTIVITY -->
         <activity
             android:name="com.example.android_safetytracker.Logs"
@@ -70,7 +72,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <!-- Edit_UserInfo -->
+        
+        <!-- EditUserInfo -->
         <activity
             android:name="com.example.android_safetytracker.Edit_UserInfo"
             android:label="@string/title_activity_edit__user_info" >
@@ -80,6 +83,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        
         <!-- EditParentInfo -->
         <activity
             android:name="com.example.android_safetytracker.Edit_ParentInfo"
@@ -90,6 +94,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
+		<!-- Legal -->        
         <activity
             android:name="com.example.android_safetytracker.Legal"
             android:label="@string/title_activity_legal" >
@@ -99,6 +105,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        
+        <!-- AboutUs -->
         <activity
             android:name="com.example.android_safetytracker.AboutUs"
             android:label="@string/title_activity_about_us" >
@@ -108,6 +116,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        
+        <!-- Feedback -->
         <activity
             android:name="com.example.android_safetytracker.EmailScreen"
             android:label="@string/title_activity_email_screen" >
@@ -117,6 +127,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        
+        <!-- Help -->
         <activity
             android:name="com.example.android_safetytracker.HelpscreenActivity"
             android:label="@string/title_activity_helpscreen" >
@@ -126,6 +138,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        
+        <!-- Calibrate -->
         <activity
             android:name="com.example.android_safetytracker.CalibratescreenActivity"
             android:label="@string/title_activity_calibratescreen" >

@@ -32,7 +32,7 @@ public final class R {
         public static final int StartApp_DockPhoneMessage=0x7f090047;
         public static final int UserInfo_PhoneText=0x7f09004d;
         public static final int action_settings=0x7f090052;
-        public static final int ageLabel=0x7f090014;
+        public static final int ageLabel=0x7f090013;
         public static final int begin_DisclaimerHeadText=0x7f090005;
         public static final int begin_DisclaimerText=0x7f090006;
         public static final int begin_InstructionHeader=0x7f090007;
@@ -97,7 +97,7 @@ public final class R {
         public static final int tvRight=0x7f09003e;
         public static final int twitterButton=0x7f090003;
         public static final int twitterLabel=0x7f09001f;
-        public static final int userAge_input=0x7f090012;
+        public static final int userAge_input=0x7f090014;
         public static final int userIn_NameText=0x7f09004a;
         public static final int userInfo_AgeText=0x7f09004b;
         public static final int userInfo_EditParentButton=0x7f090051;
@@ -106,7 +106,7 @@ public final class R {
         public static final int userInfo_EmailText=0x7f09004e;
         public static final int userInfo_PhoneNumber=0x7f09004c;
         public static final int userInfo_nameOfUser=0x7f090049;
-        public static final int username_input=0x7f090013;
+        public static final int username_input=0x7f090012;
         public static final int visitWebsiteLabel=0x7f09000d;
         public static final int websiteLabel=0x7f09001d;
         public static final int websiteTextLink=0x7f090001;
@@ -233,5 +233,6 @@ public final class R {
  All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f070001;
+        public static final int SafetyTrackerTheme=0x7f070002;
     }
 }
