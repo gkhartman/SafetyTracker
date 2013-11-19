@@ -16,7 +16,8 @@ public class MainActivity extends Activity implements OnClickListener{
 	
 	//main screen buttons
 	private Button startAppButton, logsButton, userInfo, calibrateButton, 
-	       turnOnGPSButton, helpButton, legalButton, aboutUsButton ;
+	       turnOnGPSButton, helpButton, legalButton, aboutUsButton;
+	
 
 	protected Consumer s;
 	
@@ -27,11 +28,11 @@ public class MainActivity extends Activity implements OnClickListener{
 		
 		//check if it's the first time the app launches
 		Boolean isFirstRun = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("isFirstRun", true);
-		/**if(isFirstRun)
+		if(isFirstRun)
 		{
 			getSharedPreferences("PREFERENCES", MODE_PRIVATE).edit().putBoolean("isFirstRun", false).commit();
 			startActivity(new Intent("android.intent.action.Edit_UserInfo"));
-		}*/
+		}
 		initializeButtons();
 		
 	}
@@ -71,6 +72,8 @@ public class MainActivity extends Activity implements OnClickListener{
 		aboutUsButton = (Button)findViewById(R.id.menu_aboutUsButton);
 		aboutUsButton.setOnClickListener(this);
 		
+		
+		
 	}
 
 	//button click handler
@@ -108,17 +111,18 @@ public class MainActivity extends Activity implements OnClickListener{
 			case R.id.menu_turnOnGPSButton:
 				 beginTurnOnGPSClick();
 				 break;	
+				 
 				
 			}
 	}
 
+	
 	/**
 	 * This method first checks if the GPS is already on by checking if the location
 	 * manager can access the location. If it is not then it sends the user to location
 	 * preferences screen. GPS CANNOT BE SET WITHIN THE APP DUE TO SECURITY REASONS. 
 	 * This method should be later moved to GPS class
 	 * 
-	 * 		 IT WORKS!!!! :O :O :O if you change this better not mess up >:(
 	 * 
 	 */
 	private void beginTurnOnGPSClick() {

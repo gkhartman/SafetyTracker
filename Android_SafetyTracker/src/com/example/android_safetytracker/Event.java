@@ -4,8 +4,9 @@ import java.util.Calendar;
 
 public class Event {
 	
-	Calendar cInstance;
-	String type;
+	private Calendar cInstance;
+	private String type;
+	private double longitude, latitude;
 	
 	public Event(String typePassed){
 		cInstance = Calendar.getInstance();
@@ -14,7 +15,14 @@ public class Event {
 		
 	}
 	
-	
+	public Event(String typePassed, double latitude, double longitude)
+	{
+		cInstance = Calendar.getInstance();
+		this.longitude = longitude;
+		this.latitude = latitude;
+		this.type = typePassed;
+		
+	}
 	
 	public void setEventType(String type){
 		this.type= type;
@@ -30,11 +38,12 @@ public class Event {
 		return cInstance;
 		
 	}
-	public void setLocation(){
-		
+	public void setLocation(double lat, double lon){
+		longitude = lon;
+		latitude = lat;
 	}
 	public String getLocation(){
-		return "temp string";
+		return latitude+" , "+longitude;
 	}
 	
 }

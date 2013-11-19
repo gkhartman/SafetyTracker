@@ -1,27 +1,22 @@
 package com.example.android_safetytracker;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
-import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class Logs extends Activity implements OnClickListener{
 
@@ -67,7 +62,7 @@ public class Logs extends Activity implements OnClickListener{
         nextButton.setOnClickListener(this);
         
         disableButton(backButton);
-        if(linkedList.size() >6)
+        if(linkedList.size() >7)
         {
         	enableButton(nextButton);
         }
@@ -75,6 +70,9 @@ public class Logs extends Activity implements OnClickListener{
         {
         	disableButton(nextButton);
         }
+        
+      //used for debuggin the map
+      //linkedList.add(new Event("speeding",34.069227,-117.627118));
 		
 	}
 	
@@ -162,18 +160,40 @@ public class Logs extends Activity implements OnClickListener{
 		switch(spinnerChoice)
 		{
 		case 0: box[row][0].setText(date);
+				addClickableAttributes(row, 0, false);
 		        box[row][1].setText(e.getEventType());
+		        addClickableAttributes(row, 1, false);
 		        box[row][2].setText(e.getLocation());
+		        addClickableAttributes(row, 2, true);
 		        break;
 		case 1: box[row][0].setText(e.getEventType());
+				addClickableAttributes(row, 0, false);
 		        box[row][1].setText(date);
+		        addClickableAttributes(row, 1, false);
 		        box[row][2].setText(e.getLocation());
+		        addClickableAttributes(row, 2, true);
 		        break;
 		case 2: box[row][0].setText(e.getLocation());
+				addClickableAttributes(row, 0, true);
 		        box[row][1].setText(date);
+		        addClickableAttributes(row, 1, false);
 		        box[row][2].setText(e.getEventType());
+		        addClickableAttributes(row, 2, false);
 		        break;
 		}
+	}
+	
+	private void addClickableAttributes(int row, int col,boolean addAttributes)
+	{
+		if(addAttributes)
+		{
+			box[row][col].setOnClickListener(this);
+		}
+		else
+		{
+			box[row][col].setOnClickListener(null);
+		}
+		box[row][col].setClickable(addAttributes);
 	}
 
 	
@@ -268,8 +288,32 @@ public class Logs extends Activity implements OnClickListener{
 		case R.id.logsBackButton:
 			backButtonPressed();
 			break;
+		default:
+			textViewPressed(v);
+			break;
 		}
 	}
+	
+	private void textViewPressed(View v)
+	{
+		TextView textview = (TextView) findViewById(v.getId());
+		String coordinates = (String) textview.getText();
+		String [] brokenString = coordinates.split(",");
+		brokenString[0] = brokenString[0].replace(" ", "");
+		brokenString[1] = brokenString[1].replace(" ", "");
+		double latitude = Double.parseDouble(brokenString[0]);
+		double longitude = Double.parseDouble(brokenString[1]);
+		String [] values = getOtherValues(v);
+		String date = values[0];
+		String infraction = values[1];
+		Intent intent = new Intent(getApplicationContext(), Map.class);
+		intent.putExtra("infraction", infraction);
+		intent.putExtra("date", date);
+		intent.putExtra("latitude", latitude);
+		intent.putExtra("longitude", longitude);
+		startActivity(intent);
+	}
+	
 	
 	private void nextButtonPressed()
 	{
@@ -297,5 +341,83 @@ public class Logs extends Activity implements OnClickListener{
 		enableButton(nextButton);
 		if(listPointer == 7)
 			disableButton(backButton);
+	}
+	
+	private String[] getOtherValues(View v)
+	{
+		String [] values = new String[2];
+		switch(v.getId())
+		{
+		case R.id.row1Left:
+			values[0] = (String) box[0][1].getText();
+			values[1] = (String) box[0][2].getText();
+			break;
+			
+		case R.id.row1Right:
+			values[0] = (String) box[0][0].getText();
+			values[1] = (String) box[0][1].getText();
+			break;
+			
+		case R.id.row2Left:
+			values[0] = (String) box[1][1].getText();
+			values[1] = (String) box[1][2].getText();
+			break;
+			
+		case R.id.row2Right:
+			values[0] = (String) box[1][0].getText();
+			values[1] = (String) box[1][1].getText();
+			break;
+			
+		case R.id.row3Left:
+			values[0] = (String) box[2][1].getText();
+			values[1] = (String) box[2][2].getText();
+			break;
+			
+		case R.id.row3Right:
+			values[0] = (String) box[2][0].getText();
+			values[1] = (String) box[2][1].getText();
+			break;
+			
+		case R.id.row4Left:
+			values[0] = (String) box[3][1].getText();
+			values[1] = (String) box[3][2].getText();
+			break;
+			
+		case R.id.row4Right:
+			values[0] = (String) box[3][0].getText();
+			values[1] = (String) box[3][1].getText();
+			break;
+			
+		case R.id.row5Left:
+			values[0] = (String) box[4][1].getText();
+			values[1] = (String) box[4][2].getText();
+			break;
+			
+		case R.id.row5Right:
+			values[0] = (String) box[4][0].getText();
+			values[1] = (String) box[4][1].getText();
+			break;
+			
+		case R.id.row6Left:
+			values[0] = (String) box[5][1].getText();
+			values[1] = (String) box[5][2].getText();
+			break;
+			
+		case R.id.row6Right:
+			values[0] = (String) box[5][0].getText();
+			values[1] = (String) box[5][1].getText();
+			break;
+			
+		case R.id.row7Left:
+			values[0] = (String) box[6][1].getText();
+			values[1] = (String) box[6][2].getText();
+			break;
+			
+		case R.id.row7Right:
+			values[0] = (String) box[6][0].getText();
+			values[1] = (String) box[6][1].getText();
+			break;
+		}
+		return values;
 	}
 }

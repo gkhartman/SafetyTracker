@@ -1,14 +1,10 @@
 package com.example.android_safetytracker;
 
 import java.util.LinkedList;
-
-
-
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
@@ -30,7 +26,6 @@ public class BeginActivity extends Activity implements View.OnClickListener, Sen
 	boolean notGoodForIntialValues;							
 	float startingTime,startTimer;										// Will be used to give a pause period when logged
 	LinkedList<Event> linkedList;
-	//boolean isFirst = true;
 	int c = 0;
 	
 	
@@ -53,19 +48,6 @@ public class BeginActivity extends Activity implements View.OnClickListener, Sen
 		
 		calibrator = new Calibrate();
 		notGoodForIntialValues = true;
-		
-		
-		///////////////////////////////////////Will add an phony event when on creating to check if Linkedlist is workin
-//		linkedList = Logs.getLinkedList();
-//		linkedList.addFirst(new Event("accelerating"));
-//		Logs.setLinkedList(linkedList); 
-//		
-//		linkedList = Logs.getLinkedList();
-//		linkedList.addFirst(new Event("turning"));
-//		Logs.setLinkedList(linkedList);
-		////////////////////////////////////////////
-		
-		
 		
 	}
 	

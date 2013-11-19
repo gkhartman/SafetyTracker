@@ -1,7 +1,5 @@
 package com.example.android_safetytracker;
 
-import android.widget.Toast;
-
 
 public class Calibrate {
 	private double x,y,z,previousX,previousY,previousZ;

@@ -8,9 +8,23 @@
         android:minSdkVersion="10"
         android:targetSdkVersion="18" />
 
+    <permission
+        android:name="com.example.android_safetytracker.MAPS_RECEIVE"
+        android:protectionLevel="signature" >
+    </permission>
+
+    <uses-permission android:name="com.example.android_safetytracker.permission.MAPS_RECEIVE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
 
     <application
         android:allowBackup="true"
@@ -39,7 +53,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        
+
         <!-- BEGIN ACTIVITY -->
         <activity
             android:name="com.example.android_safetytracker.BeginActivity"
@@ -50,7 +64,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        
+
         <!-- LOGS ACTIVITY -->
         <activity
             android:name="com.example.android_safetytracker.Logs"
@@ -72,7 +86,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        
+
         <!-- EditUserInfo -->
         <activity
             android:name="com.example.android_safetytracker.Edit_UserInfo"
@@ -83,7 +97,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        
+
         <!-- EditParentInfo -->
         <activity
             android:name="com.example.android_safetytracker.Edit_ParentInfo"
@@ -95,7 +109,7 @@
             </intent-filter>
         </activity>
 
-		<!-- Legal -->        
+        <!-- Legal -->
         <activity
             android:name="com.example.android_safetytracker.Legal"
             android:label="@string/title_activity_legal" >
@@ -105,7 +119,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        
+
         <!-- AboutUs -->
         <activity
             android:name="com.example.android_safetytracker.AboutUs"
@@ -116,7 +130,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        
+
         <!-- Feedback -->
         <activity
             android:name="com.example.android_safetytracker.EmailScreen"
@@ -127,7 +141,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        
+
         <!-- Help -->
         <activity
             android:name="com.example.android_safetytracker.HelpscreenActivity"
@@ -138,7 +152,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        
+
         <!-- Calibrate -->
         <activity
             android:name="com.example.android_safetytracker.CalibratescreenActivity"
@@ -149,6 +163,24 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name="com.example.android_safetytracker.Map"
+            android:label="@string/title_activity_map" >
+            <intent-filter>
+                <action android:name="android.intent.action.Map" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value=" AIzaSyC8SwD10WkovV_Xa-90xx1FyDB1RI5VOOs" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        
     </application>
 
 </manifest>
