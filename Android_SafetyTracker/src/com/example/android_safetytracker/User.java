@@ -1,9 +1,13 @@
 package com.example.android_safetytracker;
 
+
+
 class User
 {
+	
 	private String name;
 	private int age;
+		
 	
    public void setName(String name)
    {

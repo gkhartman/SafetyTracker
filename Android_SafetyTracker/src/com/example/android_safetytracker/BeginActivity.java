@@ -7,6 +7,9 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -64,7 +67,31 @@ public class BeginActivity extends Activity implements View.OnClickListener, Sen
 		super.onStop();
 	}
 	
-	
+	public void promptEnableGPS()
+	{
+		AlertDialog.Builder gpsAlert = new AlertDialog.Builder(this);
+		gpsAlert.setMessage("Hold On... would you like to enable GPS? (Recommended)")
+		        .setCancelable(false)
+		        .setPositiveButton("Settings",
+		        		new DialogInterface.OnClickListener() {
+		        	public void onClick(DialogInterface dialog, int id)
+		        	{
+		        		startActivity(new Intent(
+		        				android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+		        	}
+		        });
+		gpsAlert.setNegativeButton("Cancel", 
+				       new DialogInterface.OnClickListener() {
+						
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							dialog.cancel();
+							
+						}
+					});
+		gpsAlert.create();
+		gpsAlert.show();
+	}
 	
 
 	@Override

@@ -17,6 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Logs extends Activity implements OnClickListener{
 
@@ -71,8 +72,6 @@ public class Logs extends Activity implements OnClickListener{
         	disableButton(nextButton);
         }
         
-      //used for debuggin the map
-      //linkedList.add(new Event("speeding",34.069227,-117.627118));
 		
 	}
 	
@@ -296,6 +295,7 @@ public class Logs extends Activity implements OnClickListener{
 	
 	private void textViewPressed(View v)
 	{
+		
 		TextView textview = (TextView) findViewById(v.getId());
 		String coordinates = (String) textview.getText();
 		String [] brokenString = coordinates.split(",");
@@ -303,15 +303,27 @@ public class Logs extends Activity implements OnClickListener{
 		brokenString[1] = brokenString[1].replace(" ", "");
 		double latitude = Double.parseDouble(brokenString[0]);
 		double longitude = Double.parseDouble(brokenString[1]);
-		String [] values = getOtherValues(v);
-		String date = values[0];
-		String infraction = values[1];
-		Intent intent = new Intent(getApplicationContext(), Map.class);
-		intent.putExtra("infraction", infraction);
-		intent.putExtra("date", date);
-		intent.putExtra("latitude", latitude);
-		intent.putExtra("longitude", longitude);
-		startActivity(intent);
+		if(validCoordinate(latitude,longitude))
+		{
+			String [] values = getOtherValues(v);
+			String date = values[0];
+			String infraction = values[1];
+			Intent intent = new Intent(getApplicationContext(), Map.class);
+			intent.putExtra("infraction", infraction);
+			intent.putExtra("date", date);
+			intent.putExtra("latitude", latitude);
+			intent.putExtra("longitude", longitude);
+			startActivity(intent);
+		}
+		else
+		{
+			Toast.makeText(this, "Invalid Coordinate", Toast.LENGTH_SHORT).show();
+		}
+	}
+	
+	private boolean validCoordinate(double latitude, double longitude)
+	{
+		return (latitude >=-90 && latitude <= 90 && longitude >=-180 && latitude <= 180);
 	}
 	
 	
