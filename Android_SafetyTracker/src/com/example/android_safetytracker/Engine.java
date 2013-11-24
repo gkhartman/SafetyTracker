@@ -1,5 +1,9 @@
 package com.example.android_safetytracker;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.LinkedList;
 
 import android.app.Service;
@@ -256,7 +260,7 @@ public class Engine extends Service
 		float virtualX = accXValue - initialXValue;
 		float virtualY = accYValue - initialYValue;
 		float virtualZ = accZValue - initialZValue;
-		System.out.println("XValue*****"+ virtualX+ "***YValue**"+ virtualY+"****zValue"+virtualZ);
+		//System.out.println("XValue*****"+ virtualX+ "***YValue**"+ virtualY+"****zValue"+virtualZ);
 		
 		
 		//System.out.println("*******"+gForce);
@@ -324,6 +328,19 @@ public class Engine extends Service
 	}
 	public Event getEvent(){
 		return infraction;
+	}
+	private void writeToFile(String s){
+		BufferedWriter bufferedWriter = null;
+		try {
+			bufferedWriter = new BufferedWriter(new FileWriter(new 
+			        File(getFilesDir()+File.separator+"Logs.txt")));
+			bufferedWriter.write(s);
+			bufferedWriter.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 	
 	

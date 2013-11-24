@@ -1,5 +1,9 @@
 package com.example.android_safetytracker;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -92,8 +96,22 @@ public class Edit_ParentInfo extends Activity implements OnClickListener{
 	private void saveInformation()
 	{
 		/**
-		 *  unimplemented method
 		 */
+		System.out.println( this.getApplicationContext().getFilesDir().getAbsolutePath());
+		writeToFile(email + "~"+ phone);
+	}
+	private void writeToFile(String s){
+		BufferedWriter bufferedWriter = null;
+		try {
+			bufferedWriter = new BufferedWriter(new FileWriter(new 
+			        File(getFilesDir()+File.separator+"Parent.txt")));
+			bufferedWriter.write(s);
+			bufferedWriter.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 	
 	
