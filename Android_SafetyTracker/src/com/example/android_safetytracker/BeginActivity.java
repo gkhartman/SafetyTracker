@@ -1,6 +1,7 @@
 package com.example.android_safetytracker;
 
 import java.util.LinkedList;
+
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -30,6 +31,7 @@ public class BeginActivity extends Activity implements View.OnClickListener, Sen
 	float startingTime,startTimer;										// Will be used to give a pause period when logged
 	LinkedList<Event> linkedList;
 	int c = 0;
+	private Engine engine;
 	
 	
 	
@@ -51,6 +53,8 @@ public class BeginActivity extends Activity implements View.OnClickListener, Sen
 		
 		calibrator = new Calibrate();
 		notGoodForIntialValues = true;
+		engine = new Engine(this);
+		startService(new Intent(getBaseContext(), Engine.class));
 		
 	}
 	
@@ -64,6 +68,8 @@ public class BeginActivity extends Activity implements View.OnClickListener, Sen
 	{
 		sensorM.unregisterListener(this,accelerometer);
 		accelerometer = null;
+		stopService(new Intent(getBaseContext(), Engine.class));
+
 		super.onStop();
 	}
 	
@@ -86,7 +92,6 @@ public class BeginActivity extends Activity implements View.OnClickListener, Sen
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
 							dialog.cancel();
-							
 						}
 					});
 		gpsAlert.create();
@@ -152,88 +157,88 @@ public class BeginActivity extends Activity implements View.OnClickListener, Sen
 	@Override
 	public void onSensorChanged(SensorEvent event) {
 		
-		
-		 xValue = event.values[0];
-		 yValue = event.values[1];
-		 zValue = event.values[2];
-		 
-		 if(!calibrator.timeIsUp()){
-			 if(!calibrator.isCalibrated()){
-				calibrator.startCalibrating(xValue,yValue,zValue);
-				return;
-			 }
-				
-		   }
-		 if(calibrator.timeIsUp() && !calibrator.isCalibrated()){ //NOTE:Debugin0 method to tell me ifts its calibrated...homie
-			 System.out.println("Its not even calibrated homie");
-		 }
-		 
-		 // if the time is up and the the values are values then we record the values and set
-		 // notGoodForInitialValues to false because it automatic ally is set with the true value
-		 if(calibrator.timeIsUp() && calibrator.isValid()&& notGoodForIntialValues){
-			 initialXValue = (float) calibrator.getX();
-			 initialYValue = (float) calibrator.getY();
-			 initialZValue = (float) calibrator.getZ(); ///might  result in loss of precision
-			 notGoodForIntialValues = false; 		
-			 return;
-		 }
-		 if(!notGoodForIntialValues){				// NOTE:Debuggin Method to tell me values and if its calibrated
-			// System.out.println(initialXValue+"++++"+ initialYValue+"----"+initialZValue);
-			while(c<1){
-				System.out.println("I AM CALIBRATED HEAR ME ROAR");
-				c++;
-				Toast.makeText(this,"Hear me ROAR", Toast.LENGTH_SHORT).show();
-			}
-			
-		 }
-		 
-		 
-		 
-		
-		
-		float gForce =calculateGforce(xValue,yValue,zValue);
-		
-		float virtualX = xValue - initialXValue;
-		float virtualY = yValue - initialYValue;
-		float virtualZ = zValue - initialZValue;
-		
-		boolean violation =evaluateGForce(gForce,virtualY);
-		
-		System.out.println("XValue*****"+ virtualX+ "***YValue**"+ virtualY+"****zValue"+virtualZ);
-		
-		
-		//System.out.println("*******"+gForce);
-		
-		if(violation){						//will use values to tell what violations && tells if the 3 second lag is up			//*****eliminated the firstTime usless
-			
-			
-			if(virtualZ < 1.0 && Math.abs(virtualX) <1.5){									/// random value that is not right
-				System.out.println("--ACC----virtual values----"+ virtualX +"   " +virtualZ  );
-				linkedList = Logs.getLinkedList();
-				linkedList.addFirst(new Event("accelerating"));
-				Logs.setLinkedList(linkedList); 
-			}
-			else if(virtualZ> 1.0 && Math.abs(virtualX)<1.5){
-				System.out.println("--DCC-----------virtual values----"+ virtualX +"   " +virtualZ  );
-				linkedList = Logs.getLinkedList();
-				linkedList.addFirst(new Event("decellerating"));
-				Logs.setLinkedList(linkedList); 
-				
-			}
-			else{
-				System.out.println("----TURNING------virtual values----"+ virtualX +"---" +virtualZ  );
-				linkedList = Logs.getLinkedList();
-				linkedList.addFirst(new Event("turning"));
-				Logs.setLinkedList(linkedList); 
-			}
-			
-			long startTimer = System.currentTimeMillis();					//###########Added the do  nothing ITS WRONG
-			while((System.currentTimeMillis() - startTimer) <500){
-				///do nothing
-			}
-			
-		}
 	}
+//		 xValue = event.values[0];
+//		 yValue = event.values[1];
+//		 zValue = event.values[2];
+//		 
+//		 if(!calibrator.timeIsUp()){
+//			 if(!calibrator.isCalibrated()){
+//				//calibrator.startCalibrating(xValue,yValue,zValue);
+//				return;
+//			 }
+//				
+//		   }
+//		 if(calibrator.timeIsUp() && !calibrator.isCalibrated()){ //NOTE:Debugin0 method to tell me ifts its calibrated...homie
+//			 System.out.println("Its not even calibrated homie");
+//		 }
+//		 
+//		 // if the time is up and the the values are values then we record the values and set
+//		 // notGoodForInitialValues to false because it automatic ally is set with the true value
+//		 if(calibrator.timeIsUp() && calibrator.isValid()&& notGoodForIntialValues){
+//			 initialXValue = (float) calibrator.getX();
+//			 initialYValue = (float) calibrator.getY();
+//			 initialZValue = (float) calibrator.getZ(); ///might  result in loss of precision
+//			 notGoodForIntialValues = false; 		
+//			 return;
+//		 }
+//		 if(!notGoodForIntialValues){				// NOTE:Debuggin Method to tell me values and if its calibrated
+//			// System.out.println(initialXValue+"++++"+ initialYValue+"----"+initialZValue);
+//			
+//				System.out.println("I AM CALIBRATED HEAR ME ROAR");
+//				
+//				
+//			}
+//			
+//		 }
+//		 
+//		 
+//		 
+//		
+//		
+//		float gForce =calculateGforce(xValue,yValue,zValue);
+//		
+//		float virtualX = xValue - initialXValue;
+//		float virtualY = yValue - initialYValue;
+//		float virtualZ = zValue - initialZValue;
+//		
+//		boolean violation =evaluateGForce(gForce,virtualY);
+//		
+//		System.out.println("XValue*****"+ virtualX+ "***YValue**"+ virtualY+"****zValue"+virtualZ);
+//		
+//		
+//		//System.out.println("*******"+gForce);
+//		
+//		if(violation){						//will use values to tell what violations && tells if the 3 second lag is up			//*****eliminated the firstTime usless
+//			
+//			
+//			if(virtualZ < 1.0 && Math.abs(virtualX) <1.5){									/// random value that is not right
+//				System.out.println("--ACC----virtual values----"+ virtualX +"   " +virtualZ  );
+//				linkedList = Logs.getLinkedList();
+//				linkedList.addFirst(new Event("accelerating"));
+//				Logs.setLinkedList(linkedList); 
+//			}
+//			else if(virtualZ> 1.0 && Math.abs(virtualX)<1.5){
+//				System.out.println("--DCC-----------virtual values----"+ virtualX +"   " +virtualZ  );
+//				linkedList = Logs.getLinkedList();
+//				linkedList.addFirst(new Event("decellerating"));
+//				Logs.setLinkedList(linkedList); 
+//				
+//			}
+//			else{
+//				System.out.println("----TURNING------virtual values----"+ virtualX +"---" +virtualZ  );
+//				linkedList = Logs.getLinkedList();
+//				linkedList.addFirst(new Event("turning"));
+//				Logs.setLinkedList(linkedList); 
+//			}
+//			
+//			long startTimer = System.currentTimeMillis();					//###########Added the do  nothing ITS WRONG
+//			while((System.currentTimeMillis() - startTimer) <500){
+//				///do nothing
+//			}
+//			
+//		}
+//	}
 
 
 

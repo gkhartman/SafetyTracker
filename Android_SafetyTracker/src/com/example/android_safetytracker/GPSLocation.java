@@ -45,28 +45,19 @@ public class GPSLocation extends Service implements LocationListener {
 	{
 		return latitude;
 	}
-	
-	/**
-	 * return true if gps is enabled else return false
-	 * @return true gps is enabled
-	 */
-	public boolean checkGPSEnabled()
-	{
-		if(lManager == null)
-			lManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
-		return lManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
-	}
+
 
 	@Override
 	public void onCreate() {
+		System.out.println("on create called");
 		longitude = 0.0f;
 		latitude = 0.0f;
 		super.onCreate();
+		 lManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 	}
 
 	public int onStartCommand(Intent intent, int flags, int startId) {
-		if(lManager == null)
-		   lManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+		System.out.println("on start called");
 		lManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 2,this); //update every 1 second 2 meters (approx 5 mph)
 		return START_STICKY;														
 	}

@@ -2,40 +2,56 @@ package com.example.android_safetytracker;
 
 
 public class Calibrate {
-	private double x,y,z,previousX,previousY,previousZ;
+	private double accX,accY,accZ,previousX,previousY,previousZ;
+	private double gyroX,gyroY,gyroZ,previousGyroX,previousGyroY,previousGyroZ;
 	private long startTime;
 	private final double  THRESHOLD= 5.04; //random threshold 
+	private final double GYROTHRESH = 5.0000;
 	private boolean isCalibrated, good;
 	static boolean timeIsUp;
 
 	
 	public Calibrate(){
-		x = 0;
-		y = 0;
-		z = 0;
+		accX = 0;
+		accY = 0;
+		accZ = 0;
+		gyroX = 0;
+		gyroY = 0;
+		gyroZ = 0;
 		isCalibrated = false;
 		startTime = System.currentTimeMillis();
 		timeIsUp = false;
 		
 	}
 	
-	 void startCalibrating(float xValuePassed,float yValuePassed, float zValuePassed){
-		//System.out.println("Im calibrating");
+	public void startCalibrating(float xValuePassed,float yValuePassed, float zValuePassed,float gyroXPassed,
+			 					float gyroYPassed, float gyroZPassed){
+		
 		if(Math.abs(startTime-System.currentTimeMillis()) >5000){
 			timeIsUp = true;
 		}
 		
-	    previousX = x;
-	    previousY = y;
-	    previousZ = z;
+	    previousX = accX;
+	    previousY = accY;
+	    previousZ = accZ;
+	    previousGyroX = gyroX;
+	    previousGyroY = gyroY;
+	    previousGyroZ = gyroZ;
 	    
-	    x = xValuePassed;
-		y = yValuePassed;
-		z = zValuePassed; 
-
-		if(Math.abs(x-previousX) > THRESHOLD || 
-				Math.abs(y-previousY) > THRESHOLD || 
-					Math.abs(z-previousZ) > THRESHOLD){
+	    accX = xValuePassed;
+		accY= yValuePassed;
+		accZ = zValuePassed; 
+		gyroX = gyroXPassed;
+		gyroY = gyroYPassed;
+		gyroZ = gyroZPassed;
+		
+		
+		if(Math.abs(accX-previousX) > THRESHOLD || 
+				Math.abs(accY-previousY) > THRESHOLD || 
+					Math.abs(accZ-previousZ) > THRESHOLD ||
+						Math.abs(gyroX-previousGyroX) > GYROTHRESH ||
+							Math.abs(gyroY - previousGyroY) > GYROTHRESH ||
+								Math.abs(gyroZ - previousGyroZ)> GYROTHRESH){
 			
 			good = false;
 			startTime = System.currentTimeMillis();
@@ -49,6 +65,7 @@ public class Calibrate {
 			//System.out.println(good); //dubugger method
 			
 		if(timeIsUp && good){
+			
 			isCalibrated = true;
 		}
 	}
@@ -61,6 +78,15 @@ public class Calibrate {
 	}
 	public double getZ(){
 		return previousZ;
+	}
+	public double getGyroX(){
+		return previousGyroX;
+	}
+	public double getGyroY(){
+		return previousGyroY;
+	}
+	public double getGyroZ(){
+		return previousGyroZ;
 	}
 	
 	public boolean isCalibrated(){

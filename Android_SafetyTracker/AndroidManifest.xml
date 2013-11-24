@@ -176,6 +176,8 @@
         </activity>
       
         <service android:name=".GPSLocation"/>
+        <service android:name=".Orientation"/>
+        <service android:name=".Engine"/>
         
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"

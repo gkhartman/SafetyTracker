@@ -11,15 +11,22 @@ import android.os.IBinder;
 public class Orientation extends Service implements SensorEventListener{
 	Sensor accelerometer, magneticField;
 	SensorManager sensorM;
+	private static Engine engine;
 	
 	
-	static float [] accValues= new float[3];
-	static float [] values = new float [3];
+	static float [] accValues= {0,0,0};
+	static float [] values = {0,0,0};
 	static float [] inR = new float [9];
 	static float [] inclineMatrix = new float [9];
 	static float  mInclination;
 	static float [] gravityMatrix = new float[3];
 	static float [] geomagneticMatrix = new float[3];
+	
+	public Orientation(){}
+	public Orientation(Engine eng)
+	{
+		engine = eng;
+	}
 	
 	/////////////////////////////////////////////Do the xml
 	@Override
@@ -40,6 +47,8 @@ public class Orientation extends Service implements SensorEventListener{
 	        }
 	        if(geomagneticMatrix[0] != 0)
 	            ready = true;
+	        
+	        engine.setAccelerationValues(accValues);
 
 	        break;
 
@@ -49,25 +58,33 @@ public class Orientation extends Service implements SensorEventListener{
 	        }
 	        if(accValues[2] != 0)
 	            ready = true;
+	        
+	        if(!ready)
+		        return;
+
+		    boolean cek = SensorManager.getRotationMatrix(inR, inclineMatrix, accValues, geomagneticMatrix);
+		   
+
+		    if(cek){
+		        SensorManager.getOrientation(inR, values);
+		        mInclination = SensorManager.getInclination(inclineMatrix);
+		        
+		       
+		        
+		        values[0] =  (float)Math.toDegrees(values[0]);
+		        values[1] =  (float)Math.toDegrees(values[1]);
+		        values[2] =  (float)Math.toDegrees(values[2]);
+		       
+		        engine.setGyroscopeValues(values);
+		        
+
 
 	        break;
 	    }
 
-	    if(!ready)
-	        return;
+	   
+	   
 
-	    boolean cek = SensorManager.getRotationMatrix(inR, inclineMatrix, accValues, geomagneticMatrix);
-	    System.out.println(cek);
-
-	    if(cek){
-	        SensorManager.getOrientation(inR, values);
-	        mInclination = SensorManager.getInclination(inclineMatrix);
-
-	        
-	        if(counter++ % 15 == 0){
-	        	System.out.println("azimuth"+ Math.toDegrees(values[0])+" pitch  "+  Math.toDegrees(values[1])+" roll "+ Math.toDegrees(values[2]));
-	            counter = 1;
-	        }
 	    }
 	}
 
@@ -84,6 +101,7 @@ public class Orientation extends Service implements SensorEventListener{
 		
 		sensorM.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_NORMAL);
 		sensorM.registerListener(this, magneticField, SensorManager.SENSOR_DELAY_NORMAL);
+		System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
 	}
 	public float[] getAccelerometerValuesArray(){
 		return accValues;
