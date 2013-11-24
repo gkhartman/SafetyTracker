@@ -59,8 +59,7 @@ int drawable ic_plusone_medium_off_client 0x7f020019
 int drawable ic_plusone_small_off_client 0x7f02001a
 int drawable ic_plusone_standard_off_client 0x7f02001b
 int drawable ic_plusone_tall_off_client 0x7f02001c
-int drawable startbutton 0x7f02001d
-int drawable warning_sign 0x7f02001e
+int drawable warning_sign 0x7f02001d
 int id Email_sendEmail 0x7f05001f
 int id FacebookLabel 0x7f050023
 int id StartApp_DockPhoneMessage 0x7f05004f
