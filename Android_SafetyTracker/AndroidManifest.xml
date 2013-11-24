@@ -57,6 +57,7 @@
 
         <!-- BEGIN ACTIVITY -->
         <activity
+            android:screenOrientation="portrait"
             android:name="com.example.android_safetytracker.BeginActivity"
             android:label="@string/title_activity_begin" >
             <intent-filter>

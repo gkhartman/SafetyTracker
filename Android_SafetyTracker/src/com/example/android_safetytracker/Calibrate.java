@@ -24,9 +24,9 @@ public class Calibrate {
 		
 	}
 	
-	public void startCalibrating(float xValuePassed,float yValuePassed, float zValuePassed,float gyroXPassed,
-			 					float gyroYPassed, float gyroZPassed){
-		
+	public void startCalibrating(float xValuePassed,float yValuePassed, float zValuePassed,float gyroZPassed,
+			 					float gyroXPassed, float gyroYPassed){
+		System.out.println("Im calibrating");
 		if(Math.abs(startTime-System.currentTimeMillis()) >5000){
 			timeIsUp = true;
 		}
@@ -50,8 +50,8 @@ public class Calibrate {
 				Math.abs(accY-previousY) > THRESHOLD || 
 					Math.abs(accZ-previousZ) > THRESHOLD ||
 						Math.abs(gyroX-previousGyroX) > GYROTHRESH ||
-							Math.abs(gyroY - previousGyroY) > GYROTHRESH ||
-								Math.abs(gyroZ - previousGyroZ)> GYROTHRESH){
+							Math.abs(gyroY - previousGyroY) > GYROTHRESH )
+								{
 			
 			good = false;
 			startTime = System.currentTimeMillis();

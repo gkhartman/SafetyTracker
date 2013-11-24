@@ -18,8 +18,8 @@ public class Engine extends Service
 	Calibrate calibrator;
 	boolean notGoodForIntialValues;	
 	float initialXValue,initialYValue, initialZValue,initialGyroX,initialGyroY,initialGyroZ ;  
-	float temporaryYGyro = 0;
-	float previousYGyro = 0;
+	float temporaryXGyro = 0;
+	float previousXGyro = 0;
 	Event infraction;
 	boolean firstTimeStart = true;
 	boolean weAreGoingUpOrDown = false;
@@ -154,21 +154,24 @@ public class Engine extends Service
 			 
 			 return;		
 		 	}
+		 
+		// System.out.println(initialXValue + " "+ initialYValue+"  "+initialZValue);
+		// System.out.println(initialGyroX + "  "+initialGyroY + "  "+initialGyroZ);
 	
 		 process(accValues[0],accValues[1],accValues[2],
 			gyroValues[0], gyroValues[1], gyroValues[2]);
 		
 	}
 	private void process(float accXValue, float accYValue, float accZValue,
-							float gyroXValue, float gyroYValue, float gyroZValue) {
+							float gyroZValue, float gyroXValue, float gyroYValue) {
 		boolean theOrientationChanged = false;
 		
-		
-		if((Math.abs(gyroYValue - initialGyroY) > 5)) {
+		//System.out.println(gyroXValue +" "+ initialGyroX);
+		if((Math.abs(gyroXValue - initialGyroX) > 15)) {
 				
-					
+			System.out.println("THE ORIENTATION CHANGED");
 						
-			System.out.println(gyroXValue +"     "+ gyroYValue + "     "+gyroZValue);
+			//System.out.println(gyroXValue +"     "+ gyroYValue + "     "+gyroZValue);
 			
 			theOrientationChanged = true;
 		}
@@ -182,16 +185,16 @@ public class Engine extends Service
 				firstTimeStart = false;
 			}
 			
-			previousYGyro = temporaryYGyro;
-			temporaryYGyro = gyroYValue;
+			previousXGyro = temporaryXGyro;
+			temporaryXGyro = gyroXValue;
 			
 			theIgnoreTimerIsUp = true;
 			
-			
+			//System.out.println(previousXGyro +"      "+ temporaryXGyro);
 			
 			if(Math.abs(System.currentTimeMillis() - startTime) < 3000){
 				theIgnoreTimerIsUp = false;
-				if((Math.abs(previousYGyro) - temporaryYGyro) >5){
+				if((Math.abs(previousXGyro) - Math.abs(temporaryXGyro)) <5){
 					weAreGoingUpOrDown = true;
 					
 				}else{
@@ -209,6 +212,7 @@ public class Engine extends Service
 			
 		}
 		
+	
 		
 		if(weAreGoingUpOrDown && theOrientationChanged && theIgnoreTimerIsUp){
 			// implement what to do when up or down
@@ -252,7 +256,7 @@ public class Engine extends Service
 		float virtualX = accXValue - initialXValue;
 		float virtualY = accYValue - initialYValue;
 		float virtualZ = accZValue - initialZValue;
-		//System.out.println("XValue*****"+ virtualX+ "***YValue**"+ virtualY+"****zValue"+virtualZ);
+		System.out.println("XValue*****"+ virtualX+ "***YValue**"+ virtualY+"****zValue"+virtualZ);
 		
 		
 		//System.out.println("*******"+gForce);
@@ -284,7 +288,7 @@ public class Engine extends Service
 		
 	}
 	private boolean evaluateGForce(float gForce) {
-		float upperLimit = (float) 1.07;						//This value was lazily researched     //*********change upper limit to test
+		float upperLimit = (float) .30;						//This value  was lazily researched     //*********change upper limit to test
 		
 		if(gForce < upperLimit){
 			return false;
@@ -296,18 +300,18 @@ public class Engine extends Service
 			
 			// The virtualNumbers should read (x,y,z) = (0,9.8,0) since these are the values in a perfect situation
 			// where the phone is upright perpendicular to the acceleration vectors
-			float virtualNumberX = xValue - initialXValue;
+			float virtualNumberX = Math.abs(xValue) - Math.abs(initialXValue);
 			float virtualNumberY = yValue - initialYValue;
-			float virtualNumberZ = zValue - initialZValue;
+			float virtualNumberZ = Math.abs(zValue) - Math.abs(initialZValue);
 			
 			
 			float inaccurateGravityReadingForTheY  = (float) 9.806; 					// this is the value that the phone gives while stil
 			virtualNumberY = virtualNumberY + inaccurateGravityReadingForTheY;		// its +inaccurate... because it always reads gravity
 			//System.out.println(virtualNumberX+"----"+ virtualNumberY+"++++"+virtualNumberZ); // this should give the value in ideal situation
 	
-			float xGforce = convertToGforce(xValue);
-			float yGforce = convertToGforce(yValue);
-			float zGforce = convertToGforce(zValue);
+			float xGforce = convertToGforce(virtualNumberX);
+			float yGforce = convertToGforce(virtualNumberY);
+			float zGforce = convertToGforce(virtualNumberZ);
 			
 			//return (float) Math.sqrt(xGforce * xGforce + yGforce * yGforce + zGforce * zGforce);
 			return (float) Math.sqrt(xGforce * xGforce + zGforce * zGforce);
