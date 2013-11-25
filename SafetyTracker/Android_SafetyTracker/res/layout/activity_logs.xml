@@ -1,0 +1,301 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".Logs" >
+
+    <TextView
+        android:id="@+id/logs_SortByText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/log_DropDown"
+        android:layout_marginLeft="28dp"
+        android:text="@string/logs_SortByText"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_alignLeft="@+id/linearlayout"
+        android:layout_alignRight="@+id/linearlayout"
+        android:layout_below="@+id/linearlayout"
+        android:layout_marginTop="15dp" >
+
+        <TextView
+            android:id="@+id/row1Left"
+            android:layout_width="95dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:text="Small Text"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/row1Mid"
+            android:layout_width="95dp"
+            android:layout_height="40dp"
+            android:layout_above="@+id/row2Left"
+            android:layout_toRightOf="@+id/row1Left"
+            android:text="Small Text"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/row1Right"
+            android:layout_width="95dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:text="Small Text"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/row3Right"
+            android:layout_width="95dp"
+            android:layout_height="40dp"
+            android:layout_alignBaseline="@+id/row3Mid"
+            android:layout_alignBottom="@+id/row3Mid"
+            android:layout_alignRight="@+id/row2Right"
+            android:text="Small Text"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/row4Right"
+            android:layout_width="95dp"
+            android:layout_height="40dp"
+            android:layout_alignBottom="@+id/row4Mid"
+            android:layout_alignLeft="@+id/row3Right"
+            android:text="Small Text"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/row5Right"
+            android:layout_width="95dp"
+            android:layout_height="40dp"
+            android:layout_alignBottom="@+id/row5Mid"
+            android:layout_alignRight="@+id/row4Right"
+            android:text="Small Text"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/row7Mid"
+            android:layout_width="95dp"
+            android:layout_height="40dp"
+            android:layout_alignBaseline="@+id/row7Left"
+            android:layout_alignBottom="@+id/row7Left"
+            android:layout_alignRight="@+id/row6Mid"
+            android:text="Small Text"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/row7Right"
+            android:layout_width="95dp"
+            android:layout_height="40dp"
+            android:layout_alignBaseline="@+id/row7Mid"
+            android:layout_alignBottom="@+id/row7Mid"
+            android:layout_alignRight="@+id/row6Right"
+            android:text="Small Text"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/row2Right"
+            android:layout_width="95dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/row1Right"
+            android:text="Small Text"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/row2Mid"
+            android:layout_width="95dp"
+            android:layout_height="40dp"
+            android:layout_alignBaseline="@+id/row2Right"
+            android:layout_alignBottom="@+id/row2Right"
+            android:layout_toLeftOf="@+id/row2Right"
+            android:text="Small Text"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/row2Left"
+            android:layout_width="95dp"
+            android:layout_height="40dp"
+            android:layout_alignBaseline="@+id/row2Mid"
+            android:layout_alignBottom="@+id/row2Mid"
+            android:layout_toLeftOf="@+id/row1Mid"
+            android:text="Small Text"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/row3Left"
+            android:layout_width="95dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/row2Left"
+            android:layout_toLeftOf="@+id/row1Mid"
+            android:text="Small Text"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/row3Mid"
+            android:layout_width="95dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/row2Right"
+            android:layout_toLeftOf="@+id/row3Right"
+            android:text="Small Text"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/row4Left"
+            android:layout_width="95dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/row3Left"
+            android:layout_toLeftOf="@+id/row1Mid"
+            android:text="Small Text"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/row4Mid"
+            android:layout_width="95dp"
+            android:layout_height="40dp"
+            android:layout_alignBaseline="@+id/row4Left"
+            android:layout_alignBottom="@+id/row4Left"
+            android:layout_toRightOf="@+id/row5Left"
+            android:text="Small Text"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/row5Left"
+            android:layout_width="95dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/row4Left"
+            android:text="Small Text"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/row5Mid"
+            android:layout_width="95dp"
+            android:layout_height="40dp"
+            android:layout_alignBaseline="@+id/row5Left"
+            android:layout_alignBottom="@+id/row5Left"
+            android:layout_alignLeft="@+id/row4Mid"
+            android:text="Small Text"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/row6Left"
+            android:layout_width="95dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/row5Left"
+            android:text="Small Text"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/row6Mid"
+            android:layout_width="95dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/row5Left"
+            android:layout_toRightOf="@+id/row5Left"
+            android:text="Small Text"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/row6Right"
+            android:layout_width="95dp"
+            android:layout_height="40dp"
+            android:layout_above="@+id/row7Left"
+            android:layout_alignParentRight="true"
+            android:text="Small Text"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/row7Left"
+            android:layout_width="95dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/row6Left"
+            android:text="Small Text"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <Button
+            android:id="@+id/logsBackButton"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:text="@string/back" />
+
+        <Button
+            android:id="@+id/logsNextButton"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:text="@string/next" />
+
+    </RelativeLayout>
+
+    <Spinner
+        android:id="@+id/log_DropDown"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/linearlayout" />
+
+    <LinearLayout
+        android:id="@+id/linearlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/logs_SortByText" >
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="fill_parent"
+            android:background="@android:color/darker_gray" />
+
+        <TextView
+            android:id="@+id/tv"
+            android:layout_width="98dp"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textSize="18sp" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="fill_parent"
+            android:background="@android:color/darker_gray" />
+
+        <TextView
+            android:id="@+id/tvMiddle"
+            android:layout_width="98dp"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textSize="18sp" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="fill_parent"
+            android:background="@android:color/darker_gray" />
+
+        <TextView
+            android:id="@+id/tvRight"
+            android:layout_width="98dp"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textSize="18sp" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="fill_parent"
+            android:background="@android:color/darker_gray" />
+    </LinearLayout>
+
+</RelativeLayout>
