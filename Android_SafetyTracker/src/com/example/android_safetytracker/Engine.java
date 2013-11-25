@@ -2,8 +2,10 @@ package com.example.android_safetytracker;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.util.LinkedList;
 
 import android.app.Service;
@@ -19,17 +21,17 @@ public class Engine extends Service
 	private boolean usingGPS; 
 	private float [] accValues = {0,0,0};
 	private float [] gyroValues = {0,0,0};
-	Calibrate calibrator;
-	boolean notGoodForIntialValues;	
-	float initialXValue,initialYValue, initialZValue,initialGyroX,initialGyroY,initialGyroZ ;  
-	float temporaryXGyro = 0;
-	float previousXGyro = 0;
-	Event infraction;
-	boolean firstTimeStart = true;
-	boolean weAreGoingUpOrDown = false;
-	long startTime;
-	LinkedList<Event> linkedList;
-	boolean theIgnoreTimerIsUp;
+	private Calibrate calibrator;
+	private boolean notGoodForIntialValues;	
+	private float initialXValue,initialYValue, initialZValue,initialGyroX,initialGyroY,initialGyroZ ;  
+	private float temporaryXGyro = 0;
+	private float previousXGyro = 0;
+	private Event infraction;
+	private boolean firstTimeStart = true;
+	private boolean weAreGoingUpOrDown = false;
+	private long startTime, speedingTimer;
+	private LinkedList<Event> linkedList;
+	private boolean theIgnoreTimerIsUp;
 
 	
 	private static BeginActivity begin;
@@ -45,12 +47,20 @@ public class Engine extends Service
 		
 		super.onCreate();
 		orientation = new Orientation(this);
-		calibrator = new Calibrate();
-		notGoodForIntialValues = true;
-
+		linkedList = new LinkedList<Event>();
+		speedingTimer = System.currentTimeMillis() - 300001;
 	}
 	
-	
+	@Override
+	public int onStartCommand(Intent intent, int flags, int startId) {
+		notGoodForIntialValues = true;
+		calibrator = new Calibrate();
+		startService(new Intent(getBaseContext(), GPSLocation.class));
+		startService(new Intent(getBaseContext(), Orientation.class));
+		checkGPS();
+		usingGPS = checkGPSEnabled();
+		return START_STICKY;
+	}
 	
 	protected void gpsDisabled()
 	{
@@ -83,24 +93,15 @@ public class Engine extends Service
 		stopService(new Intent(getBaseContext(), GPSLocation.class));
 		stopService(new Intent(getBaseContext(), Orientation.class));
 		begin = null;
+		writeToFile();
 		super.onDestroy();
-	}
-
-	@Override
-	public int onStartCommand(Intent intent, int flags, int startId) {
-		startService(new Intent(getBaseContext(), GPSLocation.class));
-		startService(new Intent(getBaseContext(), Orientation.class));
-		checkGPS();
-		usingGPS = checkGPSEnabled();
-		return START_STICKY;
 	}
 
 	public void speeding(float speed,double longitude, double latitude)
 	{
-		//add to user we can do this by using the singleton on user and loading the user data
-		//when the app is launched. We can that get an instance of the user for this class.
-		//It shouldn't be to difficult.
-		//Disclaimer: Only My Opinion
+		//check if it has been at least 5 minutes since last speeding message
+		if((System.currentTimeMillis() - speedingTimer) > 300000)
+			linkedList.addFirst(new Event("Speeding",latitude,longitude));
 	}
 
 	@Override
@@ -267,26 +268,29 @@ public class Engine extends Service
 		//System.out.println("*******"+gForce);
 		
 		if(violation){						//will use values to tell what violations && tells if the 3 second lag is up			//*****eliminated the firstTime usless
-			
+			System.out.println("gps is ready? " + gps.isGPSReady() ); 
 			
 			if(virtualZ < 1.0 && Math.abs(virtualX) <1.5){									/// random value that is not right
 				System.out.println("--ACC----virtual values----"+ virtualX +"   " +virtualZ  );
-				linkedList = Logs.getLinkedList();
-				linkedList.addFirst(new Event("accelerating"));
-				Logs.setLinkedList(linkedList); 
+				if(!usingGPS)
+					linkedList.addFirst(new Event("Accelerating"));
+				else
+					linkedList.addFirst(new Event("Accelerating",gps.getLatitude(),gps.getLongitude()));
 			}
 			else if(virtualZ> 1.0 && Math.abs(virtualX)<1.5){
 				System.out.println("--DCC-----------virtual values----"+ virtualX +"   " +virtualZ  );
-				linkedList = Logs.getLinkedList();
-				linkedList.addFirst(new Event("decellerating"));
-				Logs.setLinkedList(linkedList); 
+				if(!usingGPS)
+					linkedList.addFirst(new Event("Decellerating"));
+				else
+					linkedList.addFirst(new Event("Decellerating",gps.getLatitude(),gps.getLongitude()));
 				
 			}
 			else{
 				System.out.println("----TURNING------virtual values----"+ virtualX +"---" +virtualZ  );
-				linkedList = Logs.getLinkedList();
-				linkedList.addFirst(new Event("turning"));
-				Logs.setLinkedList(linkedList); 
+				if(!usingGPS)
+					linkedList.addFirst(new Event("Turning"));
+				else
+					linkedList.addFirst(new Event("Tuning",gps.getLatitude(),gps.getLongitude()));
 			}
 		}
 
@@ -344,22 +348,30 @@ public class Engine extends Service
 	public Event getEvent(){
 		return infraction;
 	}
-	private void writeToFile(String s){
-		BufferedWriter bufferedWriter = null;
-		try {
-			bufferedWriter = new BufferedWriter(new FileWriter(new 
-			        File(getFilesDir()+File.separator+"Logs.txt")));
-			bufferedWriter.write(s);
-			bufferedWriter.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+	
+	/**
+	 * date, type, latitude, longitude
+	 */
+	private void writeToFile()
+	{
+		Event event = null;
+	    try
+	    {
+		   FileOutputStream fos = openFileOutput("Logs.txt", MODE_APPEND);
+		   OutputStreamWriter osw = new OutputStreamWriter(fos);
+		   for(int i = 0; i < linkedList.size(); ++i)
+		   {
+			   event = linkedList.get(i);
+			   osw.append(event.getDate()+"~"+event.getEventType()+"~"+event.getLatitude()+"~"+event.getLongitude()+"\n");
+		   }
+		   osw.close();
+		   fos.close();
+	    }
+	    catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 	}
-	
-	
-	
 	
 	
 }

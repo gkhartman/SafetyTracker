@@ -1,49 +1,84 @@
 package com.example.android_safetytracker;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class Event {
 	
-	private Calendar cInstance;
+	private String date;
 	private String type;
 	private double longitude, latitude;
 	
-	public Event(String typePassed){
-		cInstance = Calendar.getInstance();
-	//  location = getTheLocation                     Victor said gettin tis was easy
-		this.type = typePassed;
-		
-	}
-	
-	public Event(String typePassed, double latitude, double longitude)
+	/**
+	 * used when not using gps
+	 * @param typePassed
+	 */
+	public Event(String typePassed)
 	{
-		cInstance = Calendar.getInstance();
-		this.longitude = longitude;
-		this.latitude = latitude;
+		setCurrentDate();
 		this.type = typePassed;
-		
+		longitude = 200;
+		latitude = 200;
 	}
 	
-	public void setEventType(String type){
-		this.type= type;
+	/**
+	 * used when creating event from engine
+	 * @param type
+	 * @param latitude
+	 * @param longitude
+	 */
+	public Event(String type, double latitude, double longitude)
+	{
+		setCurrentDate();
+		this.type = type;
+		this.latitude = latitude;
+		this.longitude = longitude;
+	}
+	
+	/**
+	 * used for creating logs
+	 * @param date
+	 * @param type
+	 * @param latitude
+	 * @param longitude
+	 */
+	public Event(String date, String type, double latitude, double longitude)
+	{
+		this.date = date;
+		this.type = type;
+		this.latitude = latitude;
+		this.longitude = longitude;
+	}
+	
+	private void setCurrentDate()
+	{
+		DateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		date = df.format(Calendar.getInstance().getTime());
+	}
+	
+	public String getLocation()
+	{
+		return latitude + ", " + longitude;
 	}
 	
 	public String getEventType(){
 		return type;
 	}
-	public void setDateTime(long time){
-		 
+	
+	public double getLongitude()
+	{
+		return longitude;
 	}
-	public synchronized Calendar getDateTime(){
-		return cInstance;
-		
+	
+	public double getLatitude()
+	{
+		return latitude;
 	}
-	public void setLocation(double lat, double lon){
-		longitude = lon;
-		latitude = lat;
-	}
-	public String getLocation(){
-		return latitude+" , "+longitude;
+	
+	public String getDate()
+	{
+		return date;
 	}
 	
 }

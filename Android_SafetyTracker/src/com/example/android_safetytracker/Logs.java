@@ -1,6 +1,9 @@
 package com.example.android_safetytracker;
 
 import java.util.LinkedList;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -27,6 +30,7 @@ public class Logs extends Activity implements OnClickListener{
 	private TextView [][] box;
 	private int listPointer, spinnerChoice;
 	private Button backButton,nextButton;
+	private String fileName = "Logs.txt";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +66,8 @@ public class Logs extends Activity implements OnClickListener{
         nextButton = (Button) findViewById(R.id.logsNextButton);
         nextButton.setOnClickListener(this);
         
+        readFromFile();
+        
         disableButton(backButton);
         if(linkedList.size() >7)
         {
@@ -71,8 +77,38 @@ public class Logs extends Activity implements OnClickListener{
         {
         	disableButton(nextButton);
         }
-        
-		
+	}
+	
+	/**
+	 * Format of file: 
+	 * date,type,latitude,longitude
+	 */
+	private void readFromFile()
+	{
+		File file = new File(getFilesDir()+File.separator+fileName); //name of file was chosen by Dr. Jose...blame it on him
+		if(!file.exists())
+		   return;
+		String data = "";		
+		try
+		{
+		   	BufferedReader bf = new BufferedReader(new FileReader(getFilesDir()+File.separator+fileName));
+		   	while((data = bf.readLine()) != null)
+		   	{
+		   		Event event = parseData(data);
+		   		linkedList.addFirst(event);
+		   	}
+		   	bf.close();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	private Event parseData(String data)
+	{
+		String [] brokenString = data.split("~");
+		return new Event(brokenString[0],brokenString[1],Double.parseDouble(brokenString[2]),Double.parseDouble(brokenString[3]));
 	}
 	
 	private void enableButton(Button button)
@@ -153,12 +189,9 @@ public class Logs extends Activity implements OnClickListener{
 
 	private void addTextToBox(int row, Event e )
 	{
-		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		Calendar cal = e.getDateTime();
-		String date = dateFormat.format(cal.getTime());
 		switch(spinnerChoice)
 		{
-		case 0: box[row][0].setText(date);
+		case 0: box[row][0].setText(e.getDate());
 				addClickableAttributes(row, 0, false);
 		        box[row][1].setText(e.getEventType());
 		        addClickableAttributes(row, 1, false);
@@ -167,14 +200,14 @@ public class Logs extends Activity implements OnClickListener{
 		        break;
 		case 1: box[row][0].setText(e.getEventType());
 				addClickableAttributes(row, 0, false);
-		        box[row][1].setText(date);
+		        box[row][1].setText(e.getDate());
 		        addClickableAttributes(row, 1, false);
 		        box[row][2].setText(e.getLocation());
 		        addClickableAttributes(row, 2, true);
 		        break;
 		case 2: box[row][0].setText(e.getLocation());
 				addClickableAttributes(row, 0, true);
-		        box[row][1].setText(date);
+		        box[row][1].setText(e.getDate());
 		        addClickableAttributes(row, 1, false);
 		        box[row][2].setText(e.getEventType());
 		        addClickableAttributes(row, 2, false);
@@ -262,13 +295,6 @@ public class Logs extends Activity implements OnClickListener{
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.logs, menu);
 		return true;
-	}
-	public static LinkedList<Event> getLinkedList(){
-		return linkedList;
-		
-	}
-	public static void setLinkedList(LinkedList<Event> theLogList){
-		linkedList = theLogList;
 	}
 	
 	

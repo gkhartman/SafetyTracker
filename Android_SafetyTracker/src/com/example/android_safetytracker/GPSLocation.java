@@ -23,6 +23,7 @@ public class GPSLocation extends Service implements LocationListener {
 	private LocationManager lManager;
 	private double longitude;
 	private double latitude;
+	private boolean gpsReady;
 
 	private static Engine engine;
 
@@ -58,7 +59,8 @@ public class GPSLocation extends Service implements LocationListener {
 
 	public int onStartCommand(Intent intent, int flags, int startId) {
 		System.out.println("on start called");
-		lManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 2,this); //update every 1 second 2 meters (approx 5 mph)
+		gpsReady = false;
+		lManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0,0,this); //update every 1 second 2 meters (approx 5 mph)
 		return START_STICKY;														
 	}
 
@@ -78,6 +80,7 @@ public class GPSLocation extends Service implements LocationListener {
 
 	@Override
 	public void onLocationChanged(Location location) {
+	   gpsReady = true;
 	   float speed = location.getSpeed();
 	   latitude = (float) location.getLatitude();
 	   longitude = location.getLongitude();
@@ -85,6 +88,11 @@ public class GPSLocation extends Service implements LocationListener {
        {
     	   engine.speeding(speed,longitude,latitude);
        }
+	}
+	
+	public boolean isGPSReady()
+	{
+		return gpsReady;
 	}
 
 	@Override
