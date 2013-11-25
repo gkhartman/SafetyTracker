@@ -12,50 +12,23 @@
         android:id="@+id/menu_StartAppButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:text="@string/menuStartActivity" />
-
-    <Button
-        android:id="@+id/menu_LogsButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/menu_StartAppButton"
-        android:layout_alignRight="@+id/menu_StartAppButton"
-        android:layout_below="@+id/menu_StartAppButton"
-        android:layout_marginTop="18dp"
-        android:text="@string/menuLogs" />
-
-    <Button
-        android:id="@+id/menu_UserInfoButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/menu_LogsButton"
+        android:layout_alignParentTop="true"
         android:layout_alignRight="@+id/menu_LogsButton"
-        android:layout_below="@+id/menu_LogsButton"
-        android:layout_marginTop="28dp"
-        android:text="@string/menuUserInfo" />
+        android:layout_marginTop="30dp"
+        android:background="@drawable/menubuttons"
+        android:text="@string/menuStartActivity" />
 
     <Button
         android:id="@+id/menu_CalibrateButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/menu_UserInfoButton"
-        android:layout_alignRight="@+id/menu_UserInfoButton"
+        android:layout_alignLeft="@+id/menu_turnOnGPSButton"
         android:layout_below="@+id/menu_UserInfoButton"
         android:layout_marginTop="16dp"
+        android:layout_toLeftOf="@+id/menu_aboutUsButton"
+        android:background="@drawable/menubuttons"
         android:text="@string/calibrate_label" />
-
-    <Button
-        android:id="@+id/menu_turnOnGPSButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/menu_CalibrateButton"
-        android:layout_alignRight="@+id/menu_CalibrateButton"
-        android:layout_below="@+id/menu_CalibrateButton"
-        android:layout_marginTop="24dp"
-        android:text="@string/turnOnGPS_label" />
 
     <Button
         android:id="@+id/menu_HelpButton"
@@ -85,5 +58,37 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="14dp"
         android:text="@string/aboutUs_label" />
+
+    <Button
+        android:id="@+id/menu_turnOnGPSButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/menu_CalibrateButton"
+        android:layout_marginTop="18dp"
+        android:layout_toLeftOf="@+id/menu_aboutUsButton"
+        android:background="@drawable/menubuttons"
+        android:text="@string/turnOnGPS_label" />
+
+    <Button
+        android:id="@+id/menu_UserInfoButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/menu_CalibrateButton"
+        android:layout_below="@+id/menu_LogsButton"
+        android:layout_marginTop="18dp"
+        android:layout_toLeftOf="@+id/menu_aboutUsButton"
+        android:background="@drawable/menubuttons"
+        android:text="@string/menuUserInfo" />
+
+    <Button
+        android:id="@+id/menu_LogsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/menu_UserInfoButton"
+        android:layout_below="@+id/menu_StartAppButton"
+        android:layout_marginTop="18dp"
+        android:layout_toLeftOf="@+id/menu_aboutUsButton"
+        android:background="@drawable/menubuttons"
+        android:text="@string/menuLogs" />
 
 </RelativeLayout>

@@ -210,7 +210,8 @@ containing a value of this type.
         public static final int ic_plusone_small_off_client=0x7f02001a;
         public static final int ic_plusone_standard_off_client=0x7f02001b;
         public static final int ic_plusone_tall_off_client=0x7f02001c;
-        public static final int warning_sign=0x7f02001d;
+        public static final int menubuttons=0x7f02001d;
+        public static final int warning_sign=0x7f02001e;
     }
     public static final class id {
         public static final int Email_sendEmail=0x7f05001f;
@@ -241,14 +242,14 @@ containing a value of this type.
         public static final int logs_SortByText=0x7f050026;
         public static final int map=0x7f05004e;
         public static final int mapLayoutSpinner=0x7f05004d;
-        public static final int menu_CalibrateButton=0x7f050047;
-        public static final int menu_HelpButton=0x7f050049;
+        public static final int menu_CalibrateButton=0x7f050046;
+        public static final int menu_HelpButton=0x7f05004a;
         public static final int menu_LogsButton=0x7f050045;
         public static final int menu_StartAppButton=0x7f050044;
-        public static final int menu_UserInfoButton=0x7f050046;
-        public static final int menu_aboutUsButton=0x7f05004b;
-        public static final int menu_legalButton=0x7f05004a;
-        public static final int menu_turnOnGPSButton=0x7f050048;
+        public static final int menu_UserInfoButton=0x7f050048;
+        public static final int menu_aboutUsButton=0x7f050049;
+        public static final int menu_legalButton=0x7f05004b;
+        public static final int menu_turnOnGPSButton=0x7f050047;
         public static final int messageInput=0x7f05001e;
         public static final int messageLabel=0x7f050020;
         public static final int none=0x7f050000;
