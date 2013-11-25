@@ -194,7 +194,7 @@ public class Engine extends Service
 			
 			theIgnoreTimerIsUp = true;
 			
-			//System.out.println(previousXGyro +"      "+ temporaryXGyro);
+			System.out.println(previousXGyro +"      "+ temporaryXGyro);
 			
 			if(Math.abs(System.currentTimeMillis() - startTime) < 3000){
 				theIgnoreTimerIsUp = false;
@@ -213,7 +213,6 @@ public class Engine extends Service
 			weAreGoingUpOrDown = false;
 			theIgnoreTimerIsUp = false;
 			firstTimeStart = true;
-			
 		}
 		
 	
@@ -251,12 +250,14 @@ public class Engine extends Service
 	
 	private void theWorldIsFlat(float accXValue, float accYValue, float accZValue,
 			float gyroXValue, float gyroYValue, float gyroZValue){
-		
-		
-		float gForce =calculateGforce(accXValue,accYValue,accZValue);
-		
-		boolean violation =evaluateGForce(gForce);
-		
+		float gForce2 = calculateGforce2(accXValue,accYValue,accZValue);
+		float gForce1 = calculateGforce1(gyroXValue,accZValue);
+		System.out.printf("accXValue %f, accYValue %f, accZValue %f\n", accXValue, accYValue, accZValue);
+		System.out.printf("initial gyro x %f, gyroXValue %f\n", initialGyroX, gyroXValue);
+		System.out.printf("Method 1: G Force is %f\n", gForce1);
+		System.out.printf("Method 2: G Force is %f\n", gForce2); ////////////////////Need to take out when done
+		System.out.printf("Measured G is %f\n", getMeasuredGravity());
+		boolean violation =evaluateGForce(gForce2); // original gForce, not gForce1
 		float virtualX = accXValue - initialXValue;
 		float virtualY = accYValue - initialYValue;
 		float virtualZ = accZValue - initialZValue;
@@ -287,8 +288,8 @@ public class Engine extends Service
 				linkedList.addFirst(new Event("turning"));
 				Logs.setLinkedList(linkedList); 
 			}
-			
 		}
+
 		
 	}
 	private boolean evaluateGForce(float gForce) {
@@ -300,27 +301,41 @@ public class Engine extends Service
 		return true;
 	}
 	
-	private float calculateGforce(float xValue, float yValue, float zValue) {
+	private float calculateGforce2(float xValue, float yValue, float zValue) {
 			
 			// The virtualNumbers should read (x,y,z) = (0,9.8,0) since these are the values in a perfect situation
 			// where the phone is upright perpendicular to the acceleration vectors
-			float virtualNumberX = Math.abs(xValue) - Math.abs(initialXValue);
-			float virtualNumberY = yValue - initialYValue;
-			float virtualNumberZ = Math.abs(zValue) - Math.abs(initialZValue);
-			
-			
-			float inaccurateGravityReadingForTheY  = (float) 9.806; 					// this is the value that the phone gives while stil
-			virtualNumberY = virtualNumberY + inaccurateGravityReadingForTheY;		// its +inaccurate... because it always reads gravity
-			//System.out.println(virtualNumberX+"----"+ virtualNumberY+"++++"+virtualNumberZ); // this should give the value in ideal situation
-	
-			float xGforce = convertToGforce(virtualNumberX);
-			float yGforce = convertToGforce(virtualNumberY);
-			float zGforce = convertToGforce(virtualNumberZ);
-			
-			//return (float) Math.sqrt(xGforce * xGforce + yGforce * yGforce + zGforce * zGforce);
-			return (float) Math.sqrt(xGforce * xGforce + zGforce * zGforce);
-			
+//			float virtualNumberX = Math.abs(xValue) - Math.abs(initialXValue);
+//			float virtualNumberY = yValue - initialYValue;
+//			float virtualNumberZ = Math.abs(zValue) - Math.abs(initialZValue);
+//			
+//			
+//			float inaccurateGravityReadingForTheY  = (float) 9.806; 					// this is the value that the phone gives while stil
+//			virtualNumberY = virtualNumberY + inaccurateGravityReadingForTheY;		// its +inaccurate... because it always reads gravity
+//			//System.out.println(virtualNumberX+"----"+ virtualNumberY+"++++"+virtualNumberZ); // this should give the value in ideal situation
+//	
+//			float xGforce = convertToGforce(virtualNumberX);
+//			float yGforce = convertToGforce(virtualNumberY);
+//			float zGforce = convertToGforce(virtualNumberZ);
+//			
+//			//return (float) Math.sqrt(xGforce * xGforce + yGforce * yGforce + zGforce * zGforce);
+//			return (float) Math.sqrt(xGforce * xGforce + zGforce * zGforce);
+//			
+		
+		float gForce = (float) Math.sqrt(Math.abs(zValue*zValue + xValue*xValue + yValue*yValue 
+				             - getMeasuredGravity()*getMeasuredGravity()));
+		return gForce;
 		}
+	private float calculateGforce1(double gyroXValue, double zValue){
+		float gForce2;
+		gForce2 = (float) (zValue / Math.cos(Math.abs((90-Math.abs(initialGyroX))+(initialGyroX-gyroXValue))));
+		return gForce2;
+	}
+	public float getMeasuredGravity (){
+		float measuredGravity;
+		measuredGravity = (float) Math.sqrt(initialXValue*initialXValue + initialYValue*initialYValue + initialZValue*initialZValue);
+		return measuredGravity;
+	}
 	
 	private float convertToGforce(float value) {
 		float g = (float) (value/9.80665);
@@ -345,16 +360,6 @@ public class Engine extends Service
 	
 	
 	
+	
+	
 }
-
-	
-	
-	
-
-	
-	
-	
-	
-	
-	
-
