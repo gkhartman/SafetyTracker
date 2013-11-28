@@ -86,7 +86,6 @@ int id linearlayout 0x7f050029
 int id log_DropDown 0x7f050027
 int id logsBackButton 0x7f05003f
 int id logsNextButton 0x7f050040
-int id logs_SortByText 0x7f050026
 int id map 0x7f05004e
 int id mapLayoutSpinner 0x7f05004d
 int id menu_CalibrateButton 0x7f050046
@@ -148,6 +147,7 @@ int id userInfo_Email 0x7f050057
 int id userInfo_EmailText 0x7f050056
 int id userInfo_PhoneNumber 0x7f050054
 int id userInfo_nameOfUser 0x7f050051
+int id userInfo_theAge 0x7f050026
 int id username_input 0x7f050017
 int id visitWebsiteLabel 0x7f050012
 int id websiteLabel 0x7f050022

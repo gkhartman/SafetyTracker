@@ -18,7 +18,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
-        android:id="@+id/logs_SortByText"
+        android:id="@+id/userInfo_theAge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/userInfo_AgeText"
@@ -89,8 +89,8 @@
         android:id="@+id/UserInfo_PhoneText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/logs_SortByText"
-        android:layout_below="@+id/logs_SortByText"
+        android:layout_alignLeft="@+id/userInfo_theAge"
+        android:layout_below="@+id/userInfo_theAge"
         android:layout_marginTop="35dp"
         android:text="@string/userInfo_PhoneText"
         android:textAppearance="?android:attr/textAppearanceLarge" />

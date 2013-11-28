@@ -239,7 +239,6 @@ containing a value of this type.
         public static final int log_DropDown=0x7f050027;
         public static final int logsBackButton=0x7f05003f;
         public static final int logsNextButton=0x7f050040;
-        public static final int logs_SortByText=0x7f050026;
         public static final int map=0x7f05004e;
         public static final int mapLayoutSpinner=0x7f05004d;
         public static final int menu_CalibrateButton=0x7f050046;
@@ -301,6 +300,7 @@ containing a value of this type.
         public static final int userInfo_EmailText=0x7f050056;
         public static final int userInfo_PhoneNumber=0x7f050054;
         public static final int userInfo_nameOfUser=0x7f050051;
+        public static final int userInfo_theAge=0x7f050026;
         public static final int username_input=0x7f050017;
         public static final int visitWebsiteLabel=0x7f050012;
         public static final int websiteLabel=0x7f050022;

@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.TextView;
 
 
 /**
@@ -22,6 +23,8 @@ import android.widget.Button;
 public class UserInfoActivity extends Activity implements OnClickListener{
 	
 	private Button editUser, editParent;
+	String information;
+	String name,age,phone,email;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -29,9 +32,19 @@ public class UserInfoActivity extends Activity implements OnClickListener{
 		setContentView(R.layout.activity_user_info);
 		initializeButtons();
 		System.out.println( this.getApplicationContext().getFilesDir().getAbsolutePath());
+		name = "No Name Entered";
+		age = "No Age Set";
+		phone = "No Number In File";
+		email = "No Email Entered";
 		readFromFile("User.txt");
+		setUpUserInfo(information);
+		System.out.println("USER "+information);
 		readFromFile("Parent.txt");
+		setUpParentInfo(information);
+		System.out.println("PARENT "+information);
 	}
+
+	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -88,11 +101,26 @@ public class UserInfoActivity extends Activity implements OnClickListener{
 			 }
 			 Log.d("Output", builder.toString());
 			 bufferedReader.close();
-			 System.out.println(builder.toString());
+			 information =(builder.toString());
 		} catch (IOException e) {
 				// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	private void setUpUserInfo(String information2) {
+		String[] parts = information2.split("~");
+		TextView textView = (TextView) findViewById(R.id.userInfo_nameOfUser);
+		textView.setText(parts[0]);
+		textView = (TextView) findViewById(R.id.userInfo_theAge);
+		textView.setText(parts[1]);
+		
+	}
+	private void setUpParentInfo(String information2) {
+		String[] parts = information2.split("~");
+		TextView textView = (TextView) findViewById(R.id.userInfo_PhoneNumber);
+		textView.setText(parts[1]);
+		textView = (TextView) findViewById(R.id.userInfo_Email);
+		textView.setText(parts[0]);
 	}
 	
 }

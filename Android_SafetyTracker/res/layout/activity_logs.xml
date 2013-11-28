@@ -10,7 +10,7 @@
     tools:context=".Logs" >
 
     <TextView
-        android:id="@+id/logs_SortByText"
+        android:id="@+id/userInfo_theAge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/log_DropDown"
@@ -254,7 +254,7 @@
         android:id="@+id/linearlayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/logs_SortByText" >
+        android:layout_below="@+id/userInfo_theAge" >
 
         <View
             android:layout_width="1dp"
