@@ -31,20 +31,40 @@ public class UserInfoActivity extends Activity implements OnClickListener{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_user_info);
 		initializeButtons();
-		System.out.println( this.getApplicationContext().getFilesDir().getAbsolutePath());
+		setDefault();
+		File f = new File(getFilesDir()+File.separator+"User.txt");
+		if(f.exists()) {
+			readFromFile("User.txt");
+			setUpUserInfo(information);
+			System.out.println("USER "+information);
+			
+		}
+		f = new File(getFilesDir()+File.separator+"Parent.txt");
+		if(f.exists()) {
+		readFromFile("Parent.txt");
+		setUpParentInfo(information);
+		System.out.println("PARENT "+information);
+		}
+	}
+
+	
+
+	private void setDefault() {
 		name = "No Name Entered";
 		age = "No Age Set";
 		phone = "No Number In File";
 		email = "No Email Entered";
-		readFromFile("User.txt");
-		setUpUserInfo(information);
-		System.out.println("USER "+information);
-		readFromFile("Parent.txt");
-		setUpParentInfo(information);
-		System.out.println("PARENT "+information);
+		TextView textView = (TextView) findViewById(R.id.userInfo_nameOfUser);
+		textView.setText(name);
+		textView = (TextView) findViewById(R.id.userInfo_theAge);
+		textView.setText(age);
+		textView = (TextView) findViewById(R.id.userInfo_PhoneNumber);
+		textView.setText(phone);
+		textView = (TextView) findViewById(R.id.userInfo_Email);
+		textView.setText(email);
 	}
 
-	
+
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
