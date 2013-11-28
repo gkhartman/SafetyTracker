@@ -172,7 +172,7 @@ public class Engine extends Service
 		boolean theOrientationChanged = false;
 		
 		//System.out.println(gyroXValue +" "+ initialGyroX);
-		if((Math.abs(gyroXValue - initialGyroX) > 15)) {
+		if((Math.abs(gyroXValue - initialGyroX) > 45)) {  ///Value Must be changed
 				
 			System.out.println("THE ORIENTATION CHANGED");
 						
@@ -252,57 +252,61 @@ public class Engine extends Service
 	private void theWorldIsFlat(float accXValue, float accYValue, float accZValue,
 			float gyroXValue, float gyroYValue, float gyroZValue){
 		float gForce2 = calculateGforce2(accXValue,accYValue,accZValue);
-		float gForce1 = calculateGforce1(gyroXValue,accZValue);
+		//float gForce1 = calculateGforce1(gyroXValue,accZValue);
 		System.out.printf("accXValue %f, accYValue %f, accZValue %f\n", accXValue, accYValue, accZValue);
-		System.out.printf("initial gyro x %f, gyroXValue %f\n", initialGyroX, gyroXValue);
-		System.out.printf("Method 1: G Force is %f\n", gForce1);
+		//System.out.printf("initial gyro x %f, gyroXValue %f\n", initialGyroX, gyroXValue);
+		//System.out.printf("Method 1: G Force is %f\n", gForce1);
 		System.out.printf("Method 2: G Force is %f\n", gForce2); ////////////////////Need to take out when done
-		System.out.printf("Measured G is %f\n", getMeasuredGravity());
-		boolean violation =evaluateGForce(gForce2); // original gForce, not gForce1
-		float virtualX = accXValue - initialXValue;
-		float virtualY = accYValue - initialYValue;
-		float virtualZ = accZValue - initialZValue;
+		//System.out.printf("Measured G is %f\n", getMeasuredGravity());
+		boolean violationOccured = violation(convertToGforce(gForce2)); // original gForce, not gForce1
+//		float virtualX = accXValue - initialXValue;
+//		float virtualY = accYValue - initialYValue;
+//		float virtualZ = accZValue - initialZValue;
+		System.out.println("gps is ready? " + gps.isGPSReady() ); 
 		//System.out.println("XValue*****"+ virtualX+ "***YValue**"+ virtualY+"****zValue"+virtualZ);
 		
 		
 		//System.out.println("*******"+gForce);
 		
-		if(violation){						//will use values to tell what violations && tells if the 3 second lag is up			//*****eliminated the firstTime usless
-			System.out.println("gps is ready? " + gps.isGPSReady() ); 
-			
-			if(virtualZ < 1.0 && Math.abs(virtualX) <1.5){									/// random value that is not right
-				System.out.println("--ACC----virtual values----"+ virtualX +"   " +virtualZ  );
-				if(!usingGPS)
-					linkedList.addFirst(new Event("Accelerating"));
-				else
-					linkedList.addFirst(new Event("Accelerating",gps.getLatitude(),gps.getLongitude()));
-			}
-			else if(virtualZ> 1.0 && Math.abs(virtualX)<1.5){
-				System.out.println("--DCC-----------virtual values----"+ virtualX +"   " +virtualZ  );
-				if(!usingGPS)
-					linkedList.addFirst(new Event("Decellerating"));
-				else
-					linkedList.addFirst(new Event("Decellerating",gps.getLatitude(),gps.getLongitude()));
-				
-			}
-			else{
-				System.out.println("----TURNING------virtual values----"+ virtualX +"---" +virtualZ  );
-				if(!usingGPS)
-					linkedList.addFirst(new Event("Turning"));
-				else
-					linkedList.addFirst(new Event("Tuning",gps.getLatitude(),gps.getLongitude()));
-			}
+//		if(violationOccured){						//will use values to tell what violations && tells if the 3 second lag is up			//*****eliminated the firstTime usless
+//			if(virtualZ < 1.0 && Math.abs(virtualX) <1.5){									/// random value that is not right
+//				System.out.println("--ACC----virtual values----"+ virtualX +"   " +virtualZ  );
+//				if(!usingGPS)
+//					linkedList.addFirst(new Event("Accelerating"));
+//				else
+//					linkedList.addFirst(new Event("Accelerating",gps.getLatitude(),gps.getLongitude()));
+//			}
+//			else if(virtualZ> 1.0 && Math.abs(virtualX)<1.5){
+//				System.out.println("--DCC-----------virtual values----"+ virtualX +"   " +virtualZ  );
+//				if(!usingGPS)
+//					linkedList.addFirst(new Event("Decellerating"));
+//				else
+//					linkedList.addFirst(new Event("Decellerating",gps.getLatitude(),gps.getLongitude()));
+//				
+//			}
+//			else{
+//				System.out.println("----TURNING------virtual values----"+ virtualX +"---" +virtualZ  );
+//				if(!usingGPS)
+//					linkedList.addFirst(new Event("Turning"));
+//				else
+//					linkedList.addFirst(new Event("Tuning",gps.getLatitude(),gps.getLongitude()));
+//			}
+//		}
+		
+		if (violationOccured){
+			System.out.println("You Fucked UP!"); // tomorrow start writing on this block, figure out how to id ACCELERATION/BRAKING/TURNING. One way to do it is to monitor the previous accXYZValue, 
 		}
 
 		
 	}
-	private boolean evaluateGForce(float gForce) {
-		float upperLimit = (float) .30;						//This value  was lazily researched     //*********change upper limit to test
-		
-		if(gForce < upperLimit){
-			return false;
+	private boolean violation(float gForce) {
+		float lowerLimit = (float) .30;	// ******lowerLimit is like reading errors, or caused by road imperfection, or just good/safe driving
+										// IMPORTANT VALUES *********************************************************************************
+		float upperLimit = (float) 1.3; // ******upperLimit is either reading errors, or caused by road bumps
+		if(gForce > lowerLimit && gForce < upperLimit){
+			return true;
 		}
-		return true;
+		return false;
 	}
 	
 	private float calculateGforce2(float xValue, float yValue, float zValue) {
@@ -330,11 +334,11 @@ public class Engine extends Service
 				             - getMeasuredGravity()*getMeasuredGravity()));
 		return gForce;
 		}
-	private float calculateGforce1(double gyroXValue, double zValue){
-		float gForce2;
-		gForce2 = (float) (zValue / Math.cos(Math.abs((90-Math.abs(initialGyroX))+(initialGyroX-gyroXValue))));
-		return gForce2;
-	}
+//	private float calculateGforce1(double gyroXValue, double zValue){
+//		float gForce2;
+//		gForce2 = (float) (zValue / Math.cos(Math.abs((90-Math.abs(initialGyroX))+(initialGyroX-gyroXValue))));
+//		return gForce2;
+//	}
 	public float getMeasuredGravity (){
 		float measuredGravity;
 		measuredGravity = (float) Math.sqrt(initialXValue*initialXValue + initialYValue*initialYValue + initialZValue*initialZValue);
@@ -342,7 +346,7 @@ public class Engine extends Service
 	}
 	
 	private float convertToGforce(float value) {
-		float g = (float) (value/9.80665);
+		float g = (float) (value/getMeasuredGravity());
 		return g;
 	}
 	public Event getEvent(){
