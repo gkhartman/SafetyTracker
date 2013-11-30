@@ -12,6 +12,7 @@ import android.app.Service;
 import android.content.Intent;
 import android.location.LocationManager;
 import android.os.IBinder;
+import android.widget.Toast;
 
 /**
  * This class is the engine of the entire SafetyTracker application.
@@ -37,6 +38,7 @@ public class Engine extends Service
 	private long startTime, speedingTimer;
 	private LinkedList<Event> linkedList;
 	private boolean theIgnoreTimerIsUp;
+	private boolean displayedCalibrated = false;
 
 	
 	private static BeginActivity begin;
@@ -141,6 +143,12 @@ public class Engine extends Service
 			 initialGyroZ = (float) calibrator.getGyroZ();
 			 notGoodForIntialValues = false;
 			 return;		
+		 }
+		 
+		 if(!displayedCalibrated)
+		 {
+			 Toast.makeText(this, "Calibrated....", Toast.LENGTH_SHORT).show();
+			 displayedCalibrated = true;
 		 }
 		 
 		// System.out.println(initialXValue + " "+ initialYValue+"  "+initialZValue);

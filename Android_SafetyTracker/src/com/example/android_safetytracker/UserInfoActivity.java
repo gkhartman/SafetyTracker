@@ -22,8 +22,9 @@ import android.widget.TextView;
 public class UserInfoActivity extends Activity implements OnClickListener
 {
 	private Button editUser, editParent;
-	String information;
-	String name,age,phone,email;
+	private String information;
+	private String name,age,phone,email;
+	private Consumer consumer;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
@@ -31,25 +32,10 @@ public class UserInfoActivity extends Activity implements OnClickListener
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_user_info);
 		initializeButtons();
+		consumer = Consumer.getInstance();
 		setDefault();
-		File f = new File(getFilesDir()+File.separator+"User.txt");
-		
-		if(f.exists()) 
-		{
-			readFromFile("User.txt");
-			setUpUserInfo(information);
-			System.out.println("USER "+information);
-			
-		}
-		
-		f = new File(getFilesDir()+File.separator+"Parent.txt");
-		
-		if(f.exists()) 
-		{
-		readFromFile("Parent.txt");
-		setUpParentInfo(information);
-		System.out.println("PARENT "+information);
-		}
+		setUpUserInfo();
+		setUpParentInfo();
 	}
 	
 	private void setDefault() 
@@ -112,41 +98,22 @@ public class UserInfoActivity extends Activity implements OnClickListener
 		finish();
 	}
 	
-	private void readFromFile(String fileName)
+	private void setUpUserInfo() 
 	{
-		try{
-			 BufferedReader bufferedReader = new BufferedReader(new FileReader(new 
-	                 File(getFilesDir()+File.separator+fileName)));
-			 String read;
-			 StringBuilder builder = new StringBuilder("");
-	
-			 while((read = bufferedReader.readLine()) != null)
-			 {
-				 builder.append(read);
-			 }
-			 Log.d("Output", builder.toString());
-			 bufferedReader.close();
-			 information =(builder.toString());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	private void setUpUserInfo(String information2) 
-	{
-		String[] parts = information2.split("~");
 		TextView textView = (TextView) findViewById(R.id.userInfo_nameOfUser);
-		textView.setText(parts[0]);
+		textView.setText(consumer.getName());
 		textView = (TextView) findViewById(R.id.userInfo_theAge);
-		textView.setText(parts[1]);
+		textView.setText(consumer.getAge());
 	}
 	
-	private void setUpParentInfo(String information2) 
+	private void setUpParentInfo() 
 	{
-		String[] parts = information2.split("~");
-		TextView textView = (TextView) findViewById(R.id.userInfo_PhoneNumber);
-		textView.setText(parts[1]);
-		textView = (TextView) findViewById(R.id.userInfo_Email);
-		textView.setText(parts[0]);
+		if(consumer.isMonitored())
+		{
+			TextView textView = (TextView) findViewById(R.id.userInfo_PhoneNumber);
+			textView.setText(consumer.getPhone());
+			textView = (TextView) findViewById(R.id.userInfo_Email);
+			textView.setText(consumer.getEmail());
+		}
 	}
 }

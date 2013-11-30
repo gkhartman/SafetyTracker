@@ -36,19 +36,17 @@ import javax.mail.internet.MimeMessage;
 
 public class BeginActivity extends Activity implements View.OnClickListener, SensorEventListener
 {
-	Button begin_Stop;
-	Sensor accelerometer;
-	SensorManager sensorM;
-	Event infraction;
-	static float xValue;
-	static float yValue;
-	static float zValue;
-	Calibrate calibrator;
-	float initialXValue,initialYValue, initialZValue;       //These are  the values that will be set when calibrated
-	boolean notGoodForIntialValues;							
-	float startingTime,startTimer;										// Will be used to give a pause period when logged
-	LinkedList<Event> linkedList;
-	int c = 0;
+	private Button begin_Stop;
+	private Sensor accelerometer;
+	private SensorManager sensorM;
+	private Event infraction;
+	private static float xValue, yValue, zValue;
+	private Calibrate calibrator;
+	private float initialXValue,initialYValue, initialZValue;       //These are  the values that will be set when calibrated
+	private boolean notGoodForIntialValues;							
+	private float startingTime,startTimer;										// Will be used to give a pause period when logged
+	private LinkedList<Event> linkedList;
+	private int c = 0;
 	private Engine engine;
 	
 	private static final String username = "carappfeedback@gmail.com";
@@ -56,6 +54,7 @@ public class BeginActivity extends Activity implements View.OnClickListener, Sen
     private EditText emailEdit;
     private EditText subjectEdit;
     private EditText messageEdit;
+    private Consumer consumer;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
@@ -75,15 +74,32 @@ public class BeginActivity extends Activity implements View.OnClickListener, Sen
 		notGoodForIntialValues = true;
 		engine = new Engine(this);
 		startService(new Intent(getBaseContext(), Engine.class));
+		
+		consumer = Consumer.getInstance();
 	}
 	
 	public void OnStart() { super.onStart(); }
+	
+	@Override
+	public void onPause()
+	{
+		stopService(new Intent(getBaseContext(),Engine.class));
+		super.onPause();
+	}
+	
+	@Override
+	public void onResume()
+	{
+		startService(new Intent(getBaseContext(),Engine.class));
+		super.onResume();
+	}
 	
 	public void onStop()
 	{
 		sensorM.unregisterListener(this,accelerometer);
 		accelerometer = null;
 		stopService(new Intent(getBaseContext(), Engine.class));
+		//if(consumer.isMonitored())
 		//sendMail("carappfeedback@gmail.com","dd","ddd");
 
 		super.onStop();

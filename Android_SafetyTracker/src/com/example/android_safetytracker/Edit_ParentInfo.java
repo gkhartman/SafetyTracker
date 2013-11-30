@@ -25,11 +25,13 @@ public class Edit_ParentInfo extends Activity implements OnClickListener
 {
 	private Button submit;
 	private String email, phone;
+	private Consumer consumer;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
 	{
 		super.onCreate(savedInstanceState);
+		consumer = Consumer.getInstance();
 		setContentView(R.layout.activity_edit__parent_info);
 		submit = (Button)findViewById(R.id.parentInfo_submit);
 		submit.setOnClickListener(this);
@@ -99,9 +101,12 @@ public class Edit_ParentInfo extends Activity implements OnClickListener
 	
 	private void saveInformation()
 	{
-		System.out.println( this.getApplicationContext().getFilesDir().getAbsolutePath());
-		writeToFile(email + "~" + phone);
+		writeToFile(email + "\n" + phone);
+		consumer.setEmail(email);
+		consumer.setPhone(phone);
+		consumer.setMonitored(true);
 	}
+	
 	private void writeToFile(String s)
 	{
 		BufferedWriter bufferedWriter = null;

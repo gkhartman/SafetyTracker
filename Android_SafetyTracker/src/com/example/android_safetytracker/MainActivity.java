@@ -1,6 +1,8 @@
 package com.example.android_safetytracker;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -19,28 +21,32 @@ public class MainActivity extends Activity implements OnClickListener
 	//main screen buttons
 	private Button startAppButton, logsButton, userInfo, calibrateButton, 
 	       turnOnGPSButton, helpButton, legalButton, aboutUsButton;
-
-	protected Consumer s;
+	private final String USER_INFO = "User.txt";
+	private final String PARENT_INFO = "Parent.txt";
+	protected Consumer consumer;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
 		
-		//check if it's the first time the app launches
-		Boolean isFirstRun = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("isFirstRun", true);
-		
+		//check if file exists
 		boolean fileDoesNotExist = true;
 		File f = new File(getFilesDir()+File.separator+"User.txt");
 		if(f.exists()) 
 			fileDoesNotExist = false;
 		
-		if(isFirstRun && fileDoesNotExist)
+		consumer = Consumer.getInstance();
+		
+		if(fileDoesNotExist)
 		{
-			getSharedPreferences("PREFERENCES", MODE_PRIVATE).edit().putBoolean("isFirstRun", false).commit();
-			startActivity(new Intent("android.intent.action.Edit_UserInfo"));
+			Intent intent = new Intent(getApplicationContext(),Edit_UserInfo.class);
+			intent.putExtra("firstRun", true);
+			startActivity(intent);
 		}
+		else
+			loadInfo();
+		setContentView(R.layout.activity_main);
 		initializeButtons();
 	}
 	
@@ -176,5 +182,31 @@ public class MainActivity extends Activity implements OnClickListener
 	private void beginLogClick() { startActivity(new Intent("android.intent.action.Logs")); }
 
 	private void beginClick() { startActivity(new Intent("android.intent.action.Start_App")); }
+	
+	private void loadInfo()
+	{
+		try
+		{
+			File parentFile = new File(getFilesDir()+File.separator+"Parent.txt");
+			BufferedReader bf = new BufferedReader(new FileReader(new File(getFilesDir()+File.separator+USER_INFO)));
+			consumer.setName(bf.readLine());
+			consumer.setAge(bf.readLine());
+			bf.close();
+			if(parentFile.exists())
+			{
+				consumer.setMonitored(true);
+				bf = new BufferedReader(new FileReader(new File(getFilesDir()+File.separator+PARENT_INFO)));
+				consumer.setEmail(bf.readLine());
+				consumer.setPhone(bf.readLine());
+				bf.close();
+			}
+			else
+				consumer.setMonitored(false);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
 
 }

@@ -21,7 +21,6 @@ import android.widget.Toast;
 
 /**
  * This class allows for the user to edit his/her information.
- * @author Johnny Lam
  *
  */
 public class Edit_UserInfo extends Activity implements OnClickListener
@@ -29,15 +28,18 @@ public class Edit_UserInfo extends Activity implements OnClickListener
 	private Button submitButton;
 	private String name;
 	private int age;
+	private boolean firstRun = false;
+	private Consumer consumer;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_edit__user_info);
-		
+		consumer = Consumer.getInstance();
 		submitButton = (Button)findViewById(R.id.editUser_SubmitButton);
 		submitButton.setOnClickListener(this);
+		firstRun = this.getIntent().getBooleanExtra("firstRun", false);
 	}
 
 	@Override
@@ -64,10 +66,8 @@ public class Edit_UserInfo extends Activity implements OnClickListener
 		if(cb.isChecked())
 		{
 			startActivity(new Intent("android.intent.action.Edit_ParentInfo"));
-			finish();
 		}
-		else
-			finish();
+		finish();
 		
 	}
 	
@@ -98,9 +98,10 @@ public class Edit_UserInfo extends Activity implements OnClickListener
 	
 	private void saveInformation()
 	{
-		System.out.println( this.getApplicationContext().getFilesDir().getAbsolutePath());
-		String s = name + "~" + age;
+		String s = name + "\n" + age;
 		writeToFile(s);
+		consumer.setName(name);
+		consumer.setAge(String.valueOf(age));
 	}
 	
 	private void writeToFile(String s)
@@ -117,23 +118,18 @@ public class Edit_UserInfo extends Activity implements OnClickListener
 		}
 	}
 	
-	private void readFromFile()
+	@Override
+	public void onBackPressed()
 	{
-		try
+		if(firstRun)
 		{
-			BufferedReader bufferedReader = new BufferedReader(new FileReader(new 
-					File(getFilesDir() + File.separator + "User.txt")));
-			String read;
-			StringBuilder builder = new StringBuilder("");
-
-			while((read = bufferedReader.readLine()) != null)
-			{
-				builder.append(read);
-			}
-			Log.d("Output", builder.toString());
-			bufferedReader.close();
-		} catch (IOException e) {
-			e.printStackTrace();
+			Intent intent = new Intent(Intent.ACTION_MAIN);
+			intent.addCategory(Intent.CATEGORY_HOME);
+			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			startActivity(intent);
 		}
+		else
+			super.onBackPressed();
 	}
+	
 }

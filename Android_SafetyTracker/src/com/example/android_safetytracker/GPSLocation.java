@@ -40,7 +40,6 @@ public class GPSLocation extends Service implements LocationListener
 	@Override
 	public void onCreate() 
 	{
-		System.out.println("on create called");
 		longitude = 0.0f;
 		latitude = 0.0f;
 		super.onCreate();
@@ -49,7 +48,6 @@ public class GPSLocation extends Service implements LocationListener
 
 	public int onStartCommand(Intent intent, int flags, int startId) 
 	{
-		System.out.println("on start called");
 		gpsReady = false;
 		lManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0,0,this); //update every 1 second 2 meters (approx 5 mph)
 		return START_STICKY;														

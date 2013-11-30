@@ -1,16 +1,16 @@
 package com.example.android_safetytracker;
 
 
-//uml should be reviewed for this class and report!!
 class Consumer extends User
 {
    private boolean isMonitored;
    private String phone;
+   private String email;
    private static Consumer instance = null;
    
    private Consumer() {}
    
-   public static synchronized User getInstance()
+   public static synchronized Consumer getInstance()
    {
 	   if(instance == null)
 		   instance = new Consumer();
@@ -27,4 +27,14 @@ class Consumer extends User
    public void setPhone(String phone) { this.phone = phone; }
    
    public String getPhone() { return phone; }
+   
+   public void setEmail(String email)
+   {
+	   this.email = email;
+   }
+   
+   public String getEmail()
+   {
+	   return email;
+   }
 }

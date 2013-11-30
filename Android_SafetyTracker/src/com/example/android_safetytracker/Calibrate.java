@@ -3,8 +3,6 @@ package com.example.android_safetytracker;
 /**
  * This class calibrates the user's smartphone device for accurate sensor readings required
  * by our application.
- * @author Johnny Lam
- *
  */
 public class Calibrate 
 {
@@ -65,7 +63,6 @@ public class Calibrate
 		else
 			good = true;
 		
-			//System.out.println(good); //dubugger method
 			
 		if(timeIsUp && good)
 			isCalibrated = true;
