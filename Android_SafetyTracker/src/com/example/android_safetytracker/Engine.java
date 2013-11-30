@@ -13,6 +13,11 @@ import android.content.Intent;
 import android.location.LocationManager;
 import android.os.IBinder;
 
+/**
+ * This class is the engine of the entire SafetyTracker application.
+ * @author Johnny Lam
+ *
+ */
 public class Engine extends Service
 {
 	// usingGPS - user cannot connect or does not want to use GPS
@@ -36,15 +41,13 @@ public class Engine extends Service
 	
 	private static BeginActivity begin;
 	
-	public Engine(){}
-	public Engine(BeginActivity ba)
-	{
-		begin = ba;
-	}
+	public Engine() {}
+	
+	public Engine(BeginActivity ba) { begin = ba; }
 	
 	@Override
-	public void onCreate() {
-		
+	public void onCreate() 
+	{
 		super.onCreate();
 		orientation = new Orientation(this);
 		linkedList = new LinkedList<Event>();
@@ -52,7 +55,8 @@ public class Engine extends Service
 	}
 	
 	@Override
-	public int onStartCommand(Intent intent, int flags, int startId) {
+	public int onStartCommand(Intent intent, int flags, int startId) 
+	{
 		notGoodForIntialValues = true;
 		calibrator = new Calibrate();
 		startService(new Intent(getBaseContext(), GPSLocation.class));
@@ -62,23 +66,15 @@ public class Engine extends Service
 		return START_STICKY;
 	}
 	
-	protected void gpsDisabled()
-	{
-		usingGPS = false;
-	}
+	protected void gpsDisabled() { usingGPS = false; }
 	
-	protected void gpsEnabled()
-	{
-		usingGPS = true;
-	}
+	protected void gpsEnabled() { usingGPS = true; }
 	
 	private void checkGPS()
 	{
 		gps = new GPSLocation(this); //initialize gps and pass a  static reference of engine to gps
 		if(!checkGPSEnabled())
-		{
 			begin.promptEnableGPS();
-		}
 	}
 	
 	
@@ -89,7 +85,8 @@ public class Engine extends Service
 	}
 
 	@Override
-	public void onDestroy() {
+	public void onDestroy() 
+	{
 		stopService(new Intent(getBaseContext(), GPSLocation.class));
 		stopService(new Intent(getBaseContext(), Orientation.class));
 		begin = null;
@@ -105,47 +102,36 @@ public class Engine extends Service
 	}
 
 	@Override
-	public IBinder onBind(Intent intent) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public IBinder onBind(Intent intent) { return null; }
+	
 	/////////////////////////////////////////Gyroscope features///////////
 	
-	
-	
-	public void setAccelerationValues(float[] accValues){
-		
+	public void setAccelerationValues(float[] accValues)
+	{
 		this.accValues = accValues;
-		
 		beginCalibration();
-		
-	}
-	public void setGyroscopeValues(float[] gyroValues){
-		
-		this.gyroValues = gyroValues;
-		
-		beginCalibration();
-		
-
 	}
 	
-	public void beginCalibration (){
-		
-		
-		 
+	public void setGyroscopeValues(float[] gyroValues)
+	{
+		this.gyroValues = gyroValues;
+		beginCalibration();
+	}
+	
+	public void beginCalibration ()
+	{
 		 if(!calibrator.timeIsUp()){
-				if(!calibrator.isCalibrated()){
+				if(!calibrator.isCalibrated())
+				{
 					calibrator.startCalibrating(accValues[0],accValues[1],accValues[2],
 												gyroValues[0], gyroValues[1], gyroValues[2]);
 				
 				return;
 				}
-				
 		   }
-		
-		
-		
-		 if(calibrator.timeIsUp() && calibrator.isValid()&& notGoodForIntialValues){
+		 
+		 if(calibrator.timeIsUp() && calibrator.isValid()&& notGoodForIntialValues)
+		 {
 			 notGoodForIntialValues = false; 		
 			 initialXValue = (float) calibrator.getX();
 			 initialYValue = (float) calibrator.getY();
@@ -153,12 +139,9 @@ public class Engine extends Service
 			 initialGyroX = (float) calibrator.getGyroX();
 			 initialGyroY = (float) calibrator.getGyroY();
 			 initialGyroZ = (float) calibrator.getGyroZ();
-			 
-			
 			 notGoodForIntialValues = false;
-			 
 			 return;		
-		 	}
+		 }
 		 
 		// System.out.println(initialXValue + " "+ initialYValue+"  "+initialZValue);
 		// System.out.println(initialGyroX + "  "+initialGyroY + "  "+initialGyroZ);
@@ -167,8 +150,10 @@ public class Engine extends Service
 			gyroValues[0], gyroValues[1], gyroValues[2]);
 		
 	}
+	
 	private void process(float accXValue, float accYValue, float accZValue,
-							float gyroZValue, float gyroXValue, float gyroYValue) {
+							float gyroZValue, float gyroXValue, float gyroYValue) 
+	{
 		boolean theOrientationChanged = false;
 		
 		//System.out.println(gyroXValue +" "+ initialGyroX);
@@ -180,63 +165,59 @@ public class Engine extends Service
 			
 			theOrientationChanged = true;
 		}
-		else{
+		else
 			theOrientationChanged = false;
-		}
 		
-		if(theOrientationChanged){
-			if(firstTimeStart){
+		if(theOrientationChanged)
+		{
+			if(firstTimeStart)
+			{
 				startTime = System.currentTimeMillis();
 				firstTimeStart = false;
 			}
 			
 			previousXGyro = temporaryXGyro;
 			temporaryXGyro = gyroXValue;
-			
 			theIgnoreTimerIsUp = true;
-			
 			System.out.println(previousXGyro +"      "+ temporaryXGyro);
 			
-			if(Math.abs(System.currentTimeMillis() - startTime) < 3000){
+			if(Math.abs(System.currentTimeMillis() - startTime) < 3000)
+			{
 				theIgnoreTimerIsUp = false;
-				if((Math.abs(previousXGyro) - Math.abs(temporaryXGyro)) <5){
+				if((Math.abs(previousXGyro) - Math.abs(temporaryXGyro)) < 5)
 					weAreGoingUpOrDown = true;
-					
-				}else{
+				else
 					weAreGoingUpOrDown = false;
-					
-				}
-				
 			}
 			
 		}
-		else{
+		else
+		{
 			weAreGoingUpOrDown = false;
 			theIgnoreTimerIsUp = false;
 			firstTimeStart = true;
 		}
 		
-	
-		
-		if(weAreGoingUpOrDown && theOrientationChanged && theIgnoreTimerIsUp){
+		if(weAreGoingUpOrDown && theOrientationChanged && theIgnoreTimerIsUp)
+		{
 			// implement what to do when up or down
 			System.out.println("Do it Paul");
 		}
-		else if(weAreGoingUpOrDown && theOrientationChanged && !theIgnoreTimerIsUp){
+		else if(weAreGoingUpOrDown && theOrientationChanged && !theIgnoreTimerIsUp)
+		{
 			System.out.println("Ignore");
 			// it was just a road bump, ignore
-		
 		}
-		else{ // The world is flat
+		else
+		{ // The world is flat
 			System.out.println("TheWorldIsFlat");
 			theWorldIsFlat(accXValue,  accYValue,  accZValue,
 							 gyroXValue,  gyroYValue,  gyroZValue);
 		}
 		
 		
-		///////////////////////////////////////////////////////////////////////////////////////////////////////
-	
-		
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//	
 //		double a =   Math.sqrt( Math.abs ( accZValue * accZValue + accXValue * accXValue + accYValue * accYValue
 //																						- 9.2 * 9.2			 ) );
 //		if(a > 4.8){
@@ -244,13 +225,14 @@ public class Engine extends Service
 //			System.out.println("I messed up!!!");
 //		}
 //		System.out.println("-------------   "+ a);
-		
-		//////////////////////////////////////////////////////////////////////////////////////////////////////////
+//		
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		
 	}
 	
 	private void theWorldIsFlat(float accXValue, float accYValue, float accZValue,
-			float gyroXValue, float gyroYValue, float gyroZValue){
+			float gyroXValue, float gyroYValue, float gyroZValue)
+	{
 		float gForce2 = calculateGforce2(accXValue,accYValue,accZValue);
 		//float gForce1 = calculateGforce1(gyroXValue,accZValue);
 		System.out.printf("accXValue %f, accYValue %f, accZValue %f\n", accXValue, accYValue, accZValue);
@@ -263,9 +245,8 @@ public class Engine extends Service
 //		float virtualY = accYValue - initialYValue;
 //		float virtualZ = accZValue - initialZValue;
 		System.out.println("gps is ready? " + gps.isGPSReady() ); 
+		
 		//System.out.println("XValue*****"+ virtualX+ "***YValue**"+ virtualY+"****zValue"+virtualZ);
-		
-		
 		//System.out.println("*******"+gForce);
 		
 //		if(violationOccured){						//will use values to tell what violations && tells if the 3 second lag is up			//*****eliminated the firstTime usless
@@ -296,21 +277,20 @@ public class Engine extends Service
 		if (violationOccured){
 			System.out.println("You Fucked UP!"); // tomorrow start writing on this block, figure out how to id ACCELERATION/BRAKING/TURNING. One way to do it is to monitor the previous accXYZValue, 
 		}
-
-		
 	}
-	private boolean violation(float gForce) {
+	
+	private boolean violation(float gForce) 
+	{
 		float lowerLimit = (float) .30;	// ******lowerLimit is like reading errors, or caused by road imperfection, or just good/safe driving
 										// IMPORTANT VALUES *********************************************************************************
 		float upperLimit = (float) 1.3; // ******upperLimit is either reading errors, or caused by road bumps
-		if(gForce > lowerLimit && gForce < upperLimit){
+		if(gForce > lowerLimit && gForce < upperLimit)
 			return true;
-		}
 		return false;
 	}
 	
-	private float calculateGforce2(float xValue, float yValue, float zValue) {
-			
+	private float calculateGforce2(float xValue, float yValue, float zValue) 
+	{
 			// The virtualNumbers should read (x,y,z) = (0,9.8,0) since these are the values in a perfect situation
 			// where the phone is upright perpendicular to the acceleration vectors
 //			float virtualNumberX = Math.abs(xValue) - Math.abs(initialXValue);
@@ -328,30 +308,29 @@ public class Engine extends Service
 //			
 //			//return (float) Math.sqrt(xGforce * xGforce + yGforce * yGforce + zGforce * zGforce);
 //			return (float) Math.sqrt(xGforce * xGforce + zGforce * zGforce);
-//			
-		
+
 		float gForce = (float) Math.sqrt(Math.abs(zValue*zValue + xValue*xValue + yValue*yValue 
 				             - getMeasuredGravity()*getMeasuredGravity()));
 		return gForce;
-		}
+	}
 //	private float calculateGforce1(double gyroXValue, double zValue){
 //		float gForce2;
 //		gForce2 = (float) (zValue / Math.cos(Math.abs((90-Math.abs(initialGyroX))+(initialGyroX-gyroXValue))));
 //		return gForce2;
 //	}
-	public float getMeasuredGravity (){
+	public float getMeasuredGravity ()
+	{
 		float measuredGravity;
-		measuredGravity = (float) Math.sqrt(initialXValue*initialXValue + initialYValue*initialYValue + initialZValue*initialZValue);
+		measuredGravity = (float) Math.sqrt(initialXValue * initialXValue + initialYValue * initialYValue + initialZValue * initialZValue);
 		return measuredGravity;
 	}
 	
-	private float convertToGforce(float value) {
+	private float convertToGforce(float value) 
+	{
 		float g = (float) (value/getMeasuredGravity());
 		return g;
 	}
-	public Event getEvent(){
-		return infraction;
-	}
+	public Event getEvent() { return infraction; }
 	
 	/**
 	 * date, type, latitude, longitude
@@ -374,8 +353,5 @@ public class Engine extends Service
 	    catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 	}
-	
-	
 }

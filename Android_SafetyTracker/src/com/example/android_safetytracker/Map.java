@@ -1,6 +1,5 @@
 package com.example.android_safetytracker;
 
-
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -31,8 +30,8 @@ import android.widget.AdapterView.OnItemSelectedListener;
  *
  */
 
-public class Map extends FragmentActivity implements OnItemSelectedListener{
-	
+public class Map extends FragmentActivity implements OnItemSelectedListener
+{
 	private GoogleMap map;
 	private LatLng coordinate;
 	private String infraction;
@@ -40,10 +39,10 @@ public class Map extends FragmentActivity implements OnItemSelectedListener{
 	private Spinner dropDown;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	protected void onCreate(Bundle savedInstanceState) 
+	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_map);
-		
 		initComponents();
 		retrieveData();
 		decorateMap();
@@ -70,16 +69,11 @@ public class Map extends FragmentActivity implements OnItemSelectedListener{
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		dropDown.setAdapter(adapter);
 		dropDown.setOnItemSelectedListener(this);
-		
-		
 	}
-	
-
 	
 	private void decorateMap()
 	{
-		CameraUpdate center = 
-				CameraUpdateFactory.newLatLng(coordinate);
+		CameraUpdate center = CameraUpdateFactory.newLatLng(coordinate);
 		CameraUpdate zoom = CameraUpdateFactory.zoomTo(15);
 		map.moveCamera(center);
 		map.animateCamera(zoom);
@@ -91,27 +85,17 @@ public class Map extends FragmentActivity implements OnItemSelectedListener{
 	}
 
 	@Override
-	public void onItemSelected(AdapterView<?> arg0, View arg1, int pos,
-			long arg3) 
+	public void onItemSelected(AdapterView<?> arg0, View arg1, int pos, long arg3) 
 	{
 		if(pos == 0)
-		{
 			map.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
-		}
 		if(pos == 1)
-		{
 			map.setMapType(GoogleMap.MAP_TYPE_HYBRID);
-		}
 		else
-		{
 			map.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
-		}
 	}
 
 	@Override
-	public void onNothingSelected(AdapterView<?> arg0) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void onNothingSelected(AdapterView<?> arg0) {}
 
 }

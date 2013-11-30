@@ -4,8 +4,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class Event {
-	
+public class Event 
+{
 	private String date;
 	private String type;
 	private double longitude, latitude;
@@ -57,28 +57,14 @@ public class Event {
 		date = df.format(Calendar.getInstance().getTime());
 	}
 	
-	public String getLocation()
-	{
-		return latitude + ", " + longitude;
-	}
+	public String getLocation() { return latitude + ", " + longitude; }
 	
-	public String getEventType(){
-		return type;
-	}
+	public String getEventType() { return type; }
 	
-	public double getLongitude()
-	{
-		return longitude;
-	}
+	public double getLongitude() { return longitude; }
 	
-	public double getLatitude()
-	{
-		return latitude;
-	}
+	public double getLatitude() { return latitude; }
 	
-	public String getDate()
-	{
-		return date;
-	}
+	public String getDate() { return date; }
 	
 }

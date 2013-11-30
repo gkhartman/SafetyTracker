@@ -34,8 +34,8 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-public class BeginActivity extends Activity implements View.OnClickListener, SensorEventListener{
-	
+public class BeginActivity extends Activity implements View.OnClickListener, SensorEventListener
+{
 	Button begin_Stop;
 	Sensor accelerometer;
 	SensorManager sensorM;
@@ -51,27 +51,22 @@ public class BeginActivity extends Activity implements View.OnClickListener, Sen
 	int c = 0;
 	private Engine engine;
 	
-	
 	private static final String username = "carappfeedback@gmail.com";
     private static final String password = "theinterns";
     private EditText emailEdit;
     private EditText subjectEdit;
     private EditText messageEdit;
 	
-	
-	
-	
-	
-
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	protected void onCreate(Bundle savedInstanceState) 
+	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_begin);
 		
 		begin_Stop = (Button) findViewById(R.id.begin_StopButton);
 		begin_Stop.setOnClickListener(this);
 		
-		sensorM = (SensorManager)getSystemService(SENSOR_SERVICE);
+		sensorM = (SensorManager) getSystemService(SENSOR_SERVICE);
 		accelerometer = sensorM.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 		
 		sensorM.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_NORMAL);
@@ -80,15 +75,9 @@ public class BeginActivity extends Activity implements View.OnClickListener, Sen
 		notGoodForIntialValues = true;
 		engine = new Engine(this);
 		startService(new Intent(getBaseContext(), Engine.class));
-		
-		
 	}
 	
-	public void OnStart(){
-		super.onStart();
-		
-		
-	}
+	public void OnStart() { super.onStart(); }
 	
 	public void onStop()
 	{
@@ -104,68 +93,55 @@ public class BeginActivity extends Activity implements View.OnClickListener, Sen
 	{
 		AlertDialog.Builder gpsAlert = new AlertDialog.Builder(this);
 		gpsAlert.setMessage("Hold On... would you like to enable GPS? (Recommended)")
-		        .setCancelable(false)
-		        .setPositiveButton("Settings",
-		        		new DialogInterface.OnClickListener() {
-		        	public void onClick(DialogInterface dialog, int id)
-		        	{
-		        		startActivity(new Intent(
-		        				android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
-		        	}
-		        });
+		.setCancelable(false)
+		.setPositiveButton("Settings",
+				new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int id)
+			{
+				startActivity(new Intent(
+						android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+			}
+		});
 		gpsAlert.setNegativeButton("Cancel", 
-				       new DialogInterface.OnClickListener() {
-						
-						@Override
-						public void onClick(DialogInterface dialog, int which) {
-							dialog.cancel();
-						}
-					});
+				new DialogInterface.OnClickListener() {
+
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				dialog.cancel();
+			}
+		});
 		gpsAlert.create();
 		gpsAlert.show();
 	}
 	
-
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
+	public boolean onCreateOptionsMenu(Menu menu) 
+	{
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.begin, menu);
 		return true;
 	}
 
 	@Override
-	public void onClick(View v) {
-		switch(v.getId()){
-		
+	public void onClick(View v) 
+	{
+		switch(v.getId())
+		{
 			case R.id.begin_StopButton:
 				beginClick();
 				break;
 		}
 	}
-
-
-
-
-
-	private void beginClick() {
+	
+	private void beginClick() 
+	{
 		//code to save logs if needed
 		sensorM.unregisterListener(this,accelerometer);
-
 		finish();
 	}
-
-
-
-
-
 	@Override
-	public void onAccuracyChanged(Sensor sensor, int accuracy) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
+	
+	public void onAccuracyChanged(Sensor sensor, int accuracy) {}
 
 /*
  * The way the calibration works by continuing to read the changes on the onSensorChanged.
@@ -266,22 +242,18 @@ public class BeginActivity extends Activity implements View.OnClickListener, Sen
 //			
 //		}
 //	}
-
-
-
-
-
-	private boolean evaluateGForce(float gForce,float virtualY) {
+	
+	private boolean evaluateGForce(float gForce,float virtualY) 
+	{
 		float upperLimit = (float) 1.07;			//This value was lazily researched     //*********change upper limit to test
 		
-		if(gForce < upperLimit || (virtualY > 1.0)){
+		if(gForce < upperLimit || (virtualY > 1.0))
 			return false;
-		}
 		return true;
 	}
 
-	private float calculateGforce(float xValue, float yValue, float zValue) {
-		
+	private float calculateGforce(float xValue, float yValue, float zValue) 
+	{
 		// The virtualNumbers should read (x,y,z) = (0,9.8,0) since these are the values in a perfect situation
 		// where the phone is upright perpendicular to the acceleration vectors
 		float virtualNumberX = xValue - initialXValue;
@@ -290,7 +262,7 @@ public class BeginActivity extends Activity implements View.OnClickListener, Sen
 		
 		
 		float inaccurateGravityReadingForTheY  = (float) 9.806; 					// this is the value that the phone gives while still
-		float inaccurateGravityReadingForTheZ = (float) 0.0;//
+		float inaccurateGravityReadingForTheZ = (float) 0.0;
 		virtualNumberY = virtualNumberY + inaccurateGravityReadingForTheY;		// its +inaccurate... because it always reads gravity
 		//System.out.println(virtualNumberX+"----"+ virtualNumberY+"++++"+virtualNumberZ); // this should give the value in ideal situation
 
@@ -302,27 +274,27 @@ public class BeginActivity extends Activity implements View.OnClickListener, Sen
 		//return (float) Math.sqrt(xGforce * xGforce + zGforce * zGforce);
 	}
 
-	private float convertToGforce(float value) {
+	private float convertToGforce(float value) 
+	{
 		float g = (float) (value/9.80665);
 		return g;
 	}
 	
-	public Event getEvent(){
-		return infraction;
-	}
-	private void startTimer(boolean isFirstTime){
+	public Event getEvent() { return infraction; }
+	
+	private void startTimer(boolean isFirstTime)
+	{
 		if(isFirstTime)
 			startTimer = System.currentTimeMillis();
 		
-		if(Math.abs(startTimer - System.currentTimeMillis())<3000){
+		if(Math.abs(startTimer - System.currentTimeMillis()) < 3000)
 			isFirstTime = false;
-		}
-		else{
+		else
 			isFirstTime = true;
-		}
-		
 	}
-	private void sendMail(String email, String subject, String messageBody) {
+	
+	private void sendMail(String email, String subject, String messageBody) 
+	{
         Session session = createSessionObject();
 
         try {
@@ -337,7 +309,8 @@ public class BeginActivity extends Activity implements View.OnClickListener, Sen
         }
     }
 
-    private Message createMessage(String email, String subject, String messageBody, Session session) throws MessagingException, UnsupportedEncodingException {
+    private Message createMessage(String email, String subject, String messageBody, Session session) throws MessagingException, UnsupportedEncodingException 
+    {
         Message message = new MimeMessage(session);
         message.setFrom(new InternetAddress("carappfeedback@gmail.com", "theinterns"));
         message.addRecipient(Message.RecipientType.TO, new InternetAddress(email, email));
@@ -346,7 +319,8 @@ public class BeginActivity extends Activity implements View.OnClickListener, Sen
         return message;
     }
 
-    private Session createSessionObject() {
+    private Session createSessionObject() 
+    {
         Properties properties = new Properties();
         properties.put("mail.smtp.auth", "true");
         properties.put("mail.smtp.starttls.enable", "true");
@@ -360,23 +334,27 @@ public class BeginActivity extends Activity implements View.OnClickListener, Sen
         });
     }
 
-    private class SendMailTask extends AsyncTask<Message, Void, Void> {
+    private class SendMailTask extends AsyncTask<Message, Void, Void> 
+    {
       //  private ProgressDialog progressDialog;
 
         @Override
-        protected void onPreExecute() {
+        protected void onPreExecute() 
+        {
             super.onPreExecute();
            // progressDialog = ProgressDialog.show(BeginActivity.this, "Please wait", "Sending mail", true, false);
         }
 
         @Override
-        protected void onPostExecute(Void aVoid) {
+        protected void onPostExecute(Void aVoid) 
+        {
             super.onPostExecute(aVoid);
            // progressDialog.dismiss();
         }
 
         @Override
-        protected Void doInBackground(Message... messages) {
+        protected Void doInBackground(Message... messages) 
+        {
             try {
                 Transport.send(messages[0]);
             } catch (MessagingException e) {
@@ -385,5 +363,4 @@ public class BeginActivity extends Activity implements View.OnClickListener, Sen
             return null;
         }
     }
-	
 }

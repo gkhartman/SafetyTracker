@@ -1,6 +1,5 @@
 package com.example.android_safetytracker;
 
-
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -11,15 +10,14 @@ import android.os.Bundle;
 import android.os.IBinder;
 
 /**
- * The way this class works is by  first taking in an object of the Engine class.
+ * The way this class works is by first taking in an object of the Engine class.
  * When the engine is referenced now we can call the methods in the engine class.
  * The onLocationChanged method is able to reference the engine if it senses that
  * the user is speeding. The location is update every 1 second and 2 meters.
  * @author victor
- *
  */
-public class GPSLocation extends Service implements LocationListener {
-
+public class GPSLocation extends Service implements LocationListener 
+{
 	private LocationManager lManager;
 	private double longitude;
 	private double latitude;
@@ -33,31 +31,24 @@ public class GPSLocation extends Service implements LocationListener {
 	/*
 	 * constructor used to pass in the engine object variable
 	 */
-	public GPSLocation(Engine eng) {
-		engine = eng;
-	}
+	public GPSLocation(Engine eng) { engine = eng; }
 	
-	public double getLongitude()
-	{
-		return longitude;
-	}
+	public double getLongitude() { return longitude; }
 	
-	public double getLatitude()
-	{
-		return latitude;
-	}
-
+	public double getLatitude() { return latitude; }
 
 	@Override
-	public void onCreate() {
+	public void onCreate() 
+	{
 		System.out.println("on create called");
 		longitude = 0.0f;
 		latitude = 0.0f;
 		super.onCreate();
-		 lManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+		lManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 	}
 
-	public int onStartCommand(Intent intent, int flags, int startId) {
+	public int onStartCommand(Intent intent, int flags, int startId) 
+	{
 		System.out.println("on start called");
 		gpsReady = false;
 		lManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0,0,this); //update every 1 second 2 meters (approx 5 mph)
@@ -65,7 +56,8 @@ public class GPSLocation extends Service implements LocationListener {
 	}
 
 	@Override
-	public void onDestroy() {
+	public void onDestroy() 
+	{
 		lManager.removeUpdates(this);
 		lManager = null;
 		engine = null;
@@ -73,42 +65,27 @@ public class GPSLocation extends Service implements LocationListener {
 	}
 
 	@Override
-	public IBinder onBind(Intent intent) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public IBinder onBind(Intent intent) { return null; }
 
 	@Override
-	public void onLocationChanged(Location location) {
+	public void onLocationChanged(Location location) 
+	{
 	   gpsReady = true;
 	   float speed = location.getSpeed();
 	   latitude = (float) location.getLatitude();
 	   longitude = location.getLongitude();
        if(speed > 33.5) //33.5 m/s is approx. 75mph
-       {
     	   engine.speeding(speed,longitude,latitude);
-       }
 	}
 	
-	public boolean isGPSReady()
-	{
-		return gpsReady;
-	}
+	public boolean isGPSReady() { return gpsReady; }
 
 	@Override
-	public void onProviderDisabled(String provider) {
-		engine.gpsDisabled();
-	}
+	public void onProviderDisabled(String provider) { engine.gpsDisabled(); }
 
 	@Override
-	public void onProviderEnabled(String provider) {
-		engine.gpsEnabled();
-	}
+	public void onProviderEnabled(String provider) { engine.gpsEnabled(); }
 
 	@Override
-	public void onStatusChanged(String provider, int status, Bundle extras) {
-		// TODO Auto-generated method stub
-
-	}
-
+	public void onStatusChanged(String provider, int status, Bundle extras) {}
 }

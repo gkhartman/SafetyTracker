@@ -1,6 +1,5 @@
 package com.example.android_safetytracker;
 
-
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -11,7 +10,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class EmailScreen extends Activity implements OnClickListener {
+/**
+ * This class allows for the user to send an email to SafetyTracker.
+ * @author Johnny Lam
+ *
+ */
+public class EmailScreen extends Activity implements OnClickListener 
+{
 	//default used for feedback it automatically sets our email
 	//and cannot be edited.
 	private final String DEFAULT_EMAIL="carappfeedback@gmail.com";
@@ -20,7 +25,8 @@ public class EmailScreen extends Activity implements OnClickListener {
 	private String recipient, subject, message;
 	
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	protected void onCreate(Bundle savedInstanceState) 
+	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_email_screen);
 		if(useDefault)
@@ -38,14 +44,16 @@ public class EmailScreen extends Activity implements OnClickListener {
 	}
 	
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
+	public boolean onCreateOptionsMenu(Menu menu) 
+	{
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.email_screen, menu);
 		return true;
 	}
 
 	@Override
-	public void onClick(View v) {
+	public void onClick(View v) 
+	{
 		if(v.getId()==R.id.Email_sendEmail)
 		   sendEmail();
 	}
@@ -73,9 +81,8 @@ public class EmailScreen extends Activity implements OnClickListener {
 		//prompt user to select an account
 		startActivity(Intent.createChooser(email, "Choose an account:"));
 		
-		Toast.makeText(this, "Thank you for your feedback", Toast.LENGTH_SHORT).show();;
+		Toast.makeText(this, "Thank you and we appreciate your feedback.", Toast.LENGTH_SHORT).show();;
 		finish();
 	}
-
 }
 

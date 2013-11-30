@@ -15,45 +15,49 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
-
 /**
  * this class is related to activity_user_info.xml 
  *
  */
-public class UserInfoActivity extends Activity implements OnClickListener{
-	
+public class UserInfoActivity extends Activity implements OnClickListener
+{
 	private Button editUser, editParent;
 	String information;
 	String name,age,phone,email;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	protected void onCreate(Bundle savedInstanceState) 
+	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_user_info);
 		initializeButtons();
 		setDefault();
 		File f = new File(getFilesDir()+File.separator+"User.txt");
-		if(f.exists()) {
+		
+		if(f.exists()) 
+		{
 			readFromFile("User.txt");
 			setUpUserInfo(information);
 			System.out.println("USER "+information);
 			
 		}
+		
 		f = new File(getFilesDir()+File.separator+"Parent.txt");
-		if(f.exists()) {
+		
+		if(f.exists()) 
+		{
 		readFromFile("Parent.txt");
 		setUpParentInfo(information);
 		System.out.println("PARENT "+information);
 		}
 	}
-
 	
-
-	private void setDefault() {
-		name = "No Name Entered";
-		age = "No Age Set";
-		phone = "No Number In File";
-		email = "No Email Entered";
+	private void setDefault() 
+	{
+		name = "No name entered.";
+		age = "No age set.";
+		phone = "No number in file.";
+		email = "No email entered.";
 		TextView textView = (TextView) findViewById(R.id.userInfo_nameOfUser);
 		textView.setText(name);
 		textView = (TextView) findViewById(R.id.userInfo_theAge);
@@ -64,11 +68,9 @@ public class UserInfoActivity extends Activity implements OnClickListener{
 		textView.setText(email);
 	}
 
-
-
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-
+	public boolean onCreateOptionsMenu(Menu menu) 
+	{
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.user_info, menu);
 		return true;
@@ -109,38 +111,42 @@ public class UserInfoActivity extends Activity implements OnClickListener{
 		startActivity(new Intent("android.intent.action.Edit_UserInfo"));
 		finish();
 	}
-	private void readFromFile(String fileName){
+	
+	private void readFromFile(String fileName)
+	{
 		try{
 			 BufferedReader bufferedReader = new BufferedReader(new FileReader(new 
 	                 File(getFilesDir()+File.separator+fileName)));
 			 String read;
 			 StringBuilder builder = new StringBuilder("");
 	
-			 while((read = bufferedReader.readLine()) != null){
+			 while((read = bufferedReader.readLine()) != null)
+			 {
 				 builder.append(read);
 			 }
 			 Log.d("Output", builder.toString());
 			 bufferedReader.close();
 			 information =(builder.toString());
 		} catch (IOException e) {
-				// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	private void setUpUserInfo(String information2) {
+	
+	private void setUpUserInfo(String information2) 
+	{
 		String[] parts = information2.split("~");
 		TextView textView = (TextView) findViewById(R.id.userInfo_nameOfUser);
 		textView.setText(parts[0]);
 		textView = (TextView) findViewById(R.id.userInfo_theAge);
 		textView.setText(parts[1]);
-		
 	}
-	private void setUpParentInfo(String information2) {
+	
+	private void setUpParentInfo(String information2) 
+	{
 		String[] parts = information2.split("~");
 		TextView textView = (TextView) findViewById(R.id.userInfo_PhoneNumber);
 		textView.setText(parts[1]);
 		textView = (TextView) findViewById(R.id.userInfo_Email);
 		textView.setText(parts[0]);
 	}
-	
 }

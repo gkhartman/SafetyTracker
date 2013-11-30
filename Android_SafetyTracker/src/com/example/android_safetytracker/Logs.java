@@ -22,8 +22,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class Logs extends Activity implements OnClickListener{
-
+/**
+ * This class is for the logs screen which allows the user to view flagged incidents?
+ * @author Johnny Lam
+ *
+ */
+public class Logs extends Activity implements OnClickListener
+{
 	private Spinner logDropDown;
 	private TextView text,textMiddle,textRight;
 	private static LinkedList<Event> linkedList = new LinkedList<Event>();
@@ -33,7 +38,8 @@ public class Logs extends Activity implements OnClickListener{
 	private String fileName = "Logs.txt";
 	
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	protected void onCreate(Bundle savedInstanceState) 
+	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_logs);
 		
@@ -69,14 +75,10 @@ public class Logs extends Activity implements OnClickListener{
         readFromFile();
         
         disableButton(backButton);
-        if(linkedList.size() >7)
-        {
+        if(linkedList.size() > 7)
         	enableButton(nextButton);
-        }
         else
-        {
         	disableButton(nextButton);
-        }
 	}
 	
 	/**
@@ -85,13 +87,13 @@ public class Logs extends Activity implements OnClickListener{
 	 */
 	private void readFromFile()
 	{
-		File file = new File(getFilesDir()+File.separator+fileName); //name of file was chosen by Dr. Jose...blame it on him
+		File file = new File(getFilesDir() + File.separator + fileName); //name of file was chosen by Dr. Jose...blame it on him
 		if(!file.exists())
 		   return;
 		String data = "";		
 		try
 		{
-		   	BufferedReader bf = new BufferedReader(new FileReader(getFilesDir()+File.separator+fileName));
+		   	BufferedReader bf = new BufferedReader(new FileReader(getFilesDir() + File.separator+fileName));
 		   	while((data = bf.readLine()) != null)
 		   	{
 		   		Event event = parseData(data);
@@ -99,8 +101,7 @@ public class Logs extends Activity implements OnClickListener{
 		   	}
 		   	bf.close();
 		}
-		catch(Exception e)
-		{
+		catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -111,15 +112,9 @@ public class Logs extends Activity implements OnClickListener{
 		return new Event(brokenString[0],brokenString[1],Double.parseDouble(brokenString[2]),Double.parseDouble(brokenString[3]));
 	}
 	
-	private void enableButton(Button button)
-	{
-		button.setEnabled(true);
-	}
+	private void enableButton(Button button) { button.setEnabled(true); }
 	
-	private void disableButton(Button button)
-	{
-		button.setEnabled(false);
-	}
+	private void disableButton(Button button) { button.setEnabled(false); }
 	
 	private void initializeBox()
 	{
@@ -151,9 +146,7 @@ public class Logs extends Activity implements OnClickListener{
 		if(listPointer != 0)
 		{	
 		   if(listPointer % 7 == 0 )
-		   {
 			  listPointer -= 7;
-		   }
 		   else
 		   {
 			  int topOfPage = listPointer/7;
@@ -181,9 +174,7 @@ public class Logs extends Activity implements OnClickListener{
 	   for(;row < 7; ++row)
 	   {
 		   for(int col = 0; col < 3; ++col)
-		   {
 			   box[row][col].setText("");
-		   }
 	   }
 	}
 
@@ -218,18 +209,15 @@ public class Logs extends Activity implements OnClickListener{
 	private void addClickableAttributes(int row, int col,boolean addAttributes)
 	{
 		if(addAttributes)
-		{
 			box[row][col].setOnClickListener(this);
-		}
 		else
-		{
 			box[row][col].setOnClickListener(null);
-		}
 		box[row][col].setClickable(addAttributes);
 	}
 
 	
-	public class function implements OnItemSelectedListener {
+	public class function implements OnItemSelectedListener 
+	{
 
 		/**
 		 * 1 Date, Event, Location
@@ -238,9 +226,11 @@ public class Logs extends Activity implements OnClickListener{
 		 */
 		@Override
 		public void onItemSelected(AdapterView<?> parent, View arg1, int pos,
-				long id) {
+				long id) 
+		{
 			spinnerChoice = pos;
-			if(pos ==0){
+			if(pos == 0)
+			{
 				String str = parent.getItemAtPosition(pos).toString();
 				text.setText(" "+str);
 			
@@ -251,9 +241,9 @@ public class Logs extends Activity implements OnClickListener{
 				textRight.setText(" "+str3);
 				
 				redrawLogs();
-				
 			}
-			else if(pos ==1){
+			else if(pos == 1)
+			{
 				String str = parent.getItemAtPosition(pos).toString();
 				text.setText(" "+str);
 			
@@ -264,9 +254,9 @@ public class Logs extends Activity implements OnClickListener{
 				textRight.setText(" "+str3);
 				
 				redrawLogs();
-				
 			}
-			else{
+			else
+			{
 				String str = parent.getItemAtPosition(pos).toString();
 				text.setText(" "+str);
 			
@@ -277,34 +267,27 @@ public class Logs extends Activity implements OnClickListener{
 				textRight.setText(" "+str3);
 				
 				redrawLogs();
-				
 			}
 			
 		}
 
 		@Override
-		public void onNothingSelected(AdapterView<?> arg0) {
-			// TODO Auto-generated method stub
-
-		}
-
+		public void onNothingSelected(AdapterView<?> arg0) {}
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
+	public boolean onCreateOptionsMenu(Menu menu) 
+	{
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.logs, menu);
 		return true;
 	}
 	
-	
-	class ListViewItem
-	{
-		public String textLabel;
-	}
+	class ListViewItem { public String textLabel; }
 
 	@Override
-	public void onClick(View v) {
+	public void onClick(View v) 
+	{
 		switch(v.getId())
 		{
 		case R.id.logsNextButton:
@@ -321,7 +304,6 @@ public class Logs extends Activity implements OnClickListener{
 	
 	private void textViewPressed(View v)
 	{
-		
 		TextView textview = (TextView) findViewById(v.getId());
 		String coordinates = (String) textview.getText();
 		String [] brokenString = coordinates.split(",");
@@ -342,9 +324,7 @@ public class Logs extends Activity implements OnClickListener{
 			startActivity(intent);
 		}
 		else
-		{
 			Toast.makeText(this, "Invalid Coordinate", Toast.LENGTH_SHORT).show();
-		}
 	}
 	
 	private boolean validCoordinate(double latitude, double longitude)
@@ -358,9 +338,7 @@ public class Logs extends Activity implements OnClickListener{
 		addTextViews();
 		enableButton(backButton);
 		if(listPointer >= linkedList.size())
-		{
 			disableButton(nextButton);
-		}
 	}
 	
 	private void backButtonPressed()
@@ -372,9 +350,7 @@ public class Logs extends Activity implements OnClickListener{
 			listPointer -= 7;
 		}
 		else
-		{
 		   listPointer -= 14;
-		}
 		addTextViews();
 		enableButton(nextButton);
 		if(listPointer == 7)

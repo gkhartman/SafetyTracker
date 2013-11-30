@@ -1,7 +1,13 @@
 package com.example.android_safetytracker;
 
-
-public class Calibrate {
+/**
+ * This class calibrates the user's smartphone device for accurate sensor readings required
+ * by our application.
+ * @author Johnny Lam
+ *
+ */
+public class Calibrate 
+{
 	private double accX,accY,accZ,previousX,previousY,previousZ;
 	private double gyroX,gyroY,gyroZ,previousGyroX,previousGyroY,previousGyroZ;
 	private long startTime;
@@ -10,8 +16,8 @@ public class Calibrate {
 	private boolean isCalibrated, good;
 	static boolean timeIsUp;
 
-	
-	public Calibrate(){
+	public Calibrate()
+	{
 		accX = 0;
 		accY = 0;
 		accZ = 0;
@@ -25,11 +31,11 @@ public class Calibrate {
 	}
 	
 	public void startCalibrating(float xValuePassed,float yValuePassed, float zValuePassed,float gyroZPassed,
-			 					float gyroXPassed, float gyroYPassed){
-		System.out.println("Im calibrating");
-		if(Math.abs(startTime-System.currentTimeMillis()) >5000){
+			 					float gyroXPassed, float gyroYPassed)
+	{
+		System.out.println("Please wait, currently calibrating.");
+		if(Math.abs(startTime-System.currentTimeMillis()) > 5000)
 			timeIsUp = true;
-		}
 		
 	    previousX = accX;
 	    previousY = accY;
@@ -56,49 +62,31 @@ public class Calibrate {
 			good = false;
 			startTime = System.currentTimeMillis();
 		}
-		else{
+		else
 			good = true;
-
-		}
-
-			
+		
 			//System.out.println(good); //dubugger method
 			
-		if(timeIsUp && good){
-			
+		if(timeIsUp && good)
 			isCalibrated = true;
-		}
+		
 	}
 	
-	public double getX(){
-		return previousX;
-	}
-	public double getY(){
-		return previousY;
-	}
-	public double getZ(){
-		return previousZ;
-	}
-	public double getGyroX(){
-		return previousGyroX;
-	}
-	public double getGyroY(){
-		return previousGyroY;
-	}
-	public double getGyroZ(){
-		return previousGyroZ;
-	}
+	public double getX() { return previousX; }
 	
-	public boolean isCalibrated(){
-		return isCalibrated;
-	}
-	public boolean isValid(){
-		return good;
-	}
-	public boolean timeIsUp(){
-		return timeIsUp;
-	}
-
-
+	public double getY() { return previousY; }
 	
+	public double getZ() { return previousZ; }
+	
+	public double getGyroX() { return previousGyroX; }
+	
+	public double getGyroY() { return previousGyroY; }
+	
+	public double getGyroZ() { return previousGyroZ; }
+	
+	public boolean isCalibrated() { return isCalibrated; }
+	
+	public boolean isValid() { return good; }
+	
+	public boolean timeIsUp() { return timeIsUp; }
 }
