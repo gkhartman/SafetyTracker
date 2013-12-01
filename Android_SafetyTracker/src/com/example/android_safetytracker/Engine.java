@@ -38,7 +38,9 @@ public class Engine extends Service
 	private long startTime, speedingTimer;
 	private LinkedList<Event> linkedList;
 	private boolean theIgnoreTimerIsUp;
+	private int timeStampViolation = 0; // in method violation, serves as a counter
 	private boolean displayedCalibrated = false;
+	private float previousGValue;
 
 	
 	private static BeginActivity begin;
@@ -283,17 +285,25 @@ public class Engine extends Service
 //		}
 		
 		if (violationOccured){
-			System.out.println("You Fucked UP!"); // tomorrow start writing on this block, figure out how to id ACCELERATION/BRAKING/TURNING. One way to do it is to monitor the previous accXYZValue, 
+			if(Math.abs(accXValue) > 3){ // 3's unit is m/s^2, if X is over 3, then it's for sure turning
+				System.out.println("Turing too hard!");
+			}
+			if(accZValue - initialZValue > 3){ 
+				System.out.println("Accelerating too hard!");
+			}
+			if((accZValue - initialZValue) < 3){
+				System.out.println("Braking too hard");
+			}
 		}
 	}
-	
-	private boolean violation(float gForce) 
-	{
-		float lowerLimit = (float) .30;	// ******lowerLimit is like reading errors, or caused by road imperfection, or just good/safe driving
+	private boolean violation(float gForce) {
+		float lowerLimit = (float) .40;	// ******lowerLimit is like reading errors, or caused by road imperfection, or just good/safe driving
 										// IMPORTANT VALUES *********************************************************************************
 		float upperLimit = (float) 1.3; // ******upperLimit is either reading errors, or caused by road bumps
-		if(gForce > lowerLimit && gForce < upperLimit)
+		if(gForce > lowerLimit && gForce < upperLimit && Math.abs(previousGValue - gForce) < 0.5){
 			return true;
+		}
+		previousGValue = gForce;
 		return false;
 	}
 	
