@@ -4,10 +4,6 @@ import java.util.LinkedList;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -23,8 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 /**
- * This class is for the logs screen which allows the user to view flagged incidents?
- * @author Johnny Lam
+ * This class is for the logs screen which allows the user to view flagged incidents
  *
  */
 public class Logs extends Activity implements OnClickListener
@@ -119,7 +114,7 @@ public class Logs extends Activity implements OnClickListener
 	private void initializeBox()
 	{
 		box[0][0]= (TextView) findViewById(R.id.row1Left);
-		box[0][1]= (TextView) findViewById(R.id.row1Mid);
+		box[0][1]= (TextView) findViewById(R.id.HelpTitle);
 		box[0][2]= (TextView) findViewById(R.id.row1Right);
 		box[1][0]= (TextView) findViewById(R.id.row2Left);
 		box[1][1]= (TextView) findViewById(R.id.row2Mid);

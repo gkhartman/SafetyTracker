@@ -167,8 +167,9 @@ containing a value of this type.
         public static final int common_signin_btn_light_text_disabled=0x7f040006;
         public static final int common_signin_btn_light_text_focused=0x7f040007;
         public static final int common_signin_btn_light_text_pressed=0x7f040005;
-        public static final int common_signin_btn_text_dark=0x7f04000a;
-        public static final int common_signin_btn_text_light=0x7f04000b;
+        public static final int common_signin_btn_text_dark=0x7f04000b;
+        public static final int common_signin_btn_text_light=0x7f04000c;
+        public static final int darkBlue=0x7f04000a;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -217,6 +218,7 @@ containing a value of this type.
     public static final class id {
         public static final int Email_sendEmail=0x7f05001f;
         public static final int FacebookLabel=0x7f050023;
+        public static final int HelpTitle=0x7f05002b;
         public static final int StartApp_DockPhoneMessage=0x7f05004e;
         public static final int UserInfo_PhoneText=0x7f050054;
         public static final int action_settings=0x7f050059;
@@ -259,7 +261,6 @@ containing a value of this type.
         public static final int relativeLayout=0x7f050025;
         public static final int relativeLayout1=0x7f050028;
         public static final int row1Left=0x7f05002a;
-        public static final int row1Mid=0x7f05002b;
         public static final int row1Right=0x7f05002d;
         public static final int row2Left=0x7f05002c;
         public static final int row2Mid=0x7f05003a;
@@ -321,8 +322,7 @@ containing a value of this type.
         public static final int activity_map=0x7f030008;
         public static final int activity_start__app=0x7f030009;
         public static final int activity_user_info=0x7f03000a;
-        public static final int calibratescreen=0x7f03000b;
-        public static final int helpscreen=0x7f03000c;
+        public static final int helpscreen=0x7f03000b;
     }
     public static final class menu {
         public static final int about_us=0x7f0b0000;

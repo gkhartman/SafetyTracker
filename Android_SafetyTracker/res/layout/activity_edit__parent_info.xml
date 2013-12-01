@@ -15,6 +15,7 @@
         android:layout_alignBottom="@+id/contactUsLabel"
         android:layout_marginLeft="22dp"
         android:layout_toRightOf="@+id/contactUsLabel"
+        android:textColor="@color/darkBlue"
         android:ems="10"
         android:inputType="textEmailAddress" />
 
@@ -24,6 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/visitWebsiteLabel"
         android:layout_alignLeft="@+id/parentEmail_input"
+        android:textColor="@color/darkBlue"
         android:ems="10"
         android:inputType="phone" >
 
@@ -46,6 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
+        android:textColor="@color/darkBlue"
         android:text="@string/userInfo_EmailText" />
 
     <TextView
@@ -55,6 +58,7 @@
         android:layout_above="@+id/parentInfo_submit"
         android:layout_alignLeft="@+id/contactUsLabel"
         android:layout_marginBottom="48dp"
+        android:textColor="@color/darkBlue"
         android:text="@string/userInfo_PhoneText" />
 
     <ImageView

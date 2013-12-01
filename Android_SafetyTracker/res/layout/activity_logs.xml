@@ -15,6 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/log_DropDown"
         android:layout_marginLeft="28dp"
+        android:textColor="@color/darkBlue"
         android:text="@string/logs_SortByText"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
@@ -33,15 +34,17 @@
             android:layout_height="40dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
+            android:textColor="@color/darkBlue"
             android:text="Small Text"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
         <TextView
-            android:id="@+id/row1Mid"
+            android:id="@+id/HelpTitle"
             android:layout_width="95dp"
             android:layout_height="40dp"
             android:layout_above="@+id/row2Left"
             android:layout_toRightOf="@+id/row1Left"
+            android:textColor="@color/darkBlue"
             android:text="Small Text"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -51,6 +54,7 @@
             android:layout_height="40dp"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
+            android:textColor="@color/darkBlue"
             android:text="Small Text"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -61,6 +65,7 @@
             android:layout_alignBaseline="@+id/row3Mid"
             android:layout_alignBottom="@+id/row3Mid"
             android:layout_alignRight="@+id/row2Right"
+            android:textColor="@color/darkBlue"
             android:text="Small Text"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -70,6 +75,7 @@
             android:layout_height="40dp"
             android:layout_alignBottom="@+id/row4Mid"
             android:layout_alignLeft="@+id/row3Right"
+            android:textColor="@color/darkBlue"
             android:text="Small Text"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -79,6 +85,7 @@
             android:layout_height="40dp"
             android:layout_alignBottom="@+id/row5Mid"
             android:layout_alignRight="@+id/row4Right"
+            android:textColor="@color/darkBlue"
             android:text="Small Text"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -89,6 +96,7 @@
             android:layout_alignBaseline="@+id/row7Left"
             android:layout_alignBottom="@+id/row7Left"
             android:layout_alignRight="@+id/row6Mid"
+            android:textColor="@color/darkBlue"
             android:text="Small Text"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -99,6 +107,7 @@
             android:layout_alignBaseline="@+id/row7Mid"
             android:layout_alignBottom="@+id/row7Mid"
             android:layout_alignRight="@+id/row6Right"
+            android:textColor="@color/darkBlue"
             android:text="Small Text"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -107,6 +116,7 @@
             android:layout_width="95dp"
             android:layout_height="40dp"
             android:layout_alignParentRight="true"
+            android:textColor="@color/darkBlue"
             android:layout_below="@+id/row1Right"
             android:text="Small Text"
             android:textAppearance="?android:attr/textAppearanceSmall" />
@@ -118,6 +128,7 @@
             android:layout_alignBaseline="@+id/row2Right"
             android:layout_alignBottom="@+id/row2Right"
             android:layout_toLeftOf="@+id/row2Right"
+            android:textColor="@color/darkBlue"
             android:text="Small Text"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -127,7 +138,8 @@
             android:layout_height="40dp"
             android:layout_alignBaseline="@+id/row2Mid"
             android:layout_alignBottom="@+id/row2Mid"
-            android:layout_toLeftOf="@+id/row1Mid"
+            android:layout_toLeftOf="@+id/HelpTitle"
+            android:textColor="@color/darkBlue"
             android:text="Small Text"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -136,7 +148,8 @@
             android:layout_width="95dp"
             android:layout_height="40dp"
             android:layout_below="@+id/row2Left"
-            android:layout_toLeftOf="@+id/row1Mid"
+            android:layout_toLeftOf="@+id/HelpTitle"
+            android:textColor="@color/darkBlue"
             android:text="Small Text"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -146,6 +159,7 @@
             android:layout_height="40dp"
             android:layout_below="@+id/row2Right"
             android:layout_toLeftOf="@+id/row3Right"
+            android:textColor="@color/darkBlue"
             android:text="Small Text"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -154,7 +168,8 @@
             android:layout_width="95dp"
             android:layout_height="40dp"
             android:layout_below="@+id/row3Left"
-            android:layout_toLeftOf="@+id/row1Mid"
+            android:layout_toLeftOf="@+id/HelpTitle"
+            android:textColor="@color/darkBlue"
             android:text="Small Text"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -165,6 +180,7 @@
             android:layout_alignBaseline="@+id/row4Left"
             android:layout_alignBottom="@+id/row4Left"
             android:layout_toRightOf="@+id/row5Left"
+            android:textColor="@color/darkBlue"
             android:text="Small Text"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -174,6 +190,7 @@
             android:layout_height="40dp"
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/row4Left"
+            android:textColor="@color/darkBlue"
             android:text="Small Text"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -184,6 +201,7 @@
             android:layout_alignBaseline="@+id/row5Left"
             android:layout_alignBottom="@+id/row5Left"
             android:layout_alignLeft="@+id/row4Mid"
+            android:textColor="@color/darkBlue"
             android:text="Small Text"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -193,6 +211,7 @@
             android:layout_height="40dp"
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/row5Left"
+            android:textColor="@color/darkBlue"
             android:text="Small Text"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -202,6 +221,7 @@
             android:layout_height="40dp"
             android:layout_below="@+id/row5Left"
             android:layout_toRightOf="@+id/row5Left"
+            android:textColor="@color/darkBlue"
             android:text="Small Text"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -211,6 +231,7 @@
             android:layout_height="40dp"
             android:layout_above="@+id/row7Left"
             android:layout_alignParentRight="true"
+            android:textColor="@color/darkBlue"
             android:text="Small Text"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -220,6 +241,7 @@
             android:layout_height="40dp"
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/row6Left"
+            android:textColor="@color/darkBlue"
             android:text="Small Text"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -268,6 +290,7 @@
             android:layout_width="98dp"
             android:layout_height="wrap_content"
             android:text="TextView"
+            android:textColor="@color/darkBlue"
             android:textSize="18sp" />
 
         <View
@@ -280,6 +303,7 @@
             android:layout_width="98dp"
             android:layout_height="wrap_content"
             android:text="TextView"
+            android:textColor="@color/darkBlue"
             android:textSize="18sp" />
 
         <View
@@ -292,6 +316,7 @@
             android:layout_width="98dp"
             android:layout_height="wrap_content"
             android:text="TextView"
+            android:textColor="@color/darkBlue"
             android:textSize="18sp" />
 
         <View

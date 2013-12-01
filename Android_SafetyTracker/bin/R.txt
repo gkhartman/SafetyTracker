@@ -26,8 +26,9 @@ int color common_signin_btn_light_text_default 0x7f040004
 int color common_signin_btn_light_text_disabled 0x7f040006
 int color common_signin_btn_light_text_focused 0x7f040007
 int color common_signin_btn_light_text_pressed 0x7f040005
-int color common_signin_btn_text_dark 0x7f04000a
-int color common_signin_btn_text_light 0x7f04000b
+int color common_signin_btn_text_dark 0x7f04000b
+int color common_signin_btn_text_light 0x7f04000c
+int color darkBlue 0x7f04000a
 int dimen activity_horizontal_margin 0x7f080000
 int dimen activity_vertical_margin 0x7f080001
 int drawable common_signin_btn_icon_dark 0x7f020000
@@ -64,6 +65,7 @@ int drawable subbutton 0x7f02001e
 int drawable warning_sign 0x7f02001f
 int id Email_sendEmail 0x7f05001f
 int id FacebookLabel 0x7f050023
+int id HelpTitle 0x7f05002b
 int id StartApp_DockPhoneMessage 0x7f05004e
 int id UserInfo_PhoneText 0x7f050054
 int id action_settings 0x7f050059
@@ -106,7 +108,6 @@ int id parentPhone_input 0x7f050011
 int id relativeLayout 0x7f050025
 int id relativeLayout1 0x7f050028
 int id row1Left 0x7f05002a
-int id row1Mid 0x7f05002b
 int id row1Right 0x7f05002d
 int id row2Left 0x7f05002c
 int id row2Mid 0x7f05003a
@@ -164,8 +165,7 @@ int layout activity_main 0x7f030007
 int layout activity_map 0x7f030008
 int layout activity_start__app 0x7f030009
 int layout activity_user_info 0x7f03000a
-int layout calibratescreen 0x7f03000b
-int layout helpscreen 0x7f03000c
+int layout helpscreen 0x7f03000b
 int menu about_us 0x7f0b0000
 int menu begin 0x7f0b0001
 int menu calibratescreen 0x7f0b0002

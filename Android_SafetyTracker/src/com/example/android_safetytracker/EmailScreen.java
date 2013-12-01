@@ -12,7 +12,6 @@ import android.widget.Toast;
 
 /**
  * This class allows for the user to send an email to SafetyTracker.
- * @author Johnny Lam
  *
  */
 public class EmailScreen extends Activity implements OnClickListener 

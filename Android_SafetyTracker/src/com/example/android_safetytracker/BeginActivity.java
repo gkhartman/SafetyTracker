@@ -6,6 +6,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -14,17 +15,10 @@ import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
-
-
-import android.app.ProgressDialog;
 import android.os.AsyncTask;
-
 import android.widget.EditText;
-
 import java.io.UnsupportedEncodingException;
 import java.util.Properties;
-
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
@@ -55,6 +49,8 @@ public class BeginActivity extends Activity implements View.OnClickListener, Sen
     private EditText subjectEdit;
     private EditText messageEdit;
     private Consumer consumer;
+    //used to hold the engine from running if user is prompted to start gps
+    private boolean gpsHold;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
@@ -68,41 +64,64 @@ public class BeginActivity extends Activity implements View.OnClickListener, Sen
 		sensorM = (SensorManager) getSystemService(SENSOR_SERVICE);
 		accelerometer = sensorM.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 		
-		sensorM.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_NORMAL);
-		
-		calibrator = new Calibrate();
-		notGoodForIntialValues = true;
-		engine = new Engine(this);
-		startService(new Intent(getBaseContext(), Engine.class));
-		
 		consumer = Consumer.getInstance();
+		
+		gpsHold = !checkGPSEnabled(); //if gps is off returns false..makes the hold true
 	}
 	
-	public void OnStart() { super.onStart(); }
-	
-	@Override
-	public void onPause()
+	public void OnStart() 
 	{
-		stopService(new Intent(getBaseContext(),Engine.class));
-		super.onPause();
+		super.onStart();
 	}
 	
 	@Override
 	public void onResume()
 	{
-		startService(new Intent(getBaseContext(),Engine.class));
+		if(gpsHold)
+		{
+			gpsHold = false;
+			promptEnableGPS();
+		}
+		else
+		{
+			sensorM.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_NORMAL);
+			calibrator = new Calibrate();
+			notGoodForIntialValues = true;
+			engine = new Engine(this);
+			startService(new Intent(getBaseContext(), Engine.class));
+		}
 		super.onResume();
 	}
+	
+	@Override
+	public void onPause()
+	{
+		sensorM.unregisterListener(this,accelerometer);
+		stopService(new Intent(getBaseContext(),Engine.class));
+		super.onPause();
+	}
+	
+	
 	
 	public void onStop()
 	{
 		sensorM.unregisterListener(this,accelerometer);
-		accelerometer = null;
 		stopService(new Intent(getBaseContext(), Engine.class));
-		//if(consumer.isMonitored())
-		//sendMail("carappfeedback@gmail.com","dd","ddd");
-
 		super.onStop();
+	}
+	
+	@Override
+	public void onDestroy()
+	{
+		//if(consumer.isMonitored() && linkedList.size() > 0)
+				//sendMail("carappfeedback@gmail.com","dd","ddd");
+		super.onDestroy();
+	}
+	
+	public boolean checkGPSEnabled()
+	{
+		LocationManager lm = (LocationManager) getSystemService(LOCATION_SERVICE);
+		return lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
 	}
 	
 	public void promptEnableGPS()
@@ -124,6 +143,7 @@ public class BeginActivity extends Activity implements View.OnClickListener, Sen
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				dialog.cancel();
+				onResume();
 			}
 		});
 		gpsAlert.create();

@@ -30,9 +30,9 @@
         android:clickable="true"
         android:linksClickable="true"
         android:overScrollMode="always"
+        android:textColor="@color/darkBlue"
         android:text="@string/aboutUs_VisitUs"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#1589FF" />
+        android:textAppearance="?android:attr/textAppearanceLarge"/>
 
     <TextView
         android:id="@+id/checkUsOutLabel"
@@ -42,6 +42,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="77dp"
         android:text="@string/aboutUs_Social"
+        android:textColor="@color/darkBlue"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <Button

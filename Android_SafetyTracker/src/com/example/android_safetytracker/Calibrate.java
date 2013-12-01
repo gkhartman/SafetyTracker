@@ -31,7 +31,7 @@ public class Calibrate
 	public void startCalibrating(float xValuePassed,float yValuePassed, float zValuePassed,float gyroZPassed,
 			 					float gyroXPassed, float gyroYPassed)
 	{
-		System.out.println("Please wait, currently calibrating.");
+		//System.out.println("Please wait, currently calibrating.");
 		if(Math.abs(startTime-System.currentTimeMillis()) > 5000)
 			timeIsUp = true;
 		

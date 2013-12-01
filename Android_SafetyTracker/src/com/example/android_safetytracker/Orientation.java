@@ -81,7 +81,6 @@ public class Orientation extends Service implements SensorEventListener
 		magneticField = sensorM.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
 		sensorM.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_NORMAL);
 		sensorM.registerListener(this, magneticField, SensorManager.SENSOR_DELAY_NORMAL);
-		System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
 	}
 	
 	public float[] getAccelerometerValuesArray() { return accValues; }

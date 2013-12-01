@@ -65,29 +65,11 @@ public class Engine extends Service
 		calibrator = new Calibrate();
 		startService(new Intent(getBaseContext(), GPSLocation.class));
 		startService(new Intent(getBaseContext(), Orientation.class));
-		checkGPS();
-		usingGPS = checkGPSEnabled();
+		usingGPS = begin.checkGPSEnabled();
+		gps = new GPSLocation(this);
 		return START_STICKY;
 	}
 	
-	protected void gpsDisabled() { usingGPS = false; }
-	
-	protected void gpsEnabled() { usingGPS = true; }
-	
-	private void checkGPS()
-	{
-		gps = new GPSLocation(this); //initialize gps and pass a  static reference of engine to gps
-		if(!checkGPSEnabled())
-			begin.promptEnableGPS();
-	}
-	
-	
-	public boolean checkGPSEnabled()
-	{
-		LocationManager lm = (LocationManager) getSystemService(LOCATION_SERVICE);
-		return lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
-	}
-
 	@Override
 	public void onDestroy() 
 	{
@@ -97,6 +79,11 @@ public class Engine extends Service
 		writeToFile();
 		super.onDestroy();
 	}
+	
+	protected void gpsDisabled() { usingGPS = false; }
+	
+	protected void gpsEnabled() { usingGPS = true; }
+	
 
 	public void speeding(float speed,double longitude, double latitude)
 	{

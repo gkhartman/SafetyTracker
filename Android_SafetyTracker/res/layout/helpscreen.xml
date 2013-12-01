@@ -12,8 +12,9 @@
         android:id="@+id/row1Left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/row1Mid"
+        android:layout_below="@+id/HelpTitle"
         android:layout_centerHorizontal="true"
+        android:textColor="@color/darkBlue"
         android:layout_marginTop="24dp"
         android:text="@string/HelpStatement"
         android:textAppearance="?android:attr/textAppearanceMedium" />
@@ -25,17 +26,19 @@
         android:layout_alignLeft="@+id/row1Left"
         android:layout_below="@+id/row1Left"
         android:layout_marginTop="38dp"
+        android:textColor="@color/darkBlue"
         android:text="@string/HelpText2"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
-        android:id="@+id/row1Mid"
+        android:id="@+id/HelpTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
         android:text="@string/Help"
+        android:textColor="@color/darkBlue"
         android:textSize="24sp" />
 
 </RelativeLayout>

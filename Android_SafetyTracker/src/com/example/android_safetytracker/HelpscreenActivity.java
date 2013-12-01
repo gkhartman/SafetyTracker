@@ -6,7 +6,6 @@ import android.view.Menu;
 
 /**
  * This class is for the help screen in the SafetyTracker application.
- * @author Johnny Lam
  *
  */
 public class HelpscreenActivity extends Activity 

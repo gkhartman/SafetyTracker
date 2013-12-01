@@ -18,7 +18,6 @@ import android.widget.Toast;
 
 /**
  * This class allows for the parental information to be edited by the user/parent.
- * @author Johnny Lam
  *
  */
 public class Edit_ParentInfo extends Activity implements OnClickListener
@@ -79,7 +78,7 @@ public class Edit_ParentInfo extends Activity implements OnClickListener
 		
 		if(phone.length() < 10 && !isEmailValid(email))
 		{
-			Toast.makeText(this, "Error, please try again.", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "Invalid input, please try again.", Toast.LENGTH_SHORT).show();
 			return false;
 		}
 		return true;

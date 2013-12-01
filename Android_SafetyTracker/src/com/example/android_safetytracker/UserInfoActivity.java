@@ -1,14 +1,8 @@
 package com.example.android_safetytracker;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -22,7 +16,6 @@ import android.widget.TextView;
 public class UserInfoActivity extends Activity implements OnClickListener
 {
 	private Button editUser, editParent;
-	private String information;
 	private String name,age,phone,email;
 	private Consumer consumer;
 

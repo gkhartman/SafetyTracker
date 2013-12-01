@@ -3,7 +3,6 @@ package com.example.android_safetytracker;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.app.Activity;
@@ -19,7 +18,7 @@ import android.widget.Toast;
 public class MainActivity extends Activity implements OnClickListener
 {
 	//main screen buttons
-	private Button startAppButton, logsButton, userInfo, calibrateButton, 
+	private Button startAppButton, logsButton, userInfo,
 	       turnOnGPSButton, helpButton, legalButton, aboutUsButton;
 	private final String USER_INFO = "User.txt";
 	private final String PARENT_INFO = "Parent.txt";

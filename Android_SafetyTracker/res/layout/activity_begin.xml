@@ -14,6 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:textColor="@color/darkBlue"
         android:layout_marginTop="39dp"
         android:text="@string/begin_DisclaimerText"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -23,6 +24,7 @@
         android:id="@+id/begin_DisclaimerText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/darkBlue"
         android:layout_alignLeft="@+id/begin_DisclaimerHeadText"
         android:layout_below="@+id/begin_DisclaimerHeadText"
         android:layout_marginTop="18dp"
@@ -36,6 +38,7 @@
         android:layout_below="@+id/begin_DisclaimerText"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="36dp"
+        android:textColor="@color/darkBlue"
         android:text="@string/begin_Instruction"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="30sp" />
@@ -45,6 +48,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:textColor="@color/darkBlue"
         android:layout_centerVertical="true"
         android:text="@string/begin_InstructionText"
         android:textAppearance="?android:attr/textAppearanceMedium" />

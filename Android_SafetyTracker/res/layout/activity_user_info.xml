@@ -15,6 +15,7 @@
         android:layout_alignLeft="@+id/userIn_NameText"
         android:layout_below="@+id/userIn_NameText"
         android:text="@string/userInfo_NameForUser"
+        android:textColor="@color/darkBlue"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
@@ -24,6 +25,7 @@
         android:layout_alignLeft="@+id/userInfo_AgeText"
         android:layout_below="@+id/userInfo_AgeText"
         android:text="@string/userInfo_Age"
+        android:textColor="@color/darkBlue"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
@@ -34,6 +36,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginLeft="34dp"
         android:layout_marginTop="62dp"
+        android:textColor="@color/darkBlue"
         android:text="@string/userInfo_NameText"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
@@ -44,6 +47,7 @@
         android:layout_alignLeft="@+id/userInfo_nameOfUser"
         android:layout_below="@+id/userInfo_nameOfUser"
         android:layout_marginTop="24dp"
+        android:textColor="@color/darkBlue"
         android:text="@string/userInfo_AgeText"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
@@ -55,6 +59,7 @@
         android:layout_alignBottom="@+id/UserInfo_PhoneText"
         android:layout_toRightOf="@+id/UserInfo_PhoneText"
         android:text="@string/userInfo_PhoneNumber"
+        android:textColor="@color/darkBlue"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
@@ -64,6 +69,7 @@
         android:layout_alignLeft="@+id/UserInfo_PhoneText"
         android:layout_below="@+id/UserInfo_PhoneText"
         android:text="@string/userInfo_EmailText"
+        android:textColor="@color/darkBlue"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
@@ -73,6 +79,7 @@
         android:layout_alignLeft="@+id/userInfo_EmailText"
         android:layout_below="@+id/userInfo_EmailText"
         android:text="@string/userInfo_Email"
+        android:textColor="@color/darkBlue"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <Button
@@ -94,6 +101,7 @@
         android:layout_below="@+id/userInfo_theAge"
         android:layout_marginTop="35dp"
         android:text="@string/userInfo_PhoneText"
+        android:textColor="@color/darkBlue"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <Button
@@ -102,7 +110,8 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/userInfo_EditUserButton"
         android:layout_alignBottom="@+id/userInfo_EditUserButton"
-        android:layout_alignRight="@+id/userInfo_PhoneNumber"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
         android:background="@drawable/subbutton"
         android:text="@string/userInfo_EditParentButton" />
 

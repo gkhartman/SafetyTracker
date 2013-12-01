@@ -1,14 +1,7 @@
 SafetyTracker
 =============
-On friday we concluded on the way we were to set up the classes and how it was all going to communicate.
-On friday night, Victor fixed a bug that was crashing the app that was caused by the GPS. After that was
-cleared, I got the acceleration values and the orientation values to get passed to the engine.
-Paul then explained an algorithm that will give us values that we need when we are going up hill or
-down hill. Today, I worked on determining when we changed orientation and if it was a speed bump or going up
-hill.Also what we do when we are on flat ground and when there is a bump. 
-The code that was used to implement the flat ground was recycled from the begin activity that worked
-when Garret,Victor and I went driving. I changed it up a little but have not tested. However, everything
-seems to work as far as getting values and evaluating the diferent scenarios.
-
-Con Amor,
-Jose
+Fixed beginActivity enablegps bug by restructuring the onCreate, onStart(), onResume(), onPause(), onStop(), onDestroy().
+The application engine now waits for the user to decide if he wants to enable gps or not before starting.
+Deleted CalibrateScreen class and layout (note: not the calibrate we use in the engine).
+Updated UI colors, all of the text is now blue.
+Fine Tuned some things.

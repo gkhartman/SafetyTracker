@@ -13,6 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/editUser_SubmitButton"
+        android:textColor="@color/darkBlue"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="26dp"
         android:text="@string/setParent_label" />
@@ -23,6 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/username_input"
         android:layout_alignBottom="@+id/username_input"
+        android:textColor="@color/darkBlue"
         android:layout_alignLeft="@+id/ageLabel"
         android:text="@string/userInfo_NameText" />
 
@@ -52,6 +54,7 @@
         android:layout_above="@+id/setparent_box"
         android:layout_alignLeft="@+id/username_input"
         android:layout_marginBottom="30dp"
+        android:textColor="@color/darkBlue"
         android:ems="10"
         android:inputType="numberDecimal" />
 
@@ -61,6 +64,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/userAge_input"
         android:layout_alignBottom="@+id/userAge_input"
+        android:textColor="@color/darkBlue"
         android:text="@string/userInfo_AgeText" />
 
     <EditText
@@ -69,6 +73,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/userAge_input"
         android:layout_alignParentRight="true"
+        android:textColor="@color/darkBlue"
         android:layout_marginBottom="33dp"
         android:layout_marginRight="26dp"
         android:ems="10"

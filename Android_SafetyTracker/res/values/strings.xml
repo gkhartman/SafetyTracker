@@ -91,6 +91,6 @@
     <string name="CalibrateText">Please wait, currently calibrating...</string>
     <string name="back">Back</string>
     <string name="next">Next</string>
-    <string name="title_activity_map">Map</string>
+    <string name="title_activity_map">\tMap</string>
 
 </resources>

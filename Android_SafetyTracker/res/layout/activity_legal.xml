@@ -26,6 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="60dp"
             android:layout_marginTop="57dp"
+            android:textColor="@color/darkBlue"
             android:text="@string/legal_AgreementLabel"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
@@ -35,6 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="27dp"
             android:text="@string/legal_AgreementText"
+            android:textColor="@color/darkBlue"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
@@ -42,6 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="60dp"
+            android:textColor="@color/darkBlue"
             android:layout_marginTop="27dp"
             android:text="@string/legal_DisclaimerLabel"
             android:textAppearance="?android:attr/textAppearanceLarge" />
@@ -52,6 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="27dp"
             android:text="@string/legal_DisclaimerText"
+            android:textColor="@color/darkBlue"
             android:textAppearance="?android:attr/textAppearanceMedium"/>
         
         <TextView 
@@ -61,6 +65,7 @@
             android:layout_marginTop="27dp"
             android:layout_marginLeft="60dp"
             android:text="@string/legal_PrivacyLabel"
+            android:textColor="@color/darkBlue"
             android:textAppearance="?android:attr/textAppearanceLarge"/>
         <TextView 
             android:id="@+id/twitterLabel"
@@ -68,6 +73,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="27dp"
             android:text="@string/legal_PrivacyText"
+            android:textColor="@color/darkBlue"
             android:textAppearance="?android:attr/textAppearanceMedium"/>
     </LinearLayout>
     </ScrollView>
@@ -79,6 +85,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:text="@string/legal_TermsConditions"
+        android:textColor="@color/darkBlue"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </RelativeLayout>

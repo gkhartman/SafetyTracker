@@ -38,7 +38,7 @@
         <!-- MAIN ACTIVITY -->
         <activity
             android:name="com.example.android_safetytracker.MainActivity"
-            android:label="SafetyTracker" 
+            android:label="\tSafetyTracker" 
             android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -50,7 +50,7 @@
         <!-- START APPLICATION -->
         <activity
             android:name="com.example.android_safetytracker.Start_App"
-            android:label="Start" 
+            android:label="\tSafetyTracker" 
             android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.Start_App" />
@@ -62,7 +62,7 @@
         <!-- BEGIN ACTIVITY -->
         <activity
             android:name="com.example.android_safetytracker.BeginActivity"
-            android:label="SafetyTracker" 
+            android:label="\tSafetyTracker" 
             android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.BeginActivity" />
@@ -74,7 +74,7 @@
         <!-- LOGS ACTIVITY -->
         <activity
             android:name="com.example.android_safetytracker.Logs"
-            android:label="Logs" 
+            android:label="\tLogs" 
             android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.Logs" />
@@ -86,7 +86,7 @@
         <!-- USERINFO ACTIVITY -->
         <activity
             android:name="com.example.android_safetytracker.UserInfoActivity"
-            android:label="User Info" 
+            android:label="\tUser Information" 
             android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.UserInfoActivity" />
@@ -98,7 +98,7 @@
         <!-- EditUserInfo -->
         <activity
             android:name="com.example.android_safetytracker.Edit_UserInfo"
-            android:label="Edit User Info" 
+            android:label="\tEdit User Information" 
             android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.Edit_UserInfo" />
@@ -110,7 +110,7 @@
         <!-- EditParentInfo -->
         <activity
             android:name="com.example.android_safetytracker.Edit_ParentInfo"
-            android:label="Edit Parent Info" 
+            android:label="\tEdit Parent Information" 
             android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.Edit_ParentInfo" />
@@ -122,7 +122,7 @@
         <!-- Legal -->
         <activity
             android:name="com.example.android_safetytracker.Legal"
-            android:label="Legal" 
+            android:label="\tLegal" 
             android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.Legal" />
@@ -134,7 +134,7 @@
         <!-- AboutUs -->
         <activity
             android:name="com.example.android_safetytracker.AboutUs"
-            android:label="About Us" 
+            android:label="\tAbout Us" 
             android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.AboutUs" />
@@ -146,7 +146,7 @@
         <!-- Feedback -->
         <activity
             android:name="com.example.android_safetytracker.EmailScreen"
-            android:label="Feedback" 
+            android:label="\tFeedback" 
             android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.EmailScreen" />
@@ -158,22 +158,10 @@
         <!-- Help -->
         <activity
             android:name="com.example.android_safetytracker.HelpscreenActivity"
-            android:label="Help" 
+            android:label="\tHelp" 
             android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.HelpscreenActivity" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
-        <!-- Calibrate -->
-        <activity
-            android:name="com.example.android_safetytracker.CalibratescreenActivity"
-            android:label="@string/title_activity_calibratescreen" 
-            android:screenOrientation="portrait" >
-            <intent-filter>
-                <action android:name="android.intent.action.CalibratescreenActivity" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
