@@ -25,6 +25,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="96dp"
+        android:background="@drawable/menubuttons"
         android:text="@string/startApp_BeginButtonText" 
         android:textSize="45sp"/>
 

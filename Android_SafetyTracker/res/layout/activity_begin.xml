@@ -57,6 +57,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="72dp"
         android:text="@string/begin_StopButtonText"
+        android:background="@drawable/menubuttons"
         android:textSize="45sp" />
 
 </RelativeLayout>

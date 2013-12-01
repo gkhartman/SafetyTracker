@@ -83,6 +83,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="25dp"
         android:text="@string/userInfo_EditUserButton"
+        android:background="@drawable/subbutton"
         android:onClick="" />
 
     <TextView
@@ -102,6 +103,7 @@
         android:layout_alignBaseline="@+id/userInfo_EditUserButton"
         android:layout_alignBottom="@+id/userInfo_EditUserButton"
         android:layout_alignRight="@+id/userInfo_PhoneNumber"
+        android:background="@drawable/subbutton"
         android:text="@string/userInfo_EditParentButton" />
 
 </RelativeLayout>

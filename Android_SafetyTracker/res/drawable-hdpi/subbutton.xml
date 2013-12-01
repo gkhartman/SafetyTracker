@@ -4,9 +4,9 @@
         android:startColor="#041FC3"
         android:endColor="#6D7B8D"
         android:angle="90"/>
-    <padding android:left="20dp"
+    <padding android:left="10dp"
         android:top="12dp"
-        android:right="20dp"
+        android:right="10dp"
         android:bottom="12dp" />
     <corners android:radius="30dp" />
 </shape>

@@ -16,6 +16,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="24dp"
+        android:background="@drawable/subbutton"
         android:text="@string/aboutUs_ContactUs" />
 
     <TextView
@@ -51,6 +52,7 @@
         android:layout_alignBottom="@+id/facebookButton"
         android:layout_alignParentRight="true"
         android:layout_marginRight="22dp"
+        android:background="@drawable/subbutton"
         android:text="@string/aboutUs_Twitter" />
 
     <Button
@@ -61,6 +63,7 @@
         android:layout_below="@+id/checkUsOutLabel"
         android:layout_marginLeft="21dp"
         android:layout_marginTop="39dp"
+        android:background="@drawable/subbutton"
         android:text="@string/aboutUs_Facebook" />
 
 </RelativeLayout>

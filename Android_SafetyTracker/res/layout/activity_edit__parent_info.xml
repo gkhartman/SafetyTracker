@@ -37,6 +37,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="33dp"
+        android:background="@drawable/subbutton"
         android:text="@string/submit_label" />
 
     <TextView

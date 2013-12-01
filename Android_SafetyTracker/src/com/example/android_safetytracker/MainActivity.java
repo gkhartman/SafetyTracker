@@ -70,9 +70,6 @@ public class MainActivity extends Activity implements OnClickListener
 		userInfo = (Button)findViewById(R.id.menu_UserInfoButton);
 		userInfo.setOnClickListener(this);
 		
-		calibrateButton = (Button)findViewById(R.id.menu_CalibrateButton);
-		calibrateButton.setOnClickListener(this);
-		
 		turnOnGPSButton = (Button)findViewById(R.id.menu_turnOnGPSButton);
 		turnOnGPSButton.setOnClickListener(this);
 		
@@ -108,10 +105,6 @@ public class MainActivity extends Activity implements OnClickListener
 			     beginAboutUsClick();
 			     break;
 			     
-			case R.id.menu_CalibrateButton:
-				 beginCalibrateClick();
-				 break;
-				 
 			case R.id.menu_HelpButton:
 				 beginHelpClick();
 				 break;
