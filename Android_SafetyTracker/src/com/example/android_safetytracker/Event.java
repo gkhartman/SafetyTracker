@@ -57,6 +57,11 @@ public class Event
 		date = df.format(Calendar.getInstance().getTime());
 	}
 	
+	@Override
+	public String toString(){
+		return type+ ", " + date;
+	}
+	
 	public String getLocation() { return latitude + ", " + longitude; }
 	
 	public String getEventType() { return type; }

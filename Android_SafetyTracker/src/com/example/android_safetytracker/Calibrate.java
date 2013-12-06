@@ -9,11 +9,11 @@ public class Calibrate
 	private double accX,accY,accZ,previousX,previousY,previousZ;
 	private double gyroX,gyroY,gyroZ,previousGyroX,previousGyroY,previousGyroZ;
 	private long startTime;
-	private final double  THRESHOLD= 5.04; //random threshold 
-	private final double GYROTHRESH = 5.0000;
+	private final double  THRESHOLD= 10.04; //random threshold 
+	private final double GYROTHRESH = 25.0000;
 	private boolean isCalibrated, good;
 	static boolean timeIsUp;
-
+	
 	public Calibrate()
 	{
 		accX = 0;
@@ -51,10 +51,7 @@ public class Calibrate
 		
 		
 		if(Math.abs(accX-previousX) > THRESHOLD || 
-				Math.abs(accY-previousY) > THRESHOLD || 
-					Math.abs(accZ-previousZ) > THRESHOLD ||
-						Math.abs(gyroX-previousGyroX) > GYROTHRESH ||
-							Math.abs(gyroY - previousGyroY) > GYROTHRESH )
+				Math.abs(accY-previousY) > THRESHOLD )
 								{
 			
 			good = false;

@@ -11,10 +11,13 @@
         Tap Begin when ready.</string>
     <string name="startApp_BeginButtonText">Begin</string>
     <string name="title_activity_begin">BeginActivity</string>
-    <string name="begin_DisclaimerText">Disclaimer</string>
-    <string name="begin_textForDisclaimer">        Fill with Disclaimer</string>
     <string name="begin_Instruction">Instructions</string>
-    <string name="begin_InstructionText">Fill with Instructions</string>
+    <string name="begin_InstructionText"> 1) For optimal results, dock your phone parallel to the driver.\n
+        											   2) Make it perpendicular to the windshield.\n
+        											   3) Wait until it calibrates.\n
+        											   4) Drive safe.\n
+        											  
+        											  </string>
     <string name="begin_StopButtonText">Stop</string>
     <string name="title_activity_logs">Logs</string>
     <string name="userInfo_NameText">Name</string>

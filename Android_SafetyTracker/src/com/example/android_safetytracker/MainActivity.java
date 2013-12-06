@@ -161,12 +161,6 @@ public class MainActivity extends Activity implements OnClickListener
 
 	private void beginHelpClick() { startActivity(new Intent("android.intent.action.HelpscreenActivity")); }
 
-	/**
-	 * Trying to add a fragment instead of a whole layout. The fragment will just notify
-	 * the user to dock the device and not move it. 
-	 */
-	private void beginCalibrateClick() { startActivity(new Intent("android.intent.action.CalibratescreenActivity")); }
-
 	private void beginAboutUsClick() { startActivity(new Intent("android.intent.action.AboutUs")); }
 
 	private void beginUserInfoClick() { startActivity(new Intent("android.intent.action.UserInfoActivity")); }

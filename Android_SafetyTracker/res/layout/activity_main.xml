@@ -11,7 +11,7 @@
     <Button
         android:id="@+id/menu_HelpButton"
         style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
@@ -21,7 +21,7 @@
     <Button
         android:id="@+id/menu_legalButton"
         style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/menu_HelpButton"
         android:layout_centerHorizontal="true"
@@ -31,12 +31,11 @@
     <Button
         android:id="@+id/menu_aboutUsButton"
         style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/menu_legalButton"
         android:layout_alignBottom="@+id/menu_legalButton"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="14dp"
         android:background="@drawable/subbutton"
         android:text="@string/aboutUs_label" />
 

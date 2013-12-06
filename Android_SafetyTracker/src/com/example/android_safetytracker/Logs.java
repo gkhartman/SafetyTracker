@@ -82,7 +82,7 @@ public class Logs extends Activity implements OnClickListener
 	 */
 	private void readFromFile()
 	{
-		File file = new File(getFilesDir() + File.separator + fileName); //name of file was chosen by Dr. Jose...blame it on him
+		File file = new File(getFilesDir() + File.separator + fileName); 
 		if(!file.exists())
 		   return;
 		String data = "";		
@@ -104,7 +104,15 @@ public class Logs extends Activity implements OnClickListener
 	private Event parseData(String data)
 	{
 		String [] brokenString = data.split("~");
-		return new Event(brokenString[0],brokenString[1],Double.parseDouble(brokenString[2]),Double.parseDouble(brokenString[3]));
+		return new Event(brokenString[0],brokenString[1],setToThreeDecimal(brokenString[2]),setToThreeDecimal(brokenString[3]));
+	}
+	//this method will set the coordinates to 3 decimal places
+	private double setToThreeDecimal(String value)
+	{
+		double val = Double.valueOf(value);
+		val = (int)(val*1000);
+		val = val / 1000.00;
+		return val;
 	}
 	
 	private void enableButton(Button button) { button.setEnabled(true); }

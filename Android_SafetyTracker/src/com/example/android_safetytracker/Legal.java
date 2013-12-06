@@ -6,7 +6,6 @@ import android.view.Menu;
 
 /**
  * This class is for the screen with all the necessary legal information.
- * @author Johnny Lam
  *
  */
 public class Legal extends Activity 

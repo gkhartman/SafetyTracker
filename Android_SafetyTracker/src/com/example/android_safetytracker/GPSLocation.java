@@ -3,9 +3,7 @@ package com.example.android_safetytracker;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
+import android.location.*;
 import android.os.Bundle;
 import android.os.IBinder;
 
@@ -14,14 +12,11 @@ import android.os.IBinder;
  * When the engine is referenced now we can call the methods in the engine class.
  * The onLocationChanged method is able to reference the engine if it senses that
  * the user is speeding. The location is update every 1 second and 2 meters.
- * @author victor
  */
 public class GPSLocation extends Service implements LocationListener 
 {
 	private LocationManager lManager;
-	private double longitude;
-	private double latitude;
-	private boolean gpsReady;
+	private Location location;
 
 	private static Engine engine;
 
@@ -33,24 +28,20 @@ public class GPSLocation extends Service implements LocationListener
 	 */
 	public GPSLocation(Engine eng) { engine = eng; }
 	
-	public double getLongitude() { return longitude; }
-	
-	public double getLatitude() { return latitude; }
 
 	@Override
 	public void onCreate() 
 	{
-		longitude = 0.0f;
-		latitude = 0.0f;
-		super.onCreate();
+		location = null;
 		lManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+		super.onCreate();
 	}
 
+	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) 
 	{
-		gpsReady = false;
 		lManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0,0,this); //update every 1 second 2 meters (approx 5 mph)
-		return START_STICKY;														
+		return START_STICKY;
 	}
 
 	@Override
@@ -66,18 +57,15 @@ public class GPSLocation extends Service implements LocationListener
 	public IBinder onBind(Intent intent) { return null; }
 
 	@Override
-	public void onLocationChanged(Location location) 
+	public void onLocationChanged(Location loc) 
 	{
-	   gpsReady = true;
-	   float speed = location.getSpeed();
-	   latitude = (float) location.getLatitude();
-	   longitude = location.getLongitude();
-       if(speed > 33.5) //33.5 m/s is approx. 75mph
-    	   engine.speeding(speed,longitude,latitude);
+	   if(loc != null)
+	   {
+		   engine.setLocation(loc);
+	   }
+	   
 	}
 	
-	public boolean isGPSReady() { return gpsReady; }
-
 	@Override
 	public void onProviderDisabled(String provider) { engine.gpsDisabled(); }
 

@@ -12,9 +12,12 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.telephony.SmsManager;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.Toast;
 import android.os.AsyncTask;
 import android.widget.EditText;
 import java.io.UnsupportedEncodingException;
@@ -51,6 +54,7 @@ public class BeginActivity extends Activity implements View.OnClickListener, Sen
     private Consumer consumer;
     //used to hold the engine from running if user is prompted to start gps
     private boolean gpsHold;
+    private ImageView  gpsImage;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
@@ -60,6 +64,9 @@ public class BeginActivity extends Activity implements View.OnClickListener, Sen
 		
 		begin_Stop = (Button) findViewById(R.id.begin_StopButton);
 		begin_Stop.setOnClickListener(this);
+		
+		gpsImage = (ImageView) findViewById(R.id.gpsContainer);
+		gpsImage.setOnClickListener(this);
 		
 		sensorM = (SensorManager) getSystemService(SENSOR_SERVICE);
 		accelerometer = sensorM.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
@@ -89,8 +96,32 @@ public class BeginActivity extends Activity implements View.OnClickListener, Sen
 			notGoodForIntialValues = true;
 			engine = new Engine(this);
 			startService(new Intent(getBaseContext(), Engine.class));
+			if(checkGPSEnabled())
+			{
+				setGPSStatusImage("loading");
+			}
 		}
 		super.onResume();
+	}
+	
+	public void setGPSStatusImage(String status)
+	{
+	  ImageView img = (ImageView) findViewById(R.id.gpsContainer);
+	  if(status == "loading")
+	  {
+		  img.setImageResource(R.drawable.gps_waiting);
+		  img.setTag(R.drawable.gps_waiting);
+	  }
+	  else if(status == "disabled")
+	  {
+		  img.setImageResource(R.drawable.gps_disabled);
+		  img.setTag(R.drawable.gps_disabled);
+	  }
+	  else if(status == "ready")
+	  {
+		  img.setImageResource(R.drawable.gps_ready);
+		  img.setTag(R.drawable.gps_ready);
+	  }
 	}
 	
 	@Override
@@ -113,8 +144,8 @@ public class BeginActivity extends Activity implements View.OnClickListener, Sen
 	@Override
 	public void onDestroy()
 	{
-		//if(consumer.isMonitored() && linkedList.size() > 0)
-				//sendMail("carappfeedback@gmail.com","dd","ddd");
+		if(consumer.isMonitored() && engine.logMessageContent.length() > 0)
+				setContent(engine.logMessageContent);
 		super.onDestroy();
 	}
 	
@@ -166,12 +197,29 @@ public class BeginActivity extends Activity implements View.OnClickListener, Sen
 			case R.id.begin_StopButton:
 				beginClick();
 				break;
+			case R.id.gpsContainer:
+				displayGPSStatusInfo(v);
+		}
+	}
+	
+	private void displayGPSStatusInfo(View v)
+	{
+		if((Integer)gpsImage.getTag()== R.drawable.gps_disabled)
+		{
+			Toast.makeText(this, "GPS is disabled", Toast.LENGTH_SHORT).show();
+		}
+		else if((Integer)gpsImage.getTag()== R.drawable.gps_waiting)
+		{
+			Toast.makeText(this, "GPS is connecting", Toast.LENGTH_SHORT).show();
+		}
+		else if((Integer)gpsImage.getTag() == R.drawable.gps_ready)
+		{
+			Toast.makeText(this, "GPS is running", Toast.LENGTH_SHORT).show();
 		}
 	}
 	
 	private void beginClick() 
 	{
-		//code to save logs if needed
 		sensorM.unregisterListener(this,accelerometer);
 		finish();
 	}
@@ -327,6 +375,28 @@ public class BeginActivity extends Activity implements View.OnClickListener, Sen
 			isFirstTime = false;
 		else
 			isFirstTime = true;
+	}
+	
+	public void setContent(String message) {
+		System.out.println("method called");
+		if (consumer.isMonitored()) {
+			if (consumer.getEmail() != null && consumer.getEmail().length() > 0)
+			{
+				System.out.println("inside email\n" + message);
+				sendMail(consumer.getEmail(), "Driving Report", message);
+				System.out.print(message);
+			}
+			if (consumer.getPhone() != null && consumer.getPhone().length() >0)
+			{
+				System.out.println("inside texting");
+				sendSMS(message);
+			}
+		}
+	}
+	
+	private void sendSMS(String message) {
+		SmsManager sms = SmsManager.getDefault();
+		sms.sendTextMessage(consumer.getPhone(), null, consumer.getName() + " had violations\n" + message, null, null);
 	}
 	
 	private void sendMail(String email, String subject, String messageBody) 
